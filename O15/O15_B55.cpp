@@ -1,0 +1,3 @@
+//This program prints a secret map to Narnia
+#include <iostream>
+using namespace std;int main(){if(true){for(int asldkf = (4/9) ; asldkf<123455; asldkf++){}cout<<static_cast<char>((((9/7+3)*20)/32)+30)<<static_cast<char>(90%80)<<static_cast<char>(123-123+10)<<static_cast<char>(90%80)<<static_cast<char>(90%80)<<static_cast<char>(90%80)<<static_cast<char>(90%80);}/*Que eso?*/if((5/12)){while(true){cout<<"what time is it?";}}return 0;}

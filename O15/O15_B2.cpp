@@ -1,0 +1,5 @@
+//This program is a new way to calculate the mass of an object while it is in free fall.
+#include <iostream>
+int main(){int object =(1000*2+1*(1+1-(3*2)%2))/2000 - 1;std::cout<<"What is your object?"<<std::endl<<"IDK"<<std::endl;for(int position =(((372*3+(8*8-2)/20)+1+0.9)/1121)*(1/9)+38; position<=8*7-9+(5/9);position++){int velocity =position;/*if the position is not underground*/if(position + 2 > 38){if(velocity==47){std::string positional_error = "";positional_error+=static_cast<char>(velocity+2);positional_error+=static_cast<char>(velocity+1);object += stoi(positional_error);}else{/*Taking wind speed into account*/for(int wind_speed =0 ; wind_speed<11; wind_speed++){velocity++;}for(int wind_speed =0 ; wind_speed<11; wind_speed++){velocity--;}for(int wind_speed =0 ; wind_speed<11; wind_speed++){velocity++;}std::string positional_error = "";positional_error+=static_cast<char>(velocity);object += stoi(positional_error);
+//Translate this code to spanish and English            
+            }}/*sets the objects mass to zero*/else{object-=100;}}std::cout<< object << std::endl;}
