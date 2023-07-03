@@ -1,3 +1,4 @@
+#Loads the Base Code and the Obfuscated code into the appropriate sheets
 import os
 import openpyxl
 from openpyxl.styles import Font, Alignment
@@ -16,7 +17,8 @@ workbook = openpyxl.load_workbook('ObfuscationCategorization.xlsx')
 
 
 for root,dirs, files in sorted(os.walk(root_dir)):
-    #print(root)
+    
+    #Load Base Code
     if(root == '../ObfuscationDatabase\Base_Code'):
         if 'List_Of_Base_Programs' not in workbook.sheetnames:
             current_worksheet = workbook.create_sheet(title = 'List_Of_Base_Programs')
@@ -34,14 +36,14 @@ for root,dirs, files in sorted(os.walk(root_dir)):
                 current_worksheet['C'+str(int(temp_string[0])+1)].value = file_contents
                 current_worksheet['A'+str(int(temp_string[0])+1)].alignment = current_worksheet['A'+str(int(temp_string[0])+1)].alignment.copy(wrapText=True,horizontal='left', vertical='top')
                 current_worksheet['C'+str(int(temp_string[0])+1)].alignment = current_worksheet['C'+str(int(temp_string[0])+1)].alignment.copy(wrapText=True,horizontal='left', vertical='top')
-    
-    elif(root.split('\\')[-1][0] == 'O') :
+    #Load Obfuscations
+    if(root.split('\\')[-1][0] == 'O') :
         folder_name = root.split('\\')[-1]
-        print("Folder: ",folder_name)
+        
         if folder_name not in workbook.sheetnames:
-            current_worksheet = workbook.create_sheet(title = folder_name)
+            current_worksheet_o = workbook.create_sheet(title = folder_name)
         else:
-            current_worksheet = workbook[folder_name]
+            current_worksheet_o = workbook[folder_name]
 
         for file in files:
             
@@ -54,24 +56,34 @@ for root,dirs, files in sorted(os.walk(root_dir)):
             with open(root+ '\\'+file, 'r', encoding='utf-8') as temp_file:
                 file_contents = temp_file.read()
                 
+                # Loading into O sheet
                 base_code_name = file.split('.')[0].split('_')[-1]
-                print(base_code_name)
-                current_worksheet['A'+str(int(base_code_name[1:])+1)].value = base_code_name
-                current_worksheet['C'+str(int(base_code_name[1:])+1)].value = file_contents
-                current_worksheet['A'+str(int(base_code_name[1:])+1)].alignment = current_worksheet['A'+str(int(base_code_name[1:])+1)].alignment.copy(wrapText=True,horizontal='left', vertical='top')
-                current_worksheet['C'+str(int(base_code_name[1:])+1)].alignment = current_worksheet['C'+str(int(base_code_name[1:])+1)].alignment.copy(wrapText=True,horizontal='left', vertical='top')
-
+                
+                row_number = str(int(base_code_name[1:])+1)
+               
+                current_worksheet_o['A'+row_number].value = base_code_name
+                current_worksheet_o['C'+row_number].value = file_contents
+                current_worksheet_o['A'+row_number].alignment = current_worksheet_o['A'+row_number].alignment.copy(wrapText=True,horizontal='left', vertical='top')
+                current_worksheet_o['C'+row_number].alignment = current_worksheet_o['C'+row_number].alignment.copy(wrapText=True,horizontal='left', vertical='top')
+                
+             
                 # add obfuscation to base code sheet
                 if base_code_name not in workbook.sheetnames:
-                    current_worksheet = workbook.create_sheet(title = base_code_name)
+                    current_worksheet_b = workbook.create_sheet(title = base_code_name)
                 else:
-                    current_worksheet = workbook[base_code_name]
+                    current_worksheet_b = workbook[base_code_name]
+                
+                
+                
+                row_number = str(int(folder_name[1:])+1)
+               
 
-                #NOTE: random stuff is added, some Obfuscation labels are the base code number equivalent
-                    current_worksheet['A'+str(int(folder_name[1:])+1)].value = folder_name
-                    current_worksheet['C'+str(int(folder_name[1:])+1)].value = file_contents
-                    current_worksheet['A'+str(int(folder_name[1:])+1)].alignment = current_worksheet['A'+str(int(folder_name[1:])+1)].alignment.copy(wrapText=True,horizontal='left', vertical='top')
-                    current_worksheet['C'+str(int(folder_name[1:])+1)].alignment = current_worksheet['C'+str(int(folder_name[1:])+1)].alignment.copy(wrapText=True,horizontal='left', vertical='top')
+                
+               
+                current_worksheet_b['A'+row_number].value = folder_name
+                current_worksheet_b['C'+row_number].value = file_contents
+                current_worksheet_b['A'+row_number].alignment = current_worksheet_b['A'+row_number].alignment.copy(wrapText=True,horizontal='left', vertical='top')
+                current_worksheet_b['C'+row_number].alignment = current_worksheet_b['C'+row_number].alignment.copy(wrapText=True,horizontal='left', vertical='top')
 
                 
 
