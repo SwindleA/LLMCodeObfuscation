@@ -81,9 +81,23 @@ for root,dirs, files in sorted(os.walk(root_dir)):
             current_worksheet_o['Q'+row_number].alignment = current_worksheet_o['Q'+row_number].alignment.copy(wrapText=True,horizontal='left', vertical='top')
             
 
+            # Loading question into B sheet
+            current_worksheet_b = workbook[base_code_name]
+
+            row_number = str(int(folder_name[1:])+1)
+
+            #initial question
+            current_worksheet_b['M'+row_number].value = ''.join(temp_question)
+
+            #follow up question
+            current_worksheet_b['Q'+row_number].value = 'explain'
+
+            #formatting
+            current_worksheet_b['M'+row_number].alignment = current_worksheet_b['M'+row_number].alignment.copy(wrapText=True,horizontal='left', vertical='top')
+            current_worksheet_b['Q'+row_number].alignment = current_worksheet_b['Q'+row_number].alignment.copy(wrapText=True,horizontal='left', vertical='top')
             
                 
-        break
+        
 
 
 # Save the changes
