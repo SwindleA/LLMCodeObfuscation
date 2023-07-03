@@ -34,9 +34,9 @@ for root,dirs, files in sorted(os.walk(root_dir)):
                 temp_string = file[1:].split('.')
                 
                 current_worksheet['A'+str(int(temp_string[0])+1)].value = file.split('.')[0]
-                current_worksheet['C'+str(int(temp_string[0])+1)].value = file_contents
+                current_worksheet['E'+str(int(temp_string[0])+1)].value = file_contents
                 current_worksheet['A'+str(int(temp_string[0])+1)].alignment = current_worksheet['A'+str(int(temp_string[0])+1)].alignment.copy(wrapText=True,horizontal='left', vertical='top')
-                current_worksheet['C'+str(int(temp_string[0])+1)].alignment = current_worksheet['C'+str(int(temp_string[0])+1)].alignment.copy(wrapText=True,horizontal='left', vertical='top')
+                current_worksheet['E'+str(int(temp_string[0])+1)].alignment = current_worksheet['E'+str(int(temp_string[0])+1)].alignment.copy(wrapText=True,horizontal='left', vertical='top')
 
 #Load Obfuscations
     elif(root.split('\\')[-1][0] == 'O') :
