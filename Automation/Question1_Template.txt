@@ -1,7 +1,0 @@
-Do these pieces of code achieve the same goal?
-
-*code 1*
-
-AND
-
-*code 2*
