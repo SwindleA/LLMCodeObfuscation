@@ -6,17 +6,6 @@ import execjs
 
 from chatGPT import askQuestion
 
-
-def getAnswerFromChatGPT(question):
-    with open('QuestionAsker\\openai-quickstart-node\\pages\\api\\generate.js', 'r') as file:
-        script_code = file.read()
-
-    context = execjs.compile(script_code)
-    result = context.call('getAnswer', question)
-    return result
-
-
-
 root_dir_workbook = 'C:\\Users\\aswin\\OneDrive - Saint Louis University\\Documents\\REU-2023\\REU-Project\\ObfuscationDatabase'
 root_dir = '..'
 
@@ -24,14 +13,18 @@ root_dir = '..'
 current_workbook = '\\LM2.xlsx'#'\\ObfuscationCategorization.xlsx'
 workbook = openpyxl.load_workbook(root_dir_workbook+ current_workbook)
 
-question_number = 'Q1'#input("Enter the question you would like to load: \n Q1 \n Q2 \n etc... \n")
+question_number = 'Q1'
+question_column = 'E'
+answer_column = 'G'
+
+code_one = 3
+code_two = 8
 
 with open('Question_Templates\\'+question_number+'.txt', 'r', encoding='utf-8') as question_template:
     question = question_template.readlines()
     print(question_template.read())
 
-code_one = 3
-code_two = 8
+
 
 
 
@@ -89,30 +82,34 @@ for root,dirs, files in sorted(os.walk(root_dir)):
 
             
 
-            row_number = str(int(base_code_name[1:])+1)
-            
+            o_row_number = str(int(base_code_name[1:])+1)
+            o_question_cell = current_worksheet_o[question_column+o_row_number]
+            o_answer_cell = current_worksheet_o[answer_column+o_row_number]
+
             #initial question and answer loading into o sheet
-            current_worksheet_o['E'+row_number].value = ''.join(temp_question)
-            current_worksheet_o['G'+row_number].value = ''.join(answer)
+            o_question_cell.value = ''.join(temp_question)
+            o_answer_cell.value = ''.join(answer)
 
             #formatting for o sheet
-            current_worksheet_o['E'+row_number].alignment = current_worksheet_o['E'+row_number].alignment.copy(wrapText=True,horizontal='left', vertical='top')
-            current_worksheet_o['G'+row_number].alignment = current_worksheet_o['G'+row_number].alignment.copy(wrapText=True,horizontal='left', vertical='top')
+            o_question_cell.alignment = Alignment(wrapText=True,horizontal='left', vertical='top')
+            o_answer_cell.alignment = Alignment(wrapText=True,horizontal='left', vertical='top')
             
 
             # Loading question and answer into B sheet
             current_worksheet_b = workbook[base_code_name]
 
-            row_number = str(int(folder_name[1:])+1)
+            b_row_number = str(int(folder_name[1:])+1)
+            b_question_cell = current_worksheet_b[question_column+b_row_number]
+            b_answer_cell = current_worksheet_b[answer_column+b_row_number]
 
             #initial question
-            current_worksheet_b['E'+row_number].value = ''.join(temp_question)
-            current_worksheet_b['G'+row_number].value = ''.join(answer)
+            b_question_cell.value = ''.join(temp_question)
+            b_answer_cell.value = ''.join(answer)
 
            
             #formatting
-            current_worksheet_b['E'+row_number].alignment = current_worksheet_b['E'+row_number].alignment.copy(wrapText=True,horizontal='left', vertical='top')
-            current_worksheet_b['G'+row_number].alignment = current_worksheet_b['G'+row_number].alignment.copy(wrapText=True,horizontal='left', vertical='top')
+            b_question_cell.alignment = Alignment(wrapText=True,horizontal='left', vertical='top')
+            b_answer_cell.alignment = Alignment(wrapText=True,horizontal='left', vertical='top')
             
             
 

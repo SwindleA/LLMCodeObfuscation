@@ -8,16 +8,24 @@ root_dir_workbook = 'C:\\Users\\aswin\\OneDrive - Saint Louis University\\Docume
 root_dir = '..'
 
 # Load the Excel spreadsheet
-workbook = openpyxl.load_workbook(root_dir_workbook+'\\ObfuscationCategorization.xlsx')
+current_workbook = '\\LM2.xlsx'#'\\ObfuscationCategorization.xlsx'
+workbook = openpyxl.load_workbook(root_dir_workbook+current_workbook)
 
-question_number = 'Q2'#input("Enter the question you would like to load: \n Q1 \n Q2 \n etc... \n")
+question_number = 'Q2'
 
-with open('Question_Templates\\'+question_number+'.txt', 'r', encoding='utf-8') as question_template:
-    question = question_template.readlines()
-    print(question_template.read())
+_1_question_column = 'M'
+_1_answer_column = 'O'
+
+_2_question_column = 'Q'
+_2_answer_column = 'S'
 
 code_one = 3
 code_two = 8
+
+with open('Question_Templates\\'+question_number+'.txt', 'r', encoding='utf-8') as question_template:
+    question = question_template.readlines()
+    
+
 
 
 
@@ -68,40 +76,44 @@ for root,dirs, files in sorted(os.walk(root_dir)):
             # Loading question into O sheet
             
             
-            row_number = str(int(base_code_name[1:])+1)
+            o_row_number = str(int(base_code_name[1:])+1)
+            o_1_question_cell = current_worksheet_o[_1_question_column+o_row_number]
+            o_2_question_cell = current_worksheet_o[_2_question_column+o_row_number]
             
             #initial question
-            current_worksheet_o['M'+row_number].value = ''.join(temp_question)
+            o_1_question_cell.value = ''.join(temp_question)
 
             #follow up question
-            current_worksheet_o['Q'+row_number].value = 'explain'
+            o_2_question_cell.value = 'explain'
 
             #formatting
-            current_worksheet_o['M'+row_number].alignment = current_worksheet_o['M'+row_number].alignment.copy(wrapText=True,horizontal='left', vertical='top')
-            current_worksheet_o['Q'+row_number].alignment = current_worksheet_o['Q'+row_number].alignment.copy(wrapText=True,horizontal='left', vertical='top')
+            o_1_question_cell.alignment = Alignment(wrapText=True,horizontal='left', vertical='top')
+            o_2_question_cell.alignment = Alignment(wrapText=True,horizontal='left', vertical='top')
             
 
             # Loading question into B sheet
             current_worksheet_b = workbook[base_code_name]
 
-            row_number = str(int(folder_name[1:])+1)
+            b_row_number = str(int(folder_name[1:])+1)
+            b_1_question_cell = current_worksheet_b[_1_question_column+b_row_number]
+            b_2_question_cell = current_worksheet_b[_2_question_column+b_row_number]
 
             #initial question
-            current_worksheet_b['M'+row_number].value = ''.join(temp_question)
+            b_1_question_cell.value = ''.join(temp_question)
 
             #follow up question
-            current_worksheet_b['Q'+row_number].value = 'explain'
+            b_2_question_cell.value = 'explain'
 
             #formatting
-            current_worksheet_b['M'+row_number].alignment = current_worksheet_b['M'+row_number].alignment.copy(wrapText=True,horizontal='left', vertical='top')
-            current_worksheet_b['Q'+row_number].alignment = current_worksheet_b['Q'+row_number].alignment.copy(wrapText=True,horizontal='left', vertical='top')
+            b_1_question_cell.alignment = Alignment(wrapText=True,horizontal='left', vertical='top')
+            b_2_question_cell.alignment = Alignment(wrapText=True,horizontal='left', vertical='top')
             
                 
         
 
 
 # Save the changes
-workbook.save(root_dir_workbook+'\\ObfuscationCategorization.xlsx')
+workbook.save(root_dir_workbook+current_workbook)
 
 
 
