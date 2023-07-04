@@ -10,50 +10,50 @@ from openpyxl.formula import Tokenizer
 from openpyxl.worksheet.datavalidation import DataValidation
 
 
-def initialFormattingO(current_worksheet_o):
+# def initialFormattingO(current_worksheet_o):
 
-    alphabet = string.ascii_uppercase
+#     alphabet = string.ascii_uppercase
 
-    fill = PatternFill(fill_type='solid', fgColor='C9DAF8')
-    font = Font(size=15, bold=True)
+#     fill = PatternFill(fill_type='solid', fgColor='C9DAF8')
+#     font = Font(size=15, bold=True)
 
-    for letter in alphabet:
-        current_worksheet_o[letter+'1'].value = '=[ObfuscationCategorization.xlsx]Template!'+letter+'22'
-        current_worksheet_o[letter+'1'].fill = fill
-        current_worksheet_o[letter+'1'].font = font
+#     for letter in alphabet:
+#         current_worksheet_o[letter+'1'].value = '=[ObfuscationCategorization.xlsx]Template!'+letter+'22'
+#         current_worksheet_o[letter+'1'].fill = fill
+#         current_worksheet_o[letter+'1'].font = font
 
-    # Define the list of values and their formatting options
-    values = ['High Correct', 'Medium Correct', 'Low Correct','High Maybe', 'Medium Maybe','Low Maybe','Low Incorrect','Medium Incorrect', 'High Incorrect','N/A']
-    formats = [PatternFill(fgColor='1dad00'), PatternFill(fgColor='2bff00'), PatternFill(fgColor='98fa84'), PatternFill(fgColor='fa7a02'), PatternFill(fgColor='f78b25'), PatternFill(fgColor='ff9b3d'), PatternFill(fgColor='ff6970'), PatternFill(fgColor='fc323d'), PatternFill(fgColor='db000b'),  PatternFill(fgColor='9ca3ad')]
+#     # Define the list of values and their formatting options
+#     values = ['High Correct', 'Medium Correct', 'Low Correct','High Maybe', 'Medium Maybe','Low Maybe','Low Incorrect','Medium Incorrect', 'High Incorrect','N/A']
+#     formats = [PatternFill(fgColor='1dad00'), PatternFill(fgColor='2bff00'), PatternFill(fgColor='98fa84'), PatternFill(fgColor='fa7a02'), PatternFill(fgColor='f78b25'), PatternFill(fgColor='ff9b3d'), PatternFill(fgColor='ff6970'), PatternFill(fgColor='fc323d'), PatternFill(fgColor='db000b'),  PatternFill(fgColor='9ca3ad')]
 
-    # Create a Tokenizer to convert the list of values into a formula
+#     # Create a Tokenizer to convert the list of values into a formula
     
-    list_formula = Tokenizer(values)
+#     list_formula = Tokenizer(values)
 
-    # Create a Rule object with the List rule and formatting options
-    rule = Rule(type='expression', dxfId=0, priority=1)
-    rule.formula = [f'{list_formula}']
-    rule.stopIfTrue = True  # Stop applying further rules if this rule is true
+#     # Create a Rule object with the List rule and formatting options
+#     rule = Rule(type='expression', dxfId=0, priority=1)
+#     rule.formula = [f'{list_formula}']
+#     rule.stopIfTrue = True  # Stop applying further rules if this rule is true
 
-    # Apply the rule to a range of cells
-    range_to_format = 'I2:I56'
-    current_worksheet_o.conditional_formatting.add(range_to_format, rule)
+#     # Apply the rule to a range of cells
+#     range_to_format = 'I2:I56'
+#     current_worksheet_o.conditional_formatting.add(range_to_format, rule)
 
     
 
-    data_validation = DataValidation(type="list", formula1=f'"{",".join(values)}"')
+#     data_validation = DataValidation(type="list", formula1=f'"{",".join(values)}"')
 
 
-    for value, format in zip(values, formats):
-        #current_worksheet_o.conditional_formatting.add(f'{range_to_format}="{value}"', Rule(type="expression", dxfId=0, formula=[f'{list_formula}="{value}"'], stopIfTrue=True))
-        for row in current_worksheet_o.iter_rows(min_row=2, max_row=56, min_col=9, max_col=9):
-            for cell in row:
+#     for value, format in zip(values, formats):
+#         #current_worksheet_o.conditional_formatting.add(f'{range_to_format}="{value}"', Rule(type="expression", dxfId=0, formula=[f'{list_formula}="{value}"'], stopIfTrue=True))
+#         for row in current_worksheet_o.iter_rows(min_row=2, max_row=56, min_col=9, max_col=9):
+#             for cell in row:
                 
-                cell.fill = format
-                data_validation.add(cell)
+#                 cell.fill = format
+#                 data_validation.add(cell)
     
     
-    current_worksheet_o.freeze_panes = 'A2'
+#     current_worksheet_o.freeze_panes = 'A2'
 
 
 
@@ -102,7 +102,7 @@ for root,dirs, files in sorted(os.walk(root_dir)):
         if folder_name not in workbook.sheetnames:
             current_worksheet_o = workbook.create_sheet(title = folder_name)
             
-            initialFormattingO(current_worksheet_o)
+            #initialFormattingO(current_worksheet_o)
 
 
 
