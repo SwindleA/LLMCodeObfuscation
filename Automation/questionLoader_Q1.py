@@ -2,15 +2,20 @@
 import os
 import openpyxl
 from openpyxl.styles import Font, Alignment
-import execjs
+import time
 
-from chatGPT import askQuestion
+import chatGPT
+import jurassic_2
 
 root_dir_workbook = 'C:\\Users\\aswin\\OneDrive - Saint Louis University\\Documents\\REU-2023\\REU-Project\\ObfuscationDatabase'
 root_dir = '..'
 
 # Load the Excel spreadsheet
-current_workbook = '\\LM2.xlsx'#'\\ObfuscationCategorization.xlsx'
+current_workbook = '\\ChatGPT_Q1.xlsx'##'\\ObfuscationCategorization.xlsx''\\LM2.xlsx'
+
+#Change this depending on the Language Model being used
+LM = chatGPT
+
 workbook = openpyxl.load_workbook(root_dir_workbook+ current_workbook)
 
 question_number = 'Q1'
@@ -77,8 +82,8 @@ for root,dirs, files in sorted(os.walk(root_dir)):
 # Loading question and answer into O sheet
             
             #getting answer to question
-            response = askQuestion(''.join(temp_question))
-            answer = response['choices'][0]['text']
+            answer = LM.askQuestion(''.join(temp_question))
+            
 
             
 
@@ -111,9 +116,15 @@ for root,dirs, files in sorted(os.walk(root_dir)):
             b_question_cell.alignment = Alignment(wrapText=True,horizontal='left', vertical='top')
             b_answer_cell.alignment = Alignment(wrapText=True,horizontal='left', vertical='top')
             
-            
+            start_time = time.perf_counter()
+            while time.perf_counter() - start_time < 21:
+                pass
 
-        break     
+            # Save the changes
+            workbook.save(root_dir_workbook+current_workbook)
+            
+        # print("code contains break statement")
+        # break     
         
 
 
