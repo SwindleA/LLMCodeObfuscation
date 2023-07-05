@@ -10,7 +10,7 @@ from openpyxl.formula import Tokenizer
 from openpyxl.worksheet.datavalidation import DataValidation
 
 
-def initialFormatting(current_worksheet):
+def initialFormatting(current_worksheet,sheet_type,o_link_row):
 
 #Creates the header row. Inserts the link to the template, fills in light blue, and freezes it
     alphabet = string.ascii_uppercase
@@ -26,46 +26,44 @@ def initialFormatting(current_worksheet):
     current_worksheet.freeze_panes = 'A2'
 
 #Creating the dropdowns
+    if(sheet_type == 'base'):
 
-#     # Define the list of values and their formatting options
-    values = ['High Correct', 'Medium Correct', 'Low Correct','High Maybe', 'Medium Maybe','Low Maybe','Low Incorrect','Medium Incorrect', 'High Incorrect','N/A']
-    formats = [PatternFill(fgColor='1dad00'), PatternFill(fgColor='2bff00'), PatternFill(fgColor='98fa84'), PatternFill(fgColor='fa7a02'), PatternFill(fgColor='f78b25'), PatternFill(fgColor='ff9b3d'), PatternFill(fgColor='ff6970'), PatternFill(fgColor='fc323d'), PatternFill(fgColor='db000b'),  PatternFill(fgColor='9ca3ad')]
+        # Define the list of values and their formatting options
+        values = ['High Correct', 'Medium Correct', 'Low Correct','High Maybe', 'Medium Maybe','Low Maybe','Low Incorrect','Medium Incorrect', 'High Incorrect','N/A']
+        #Colors for the dropdown values# formats = [PatternFill(fgColor='1dad00'), PatternFill(fgColor='2bff00'), PatternFill(fgColor='98fa84'), PatternFill(fgColor='fa7a02'), PatternFill(fgColor='f78b25'), PatternFill(fgColor='ff9b3d'), PatternFill(fgColor='ff6970'), PatternFill(fgColor='fc323d'), PatternFill(fgColor='db000b'),  PatternFill(fgColor='9ca3ad')]
 
-#     # Create a Tokenizer to convert the list of values into a formula
-    
-#     list_formula = Tokenizer(values)
+        data_validation = DataValidation(type="list", formula1=f'"{",".join(values)}"')
 
-#     # Create a Rule object with the List rule and formatting options
-#     rule = Rule(type='expression', dxfId=0, priority=1)
-#     rule.formula = [f'{list_formula}']
-#     rule.stopIfTrue = True  # Stop applying further rules if this rule is true
+        current_worksheet.add_data_validation(data_validation)
+        
+        #For Question 1, i.e. column I
+        for row in current_worksheet.iter_rows(min_row=2, max_row=56, min_col=9, max_col=9):
+            for cell in row:
+                
+                data_validation.add(cell)
 
-#     # Apply the rule to a range of cells
-#     range_to_format = 'I2:I56'
-#     current_worksheet_o.conditional_formatting.add(range_to_format, rule)
+        #For Question 2, i.e. column U
+        for row in current_worksheet.iter_rows(min_row=2, max_row=56, min_col=21, max_col=21):
+            for cell in row:
 
-    
+                data_validation.add(cell)
 
-    data_validation = DataValidation(type="list", formula1=f'"{",".join(values)}"')
+    elif(sheet_type == 'o'):
+        row_num = 2
+        #For Question 1, i.e. column I
+        for row in current_worksheet.iter_rows(min_row=2, max_row=56, min_col=9, max_col=9):
+            for cell in row:
+                
+                cell.value = '=B'+str(row_num-1)+'!I'+o_link_row
+            row_num+=1
+        row_num = 2
+        #For Question 2, i.e. column U
+        for row in current_worksheet.iter_rows(min_row=2, max_row=56, min_col=21, max_col=21):
 
-    current_worksheet.add_data_validation(data_validation)
-    
-    #for value, format in zip(values, formats):
-        #current_worksheet_o.conditional_formatting.add(f'{range_to_format}="{value}"', Rule(type="expression", dxfId=0, formula=[f'{list_formula}="{value}"'], stopIfTrue=True))
-    
-    #For Question 1, i.e. column I
-    for row in current_worksheet.iter_rows(min_row=2, max_row=56, min_col=9, max_col=9):
-        for cell in row:
-            
-            #cell.fill = format
-            data_validation.add(cell)
+            for cell in row:
 
-    #For Question 2, i.e. column U
-    for row in current_worksheet.iter_rows(min_row=2, max_row=56, min_col=21, max_col=21):
-        for cell in row:
-            
-            #cell.fill = format
-            data_validation.add(cell)
+                cell.value = '=B'+str(row_num-1)+'!U'+o_link_row
+            row_num+=1
 
     
 
@@ -78,7 +76,7 @@ root_dir_workbook = 'C:\\Users\\aswin\\OneDrive - Saint Louis University\\Docume
 root_dir = '../ObfuscationDatabase'
 
 # Load the Excel spreadsheet
-current_workbook = '\\LM2.xlsx'#'\\ObfuscationCategorization.xlsx'
+current_workbook = '\\ChatGPT_Q1.xlsx'##'\\ObfuscationCategorization.xlsx''\\LM2.xlsx'
 workbook = openpyxl.load_workbook(root_dir_workbook+ current_workbook)
 
 name_column = 'A'
@@ -118,13 +116,13 @@ for root,dirs, files in sorted(os.walk(root_dir)):
         if folder_name not in workbook.sheetnames:
             current_worksheet_o = workbook.create_sheet(title = folder_name)
             
-            initialFormatting(current_worksheet_o)
+            initialFormatting(current_worksheet_o,"o",str(int(folder_name[1:])+1))
 
 
 
         else:
             current_worksheet_o = workbook[folder_name]
-
+            
         #for each file in the folder
         for file in files:
             
@@ -164,12 +162,12 @@ for root,dirs, files in sorted(os.walk(root_dir)):
                 if base_code_name not in workbook.sheetnames:
                     current_worksheet_b = workbook.create_sheet(title = base_code_name)
 
-                    initialFormatting(current_worksheet_b)
+                    initialFormatting(current_worksheet_b,"base","")
 
 
                 else:
                     current_worksheet_b = workbook[base_code_name]
-                
+                    
                 
                 #setting the row number to be 1 more than the obfuscation name
                 row_number = str(int(folder_name[1:])+1)
