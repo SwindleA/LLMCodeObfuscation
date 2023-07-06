@@ -25,6 +25,11 @@ def askQuestion(question):
             print("API error:", e)
             print("Retrying in 10 seconds...")
             time.sleep(10)
+        except Exception as ex:
+            print("API exception:", ex)
+            print("Retrying in 10 seconds...")
+            time.sleep(10)
+
     
     
     return response['choices'][0]['message']['content']

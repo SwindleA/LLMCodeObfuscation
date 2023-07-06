@@ -38,6 +38,8 @@ for root,dirs, files in sorted(os.walk(root_dir)):
     if(root.split('\\')[-1][0] == 'O') :
         folder_name = root.split('\\')[-1]
         print("Folder name: ",folder_name)
+        if(folder_name == 'O1' or folder_name == 'O10'or folder_name == 'O11'or folder_name == 'O12'or folder_name == 'O13'or folder_name == 'O14'or folder_name == 'O15' or folder_name == 'O16'):
+            continue
         current_worksheet_o = workbook[folder_name]
 
         #for each file in the folder
