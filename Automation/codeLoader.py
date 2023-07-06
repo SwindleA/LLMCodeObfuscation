@@ -17,11 +17,20 @@ def initialFormatting(current_worksheet,sheet_type,o_link_row):
 
     fill = PatternFill(fill_type='solid', fgColor='C9DAF8')
     font = Font(size=15, bold=True)
+    
+    if(sheet_type == 'o'):
+        for letter in alphabet:
+            
+            current_worksheet[letter+'1'].value = '=[ObfuscationCategorization.xlsx]Template!'+letter+'22'
+            current_worksheet[letter+'1'].fill = fill
+            current_worksheet[letter+'1'].font = font
 
-    for letter in alphabet:
-        current_worksheet[letter+'1'].value = '=[ObfuscationCategorization.xlsx]Template!'+letter+'22'
-        current_worksheet[letter+'1'].fill = fill
-        current_worksheet[letter+'1'].font = font
+    if(sheet_type == 'base'):
+        for letter in alphabet:
+            
+            current_worksheet[letter+'1'].value = '=[ObfuscationCategorization.xlsx]Template!'+letter+'1'
+            current_worksheet[letter+'1'].fill = fill
+            current_worksheet[letter+'1'].font = font
 
     current_worksheet.freeze_panes = 'A2'
 
@@ -118,10 +127,9 @@ for root,dirs, files in sorted(os.walk(root_dir)):
             
             initialFormatting(current_worksheet_o,"o",str(int(folder_name[1:])+1))
 
-
-
         else:
             current_worksheet_o = workbook[folder_name]
+            
             
         #for each file in the folder
         for file in files:
@@ -167,6 +175,7 @@ for root,dirs, files in sorted(os.walk(root_dir)):
 
                 else:
                     current_worksheet_b = workbook[base_code_name]
+                    
                     
                 
                 #setting the row number to be 1 more than the obfuscation name
