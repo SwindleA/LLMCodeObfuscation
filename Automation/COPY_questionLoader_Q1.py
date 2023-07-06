@@ -11,7 +11,7 @@ root_dir_workbook = 'C:\\Users\\aswin\\OneDrive - Saint Louis University\\Docume
 root_dir = '..'
 
 # Load the Excel spreadsheet
-current_workbook = '\\JTEST.xlsx' #'\\ChatGPT_Q1.xlsx'##'\\ObfuscationCategorization.xlsx''\\LM2.xlsx'
+current_workbook = #'\\JTEST.xlsx' #'\\ChatGPT_Q1.xlsx'##'\\ObfuscationCategorization.xlsx''\\LM2.xlsx'
 
 #Change this depending on the Language Model being used
 LM = jurassic_2
@@ -38,6 +38,8 @@ for root,dirs, files in sorted(os.walk(root_dir)):
     if(root.split('\\')[-1][0] == 'O') :
         folder_name = root.split('\\')[-1]
         print("Folder name: ",folder_name)
+        if(folder_name == 'O1' or folder_name == 'O10'or folder_name == 'O11'or folder_name == 'O12'or folder_name == 'O13'or folder_name == 'O14'):
+            continue
         current_worksheet_o = workbook[folder_name]
 
         #for each file in the folder
@@ -116,9 +118,12 @@ for root,dirs, files in sorted(os.walk(root_dir)):
             b_question_cell.alignment = Alignment(wrapText=True,horizontal='left', vertical='top')
             b_answer_cell.alignment = Alignment(wrapText=True,horizontal='left', vertical='top')
             
-            start_time = time.perf_counter()
-            while time.perf_counter() - start_time < 21:
-                pass
+            # Save the changes
+            workbook.save(root_dir_workbook+current_workbook)
+
+            # start_time = time.perf_counter()
+            # while time.perf_counter() - start_time < 21:
+            #     pass
         #     print(base_code_name)
         # print("code contains break statement")
         # break     
