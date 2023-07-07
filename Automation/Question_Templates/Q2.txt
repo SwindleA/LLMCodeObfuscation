@@ -1,4 +1,4 @@
-Is the functionality of these pieces of code the same, answer only yes or no:
+Is the functionality of these pieces of code the same?
 
 
 
