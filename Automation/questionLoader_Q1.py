@@ -6,15 +6,16 @@ import time
 
 import chatGPT
 import jurassic_2
+import palm
 
 root_dir_workbook = 'C:\\Users\\aswin\\OneDrive - Saint Louis University\\Documents\\REU-2023\\REU-Project\\ObfuscationDatabase'
 root_dir = '..'
 
 # Load the Excel spreadsheet
-current_workbook = '\\ChatGPT_Q1.xlsx'##'\\ObfuscationCategorization.xlsx''\\LM2.xlsx'
+current_workbook = '\\PaLM_Q1.xlsx'#'\\ChatGPT_Q1.xlsx'##'\\ObfuscationCategorization.xlsx''\\LM2.xlsx'
 
 #Change this depending on the Language Model being used
-LM = chatGPT
+LM = palm
 
 workbook = openpyxl.load_workbook(root_dir_workbook+ current_workbook)
 
@@ -38,8 +39,7 @@ for root,dirs, files in sorted(os.walk(root_dir)):
     if(root.split('\\')[-1][0] == 'O') :
         folder_name = root.split('\\')[-1]
         print("Folder name: ",folder_name)
-        if(folder_name == 'O1' or folder_name == 'O10'or folder_name == 'O11'or folder_name == 'O12'or folder_name == 'O13'or folder_name == 'O14'or folder_name == 'O15' or folder_name == 'O16'):
-            continue
+        
         current_worksheet_o = workbook[folder_name]
 
         #for each file in the folder
@@ -58,6 +58,7 @@ for root,dirs, files in sorted(os.walk(root_dir)):
                     continue
 
             base_code_name = file.split('.')[0].split('_')[-1]
+            
             row_number_int = int(base_code_name[1:])+1
 
             if(row_number_int%2 == 0):
@@ -118,15 +119,16 @@ for root,dirs, files in sorted(os.walk(root_dir)):
             b_question_cell.alignment = Alignment(wrapText=True,horizontal='left', vertical='top')
             b_answer_cell.alignment = Alignment(wrapText=True,horizontal='left', vertical='top')
             
-            start_time = time.perf_counter()
-            while time.perf_counter() - start_time < 21:
-                pass
+            if(LM == chatGPT):
+                start_time = time.perf_counter()
+                while time.perf_counter() - start_time < 21:
+                    pass
 
             # Save the changes
             workbook.save(root_dir_workbook+current_workbook)
             
-        # print("code contains break statement")
-        # break     
+        print("code contains break statement")
+        break     
         
 
 
