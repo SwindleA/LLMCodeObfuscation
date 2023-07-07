@@ -13,22 +13,30 @@ from openpyxl.worksheet.datavalidation import DataValidation
 def initialFormatting(current_worksheet,sheet_type,o_link_row):
 
 #Creates the header row. Inserts the link to the template, fills in light blue, and freezes it
+    
     alphabet = string.ascii_uppercase
 
     fill = PatternFill(fill_type='solid', fgColor='C9DAF8')
     font = Font(size=15, bold=True)
     
     if(sheet_type == 'o'):
-        for letter in alphabet:
+        
+       
+        for i in range(0, len(alphabet), 1):
+            letter = alphabet[i]
             
-            current_worksheet[letter+'1'].value = '=[ObfuscationCategorization.xlsx]Template!'+letter+'22'
+            if(i%2==0):
+                current_worksheet[letter+'1'].value = '=[ObfuscationCategorization.xlsx]Template!'+letter+'22'
             current_worksheet[letter+'1'].fill = fill
             current_worksheet[letter+'1'].font = font
 
     if(sheet_type == 'base'):
-        for letter in alphabet:
+        for i in range(0, len(alphabet), 1):
+            letter = alphabet[i]
             
-            current_worksheet[letter+'1'].value = '=[ObfuscationCategorization.xlsx]Template!'+letter+'1'
+            if(i%2==0):
+                current_worksheet[letter+'1'].value = '=[ObfuscationCategorization.xlsx]Template!'+letter+'1'
+                
             current_worksheet[letter+'1'].fill = fill
             current_worksheet[letter+'1'].font = font
 
@@ -85,7 +93,7 @@ root_dir_workbook = 'C:\\Users\\aswin\\OneDrive - Saint Louis University\\Docume
 root_dir = '../ObfuscationDatabase'
 
 # Load the Excel spreadsheet
-current_workbook = '\\PaLM_Q1.xlsx'#'\\JTEST.xlsx'#'\\ChatGPT_Q1.xlsx'##'\\ObfuscationCategorization.xlsx''\\LM2.xlsx'
+current_workbook = '\\Q2Test.xlsx'#'\\ChatGPT_Q1.xlsx'#'\\PaLM_Q1.xlsx'#'\\JTEST.xlsx'##'\\ObfuscationCategorization.xlsx''\\LM2.xlsx'
 workbook = openpyxl.load_workbook(root_dir_workbook+ current_workbook)
 
 name_column = 'A'
