@@ -40,6 +40,9 @@ for root,dirs, files in sorted(os.walk(root_dir)):
         folder_name = root.split('\\')[-1]
         print("Folder name: ",folder_name)
         
+        # if(folder_name == 'O1'):
+        #     continue
+
         current_worksheet_o = workbook[folder_name]
 
         #for each file in the folder
@@ -88,7 +91,8 @@ for root,dirs, files in sorted(os.walk(root_dir)):
             answer = LM.askQuestion(''.join(temp_question))
             
 
-            
+            if(LM == palm and answer == 'NONE'):
+                print(folder_name + base_code_name)
 
             o_row_number = str(int(base_code_name[1:])+1)
             o_question_cell = current_worksheet_o[question_column+o_row_number]
@@ -127,8 +131,8 @@ for root,dirs, files in sorted(os.walk(root_dir)):
             # Save the changes
             workbook.save(root_dir_workbook+current_workbook)
             
-        print("code contains break statement")
-        break     
+        # print("code contains break statement")
+        # break     
         
 
 

@@ -17,5 +17,9 @@ def askQuestion(question):
         #max_output_tokens=2048,
     )
 
-    return response.messages[1]["content"]
+    try:
+        return response.messages[1]["content"]
 
+    except TypeError as e:
+        print(e)
+        return "NONE"
