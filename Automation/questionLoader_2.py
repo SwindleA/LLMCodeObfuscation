@@ -1,5 +1,4 @@
 #Loads the Base Code and the Obfuscated code into a question and puts the question into the spreadsheet
-#This is for single questions
 import os
 import openpyxl
 from openpyxl.styles import Font, Alignment
@@ -13,16 +12,22 @@ root_dir_workbook = 'C:\\Users\\aswin\\OneDrive - Saint Louis University\\Docume
 root_dir = '..'
 
 # Load the Excel spreadsheet
-current_workbook = '\\ChatGPT_Q1.xlsx'#'\\PaLM_Q1.xlsx'#'\\Jurrasic_2_Q1.xlsx'#'\\Q2Test.xlsx'###'\\ObfuscationCategorization.xlsx''\\LM2.xlsx'
+current_workbook = '\\Q2Test.xlsx'#'\\PaLM_Q1.xlsx'#'\\ChatGPT_Q1.xlsx'##'\\ObfuscationCategorization.xlsx''\\LM2.xlsx'
 
 #Change this depending on the Language Model being used
 LM = chatGPT
 
+follow_up_question = 'explain'
+
 workbook = openpyxl.load_workbook(root_dir_workbook+ current_workbook)
 
 question_number = 'Q2'
-question_column = 'M'
-answer_column = 'O'
+
+_1_question_column = 'M'
+_1_answer_column = 'O'
+
+_2_question_column = 'Q'
+_2_answer_column = 'S'
 
 code_one = 3
 code_two = 8
@@ -41,9 +46,7 @@ for root,dirs, files in sorted(os.walk(root_dir)):
         folder_name = root.split('\\')[-1]
         print("Folder name: ",folder_name)
         
-        if(folder_name == 'O1' or folder_name == 'O10' or folder_name == 'O11' or folder_name == 'O12' or folder_name == 'O13' or folder_name == 'O14' or folder_name == 'O15' or folder_name == 'O16' or folder_name == 'O2' or folder_name == 'O3' or folder_name == 'O4' or folder_name == 'O5' or folder_name == 'O6'):
-            print("skipped")
-            continue
+        
 
         current_worksheet_o = workbook[folder_name]
 
@@ -90,40 +93,61 @@ for root,dirs, files in sorted(os.walk(root_dir)):
 # Loading question and answer into O sheet
             
             #getting answer to question
-            answer = LM.askQuestion(''.join(temp_question))
+            answer = LM.yesnoQuestion(''.join(temp_question),follow_up_question)
             
 
             if(LM == palm and answer == 'NONE'):
                 print(folder_name + base_code_name)
 
             o_row_number = str(int(base_code_name[1:])+1)
-            o_question_cell = current_worksheet_o[question_column+o_row_number]
-            o_answer_cell = current_worksheet_o[answer_column+o_row_number]
+            o_1_question_cell = current_worksheet_o[_1_question_column+o_row_number]
+            o_2_question_cell = current_worksheet_o[_2_question_column+o_row_number]
+            
+            o_1_answer_cell = current_worksheet_o[_1_answer_column+o_row_number]
+            o_2_answer_cell = current_worksheet_o[_2_answer_column+o_row_number]
 
             #initial question and answer loading into o sheet
-            o_question_cell.value = ''.join(temp_question)
-            o_answer_cell.value = ''.join(answer)
+            o_1_question_cell.value = ''.join(temp_question)
+            o_1_answer_cell.value = ''.join(answer.split('\n')[0])
+
+            #follow up question
+            o_2_question_cell.value = follow_up_question
+            o_2_answer_cell.value = ''.join(answer.split('\n')[1:])
 
             #formatting for o sheet
-            o_question_cell.alignment = Alignment(wrapText=True,horizontal='left', vertical='top')
-            o_answer_cell.alignment = Alignment(wrapText=True,horizontal='left', vertical='top')
+            o_1_question_cell.alignment = Alignment(wrapText=True,horizontal='left', vertical='top')
+            o_1_answer_cell.alignment = Alignment(wrapText=True,horizontal='left', vertical='top')
+
+            o_2_question_cell.alignment = Alignment(wrapText=True,horizontal='left', vertical='top')
+            o_2_answer_cell.alignment = Alignment(wrapText=True,horizontal='left', vertical='top')
             
 
             # Loading question and answer into B sheet
             current_worksheet_b = workbook[base_code_name]
 
             b_row_number = str(int(folder_name[1:])+1)
-            b_question_cell = current_worksheet_b[question_column+b_row_number]
-            b_answer_cell = current_worksheet_b[answer_column+b_row_number]
+            b_1_question_cell = current_worksheet_b[_1_question_column+b_row_number]
+            b_1_answer_cell = current_worksheet_b[_1_answer_column+b_row_number]
 
-            #initial question
-            b_question_cell.value = ''.join(temp_question)
-            b_answer_cell.value = ''.join(answer)
+            b_2_question_cell = current_worksheet_b[_2_question_column+b_row_number]
+            b_2_answer_cell = current_worksheet_b[_2_answer_column+b_row_number]
+
+            
+            #initial question and answer loading into o sheet
+            b_1_question_cell.value = ''.join(temp_question)
+            b_1_answer_cell.value = ''.join(answer.split('\n')[0])
+
+            #follow up question
+            b_2_question_cell.value = follow_up_question
+            b_2_answer_cell.value = ''.join(answer.split('\n')[1:])
 
            
             #formatting
-            b_question_cell.alignment = Alignment(wrapText=True,horizontal='left', vertical='top')
-            b_answer_cell.alignment = Alignment(wrapText=True,horizontal='left', vertical='top')
+            b_1_question_cell.alignment = Alignment(wrapText=True,horizontal='left', vertical='top')
+            b_1_answer_cell.alignment = Alignment(wrapText=True,horizontal='left', vertical='top')
+
+            b_2_question_cell.alignment = Alignment(wrapText=True,horizontal='left', vertical='top')
+            b_2_answer_cell.alignment = Alignment(wrapText=True,horizontal='left', vertical='top')
             
             if(LM == chatGPT):
                 start_time = time.perf_counter()
@@ -132,11 +156,12 @@ for root,dirs, files in sorted(os.walk(root_dir)):
 
             # Save the changes
             workbook.save(root_dir_workbook+current_workbook)
-        #     if(base_code_name == 'B2'):
-
-        #         print("code contains break statement")
-        #         break     
-        # break
+            
+            if(base_code_name == "B4"):
+                print("code contains break statement")
+                break
+        break     
+        
 
 
 # Save the changes

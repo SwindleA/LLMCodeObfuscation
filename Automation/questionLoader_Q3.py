@@ -1,5 +1,5 @@
 #Loads the Base Code and the Obfuscated code into a question and puts the question into the spreadsheet
-#This is for single questions
+#This is for questions that only need the obfuscation
 import os
 import openpyxl
 from openpyxl.styles import Font, Alignment
@@ -13,19 +13,19 @@ root_dir_workbook = 'C:\\Users\\aswin\\OneDrive - Saint Louis University\\Docume
 root_dir = '..'
 
 # Load the Excel spreadsheet
-current_workbook = '\\ChatGPT_Q1.xlsx'#'\\PaLM_Q1.xlsx'#'\\Jurrasic_2_Q1.xlsx'#'\\Q2Test.xlsx'###'\\ObfuscationCategorization.xlsx''\\LM2.xlsx'
+current_workbook = '\\Q3Test.xlsx'#''\\Jurrasic_2.xlsx'#'\\PaLM.xlsx'#\\ChatGPT_Q1.xlsx'##'\\ObfuscationCategorization.xlsx''\\LM2.xlsx'
 
 #Change this depending on the Language Model being used
-LM = chatGPT
+LM = palm
 
 workbook = openpyxl.load_workbook(root_dir_workbook+ current_workbook)
 
-question_number = 'Q2'
-question_column = 'M'
-answer_column = 'O'
+question_number = 'Q3'
+question_column = 'U'
+answer_column = 'W'
 
 code_one = 3
-code_two = 8
+
 
 with open('Question_Templates\\'+question_number+'.txt', 'r', encoding='utf-8') as question_template:
     question = question_template.readlines()
@@ -41,9 +41,8 @@ for root,dirs, files in sorted(os.walk(root_dir)):
         folder_name = root.split('\\')[-1]
         print("Folder name: ",folder_name)
         
-        if(folder_name == 'O1' or folder_name == 'O10' or folder_name == 'O11' or folder_name == 'O12' or folder_name == 'O13' or folder_name == 'O14' or folder_name == 'O15' or folder_name == 'O16' or folder_name == 'O2' or folder_name == 'O3' or folder_name == 'O4' or folder_name == 'O5' or folder_name == 'O6'):
-            print("skipped")
-            continue
+        # if(folder_name == 'O1'):
+        #     continue
 
         current_worksheet_o = workbook[folder_name]
 
@@ -66,20 +65,11 @@ for root,dirs, files in sorted(os.walk(root_dir)):
             
             row_number_int = int(base_code_name[1:])+1
 
-            if(row_number_int%2 == 0):
-                temp_question.insert(code_one,obfuscated_code)
-            else:
-                temp_question.insert(code_two,obfuscated_code)
-
+            
+            temp_question.insert(code_one,obfuscated_code)
             
 
-            with open(root_dir+'\\Base_Code\\'+base_code_name+".cpp", 'r',encoding='utf-8') as temp_file_2:
-                base_code = temp_file_2.read()
-
-            if(row_number_int%2 == 0):
-                temp_question.insert(code_two,base_code)
-            else:
-                temp_question.insert(code_one, base_code)
+        
             
             #for testing
             # with open(root_dir+base_code_name+".txt", 'w',encoding='utf-8') as file:
@@ -132,6 +122,7 @@ for root,dirs, files in sorted(os.walk(root_dir)):
 
             # Save the changes
             workbook.save(root_dir_workbook+current_workbook)
+            
         #     if(base_code_name == 'B2'):
 
         #         print("code contains break statement")

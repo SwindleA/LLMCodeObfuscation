@@ -1,4 +1,5 @@
 #Loads the Base Code and the Obfuscated code into a question and puts the question into the spreadsheet
+#This is for single questions
 import os
 import openpyxl
 from openpyxl.styles import Font, Alignment
@@ -12,7 +13,7 @@ root_dir_workbook = 'C:\\Users\\aswin\\OneDrive - Saint Louis University\\Docume
 root_dir = '..'
 
 # Load the Excel spreadsheet
-current_workbook = '\\PaLM_Q1.xlsx'#'\\ChatGPT_Q1.xlsx'##'\\ObfuscationCategorization.xlsx''\\LM2.xlsx'
+current_workbook = '\\PaLM.xlsx'#'\\ChatGPT_Q1.xlsx'#'\\Jurrasic_2_Q1.xlsx'#'\\Q2Test.xlsx'###'\\ObfuscationCategorization.xlsx''\\LM2.xlsx'
 
 #Change this depending on the Language Model being used
 LM = palm
@@ -40,8 +41,9 @@ for root,dirs, files in sorted(os.walk(root_dir)):
         folder_name = root.split('\\')[-1]
         print("Folder name: ",folder_name)
         
-        # if(folder_name == 'O1'):
-        #     continue
+        if(folder_name == 'O1'  or folder_name == 'O11' or folder_name == 'O12'  or folder_name == 'O14'   or folder_name == 'O3' or folder_name == 'O5'or folder_name == 'O7'or folder_name == 'O8'):
+            print("skipped")
+            continue
 
         current_worksheet_o = workbook[folder_name]
 
@@ -61,7 +63,12 @@ for root,dirs, files in sorted(os.walk(root_dir)):
                     continue
 
             base_code_name = file.split('.')[0].split('_')[-1]
-            
+
+            if((base_code_name == 'B53' and folder_name == 'O10') or (base_code_name == 'B53' and folder_name == 'O13')or (base_code_name == 'B47' and folder_name == 'O15')or (base_code_name == 'B51' and folder_name == 'O15')or (base_code_name == 'B1' and folder_name == 'O16')or (base_code_name == 'B53' and folder_name == 'O16')or (base_code_name == 'B7' and folder_name == 'O16') or (base_code_name == 'B5' and folder_name == 'O2') or (base_code_name == 'B53' and folder_name == 'O4') or (base_code_name == 'B5' and folder_name == 'O6')or (base_code_name == 'B53' and folder_name == 'O6') or (base_code_name == 'B6' and folder_name == 'O6')or (base_code_name == 'B53' and folder_name == 'O9')):
+                True
+            else: 
+                #print("skipped")
+                continue
             row_number_int = int(base_code_name[1:])+1
 
             if(row_number_int%2 == 0):
@@ -130,10 +137,11 @@ for root,dirs, files in sorted(os.walk(root_dir)):
 
             # Save the changes
             workbook.save(root_dir_workbook+current_workbook)
-            
-        # print("code contains break statement")
-        # break     
-        
+        #     if(base_code_name == 'B2'):
+
+        #         print("code contains break statement")
+        #         break     
+        # break
 
 
 # Save the changes

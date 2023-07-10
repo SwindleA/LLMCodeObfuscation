@@ -59,8 +59,14 @@ def initialFormatting(current_worksheet,sheet_type,o_link_row):
                 
                 data_validation.add(cell)
 
-        #For Question 2, i.e. column U
-        for row in current_worksheet.iter_rows(min_row=2, max_row=56, min_col=21, max_col=21):
+        #For Question 2, i.e. column Q
+        for row in current_worksheet.iter_rows(min_row=2, max_row=56, min_col=17, max_col=17):
+            for cell in row:
+
+                data_validation.add(cell)
+
+        #For Question 3, i.e. column Y
+        for row in current_worksheet.iter_rows(min_row=2, max_row=56, min_col=25, max_col=25):
             for cell in row:
 
                 data_validation.add(cell)
@@ -74,12 +80,20 @@ def initialFormatting(current_worksheet,sheet_type,o_link_row):
                 cell.value = '=B'+str(row_num-1)+'!I'+o_link_row
             row_num+=1
         row_num = 2
-        #For Question 2, i.e. column U
-        for row in current_worksheet.iter_rows(min_row=2, max_row=56, min_col=21, max_col=21):
+        #For Question 2, i.e. column Q
+        for row in current_worksheet.iter_rows(min_row=2, max_row=56, min_col=17, max_col=17):
 
             for cell in row:
 
-                cell.value = '=B'+str(row_num-1)+'!U'+o_link_row
+                cell.value = '=B'+str(row_num-1)+'!Q'+o_link_row
+            row_num+=1
+
+        #For Question 3, i.e. column Y
+        for row in current_worksheet.iter_rows(min_row=2, max_row=56, min_col=25, max_col=25):
+
+            for cell in row:
+
+                cell.value = '=B'+str(row_num-1)+'!Y'+o_link_row
             row_num+=1
 
     
@@ -93,7 +107,7 @@ root_dir_workbook = 'C:\\Users\\aswin\\OneDrive - Saint Louis University\\Docume
 root_dir = '../ObfuscationDatabase'
 
 # Load the Excel spreadsheet
-current_workbook = '\\Q2Test.xlsx'#'\\ChatGPT_Q1.xlsx'#'\\PaLM_Q1.xlsx'#'\\JTEST.xlsx'##'\\ObfuscationCategorization.xlsx''\\LM2.xlsx'
+current_workbook = '\\Q3Test.xlsx'#'\\Jurassic_2.xlsx'#'\\Q2Test.xlsx'#'\\ChatGPT_Q1.xlsx'#'\\PaLM_Q1.xlsx'#'\\JTEST.xlsx'##'\\ObfuscationCategorization.xlsx''\\LM2.xlsx'
 workbook = openpyxl.load_workbook(root_dir_workbook+ current_workbook)
 
 name_column = 'A'
@@ -137,6 +151,7 @@ for root,dirs, files in sorted(os.walk(root_dir)):
 
         else:
             current_worksheet_o = workbook[folder_name]
+            initialFormatting(current_worksheet_o,"o",str(int(folder_name[1:])+1))
             
             
         #for each file in the folder
@@ -183,6 +198,8 @@ for root,dirs, files in sorted(os.walk(root_dir)):
 
                 else:
                     current_worksheet_b = workbook[base_code_name]
+                    initialFormatting(current_worksheet_b,"base","")
+
                     
                     
                 
