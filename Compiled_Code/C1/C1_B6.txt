@@ -1,0 +1,57 @@
+.LC0:
+        .string "hello"
+main:
+        push    rbp
+        mov     rbp, rsp
+        push    rbx
+        sub     rsp, 72
+        lea     rax, [rbp-33]
+        mov     QWORD PTR [rbp-32], rax
+        nop
+        nop
+        lea     rdx, [rbp-33]
+        lea     rax, [rbp-80]
+        mov     esi, OFFSET FLAT:.LC0
+        mov     rdi, rax
+        call    std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string<std::allocator<char> >(char const*, std::allocator<char> const&)
+        lea     rax, [rbp-33]
+        mov     rdi, rax
+        call    std::__new_allocator<char>::~__new_allocator() [base object destructor]
+        nop
+        mov     DWORD PTR [rbp-20], 0
+        jmp     .L7
+.L8:
+        lea     rax, [rbp-80]
+        mov     rsi, rax
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <char, std::char_traits<char>, std::allocator<char> >(std::basic_ostream<char, std::char_traits<char> >&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)
+        add     DWORD PTR [rbp-20], 1
+.L7:
+        cmp     DWORD PTR [rbp-20], 9
+        jle     .L8
+        lea     rax, [rbp-80]
+        mov     rdi, rax
+        call    std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::~basic_string() [complete object destructor]
+        mov     eax, 0
+        jmp     .L14
+        mov     rbx, rax
+        lea     rax, [rbp-33]
+        mov     rdi, rax
+        call    std::__new_allocator<char>::~__new_allocator() [base object destructor]
+        nop
+        mov     rax, rbx
+        mov     rdi, rax
+        call    _Unwind_Resume
+        mov     rbx, rax
+        lea     rax, [rbp-80]
+        mov     rdi, rax
+        call    std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::~basic_string() [complete object destructor]
+        mov     rax, rbx
+        mov     rdi, rax
+        call    _Unwind_Resume
+.L14:
+        mov     rbx, QWORD PTR [rbp-8]
+        leave
+        ret
+.LC1:
+        .string "basic_string: construction from null is not valid"
