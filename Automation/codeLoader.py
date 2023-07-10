@@ -87,7 +87,7 @@ def initialFormatting(current_worksheet,sheet_type,o_link_row):
 
                 cell.value = '=B'+str(row_num-1)+'!Q'+o_link_row
             row_num+=1
-
+        row_num = 2
         #For Question 3, i.e. column Y
         for row in current_worksheet.iter_rows(min_row=2, max_row=56, min_col=25, max_col=25):
 
@@ -107,7 +107,7 @@ root_dir_workbook = 'C:\\Users\\aswin\\OneDrive - Saint Louis University\\Docume
 root_dir = '../ObfuscationDatabase'
 
 # Load the Excel spreadsheet
-current_workbook = '\\Q3Test.xlsx'#'\\Jurassic_2.xlsx'#'\\Q2Test.xlsx'#'\\ChatGPT_Q1.xlsx'#'\\PaLM_Q1.xlsx'#'\\JTEST.xlsx'##'\\ObfuscationCategorization.xlsx''\\LM2.xlsx'
+current_workbook = '\\CompiledTEST.xlsx'#'\\Jurassic_2.xlsx'#'\\ChatGPT.xlsx'#'\\Q3Test.xlsx'#'\\Q2Test.xlsx'#'\\PaLM_Q1.xlsx'#'\\JTEST.xlsx'##'\\ObfuscationCategorization.xlsx''\\LM2.xlsx'
 workbook = openpyxl.load_workbook(root_dir_workbook+ current_workbook)
 
 name_column = 'A'

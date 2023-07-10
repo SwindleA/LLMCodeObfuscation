@@ -13,10 +13,10 @@ root_dir_workbook = 'C:\\Users\\aswin\\OneDrive - Saint Louis University\\Docume
 root_dir = '..'
 
 # Load the Excel spreadsheet
-current_workbook = '\\Q3Test.xlsx'#''\\Jurrasic_2.xlsx'#'\\PaLM.xlsx'#\\ChatGPT_Q1.xlsx'##'\\ObfuscationCategorization.xlsx''\\LM2.xlsx'
+current_workbook = '\\Jurassic_2.xlsx'#'\\Q3Test.xlsx'#''\\PaLM.xlsx'#\\ChatGPT_Q1.xlsx'##'\\ObfuscationCategorization.xlsx''\\LM2.xlsx'
 
 #Change this depending on the Language Model being used
-LM = palm
+LM = jurassic_2
 
 workbook = openpyxl.load_workbook(root_dir_workbook+ current_workbook)
 
@@ -41,8 +41,8 @@ for root,dirs, files in sorted(os.walk(root_dir)):
         folder_name = root.split('\\')[-1]
         print("Folder name: ",folder_name)
         
-        # if(folder_name == 'O1'):
-        #     continue
+        if(folder_name == 'O1' or folder_name == 'O10' or folder_name == 'O11' or folder_name == 'O12'or folder_name == 'O13'or folder_name == 'O14'):
+            continue
 
         current_worksheet_o = workbook[folder_name]
 
