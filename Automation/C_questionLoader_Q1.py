@@ -13,10 +13,10 @@ root_dir_workbook = 'C:\\Users\\aswin\\OneDrive - Saint Louis University\\Docume
 root_dir = '..'
 
 # Load the Excel spreadsheet
-current_workbook = '\\CompiledTEST.xlsx'#'\\PaLM_Compiled.xlsx'#'\\ChatGPT_Compiled.xlsx'#'\\Jurrasic_2_Compiled.xlsx'#'\\Q2Test.xlsx'###'\\ObfuscationCategorization.xlsx''\\LM2.xlsx'
+current_workbook = '\\PaLM_Compiled.xlsx'#'\\Jurassic_2_Compiled.xlsx'#'\\CompiledTEST.xlsx'#'\\ChatGPT_Compiled.xlsx'#'\\Q2Test.xlsx'###'\\ObfuscationCategorization.xlsx''\\LM2.xlsx'
 
 #Change this depending on the Language Model being used
-LM = jurassic_2
+LM = palm
 
 workbook = openpyxl.load_workbook(root_dir_workbook+ current_workbook)
 
@@ -29,7 +29,7 @@ code_two = 8
 
 with open('Question_Templates\\'+question_number+'.txt', 'r', encoding='utf-8') as question_template:
     question = question_template.readlines()
-    print(question_template.read())
+    
 
 
 
@@ -41,9 +41,9 @@ for root,dirs, files in sorted(os.walk(root_dir)):
         folder_name = root.split('\\')[-1]
         print("Folder name: ",folder_name)
         
-        # if(folder_name == 'O1'  or folder_name == 'O11' or folder_name == 'O12'  or folder_name == 'O14'   or folder_name == 'O3' or folder_name == 'O5'or folder_name == 'O7'or folder_name == 'O8'):
-        #     print("skipped")
-        #     continue
+        if(folder_name == 'C1'):  #or folder_name == 'O11' or folder_name == 'O12'  or folder_name == 'O14'   or folder_name == 'O3' or folder_name == 'O5'or folder_name == 'O7'or folder_name == 'O8'):
+            print("skipped")
+            continue
 
         current_worksheet_o = workbook[folder_name]
 
@@ -90,7 +90,6 @@ for root,dirs, files in sorted(os.walk(root_dir)):
 
 # Loading question and answer into O sheet
             
-            print(temp_question)
 
             #getting answer to question
             answer = LM.askQuestion(''.join(temp_question))
@@ -135,11 +134,11 @@ for root,dirs, files in sorted(os.walk(root_dir)):
 
             # Save the changes
             workbook.save(root_dir_workbook+current_workbook)
-            if(base_code_name == 'B2'):
+        #     if(base_code_name == 'B2'):
 
-                print("code contains break statement")
-                break     
-        break
+        #         print("code contains break statement")
+        #         break     
+        # break
 
 
 # Save the changes
