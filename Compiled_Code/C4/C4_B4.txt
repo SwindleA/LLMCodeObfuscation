@@ -1,0 +1,150 @@
+recursiveFunction(int, char, char, char):
+        push    rbp
+        mov     rbp, rsp
+        sub     rsp, 16
+        mov     DWORD PTR [rbp-4], edi
+        mov     eax, ecx
+        mov     ecx, esi
+        mov     BYTE PTR [rbp-8], cl
+        mov     BYTE PTR [rbp-12], dl
+        mov     BYTE PTR [rbp-16], al
+        cmp     DWORD PTR [rbp-4], 0
+        jle     .L8
+        cmp     BYTE PTR [rbp-8], 97
+        jne     .L6
+        movsx   ecx, BYTE PTR [rbp-8]
+        movsx   edx, BYTE PTR [rbp-16]
+        movsx   eax, BYTE PTR [rbp-12]
+        mov     esi, DWORD PTR [rbp-4]
+        lea     edi, [rsi-1]
+        mov     esi, eax
+        call    recursiveFunction(int, char, char, char)
+        jmp     .L3
+.L6:
+        cmp     BYTE PTR [rbp-12], 98
+        jne     .L7
+        movsx   ecx, BYTE PTR [rbp-12]
+        movsx   edx, BYTE PTR [rbp-8]
+        movsx   eax, BYTE PTR [rbp-16]
+        mov     esi, DWORD PTR [rbp-4]
+        lea     edi, [rsi-1]
+        mov     esi, eax
+        call    recursiveFunction(int, char, char, char)
+        jmp     .L3
+.L7:
+        movsx   ecx, BYTE PTR [rbp-16]
+        movsx   edx, BYTE PTR [rbp-12]
+        movsx   eax, BYTE PTR [rbp-8]
+        mov     esi, DWORD PTR [rbp-4]
+        lea     edi, [rsi-1]
+        mov     esi, eax
+        call    recursiveFunction(int, char, char, char)
+        jmp     .L3
+.L8:
+        nop
+.L3:
+        leave
+        ret
+main:
+        push    rbp
+        mov     rbp, rsp
+        push    r13
+        push    r12
+        push    rbx
+        sub     rsp, 72
+        lea     rax, [rbp-80]
+        mov     rdi, rax
+        call    std::vector<int, std::allocator<int> >::vector() [complete object constructor]
+        mov     DWORD PTR [rbp-40], 10
+        mov     BYTE PTR [rbp-41], 120
+        mov     BYTE PTR [rbp-42], 121
+        mov     BYTE PTR [rbp-43], 122
+        mov     eax, DWORD PTR [rbp-40]
+        mov     DWORD PTR [rbp-84], eax
+        jmp     .L13
+.L15:
+        mov     ecx, DWORD PTR [rbp-84]
+        mov     eax, DWORD PTR [rbp-40]
+        cdq
+        idiv    ecx
+        mov     ecx, edx
+        mov     eax, ecx
+        test    eax, eax
+        jne     .L14
+        lea     rdx, [rbp-84]
+        lea     rax, [rbp-80]
+        mov     rsi, rdx
+        mov     rdi, rax
+        call    std::vector<int, std::allocator<int> >::push_back(int const&)
+.L14:
+        mov     eax, DWORD PTR [rbp-84]
+        sub     eax, 1
+        mov     DWORD PTR [rbp-84], eax
+.L13:
+        mov     eax, DWORD PTR [rbp-84]
+        test    eax, eax
+        jg      .L15
+        movsx   r13d, BYTE PTR [rbp-43]
+        movsx   r12d, BYTE PTR [rbp-42]
+        movsx   ebx, BYTE PTR [rbp-41]
+        lea     rax, [rbp-80]
+        mov     rdi, rax
+        call    std::vector<int, std::allocator<int> >::size() const
+        mov     ecx, r13d
+        mov     edx, r12d
+        mov     esi, ebx
+        mov     edi, eax
+        call    recursiveFunction(int, char, char, char)
+        mov     DWORD PTR [rbp-36], 0
+        jmp     .L16
+.L17:
+        mov     eax, DWORD PTR [rbp-36]
+        movsx   rdx, eax
+        lea     rax, [rbp-80]
+        mov     rsi, rdx
+        mov     rdi, rax
+        call    std::vector<int, std::allocator<int> >::at(unsigned long)
+        mov     eax, DWORD PTR [rax]
+        mov     esi, eax
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >::operator<<(int)
+        mov     esi, 32
+        mov     rdi, rax
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char)
+        add     DWORD PTR [rbp-36], 1
+.L16:
+        mov     eax, DWORD PTR [rbp-36]
+        movsx   rbx, eax
+        lea     rax, [rbp-80]
+        mov     rdi, rax
+        call    std::vector<int, std::allocator<int> >::size() const
+        cmp     rbx, rax
+        setb    al
+        test    al, al
+        jne     .L17
+        mov     esi, OFFSET FLAT:_ZSt4endlIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >::operator<<(std::basic_ostream<char, std::char_traits<char> >& (*)(std::basic_ostream<char, std::char_traits<char> >&))
+        lea     rax, [rbp-80]
+        mov     rdi, rax
+        call    std::vector<int, std::allocator<int> >::~vector() [complete object destructor]
+        mov     eax, 0
+        jmp     .L21
+        mov     rbx, rax
+        lea     rax, [rbp-80]
+        mov     rdi, rax
+        call    std::vector<int, std::allocator<int> >::~vector() [complete object destructor]
+        mov     rax, rbx
+        mov     rdi, rax
+        call    _Unwind_Resume
+.L21:
+        add     rsp, 72
+        pop     rbx
+        pop     r12
+        pop     r13
+        pop     rbp
+        ret
+.LC0:
+        .string "vector::_M_realloc_insert"
+.LC1:
+        .string "vector::_M_range_check: __n (which is %zu) >= this->size() (which is %zu)"

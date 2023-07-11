@@ -1,0 +1,74 @@
+.LC0:
+        .string "This program concatinates the two inputted items in a secret new way!!!!!"
+.LC1:
+        .string "Input: "
+.LC2:
+        .string "The first half: "
+.LC3:
+        .string " The second half: "
+.LC4:
+        .string "The result of the concatination is: "
+.LC5:
+        .string "Output: "
+main:
+        push    rbp
+        mov     rbp, rsp
+        sub     rsp, 32
+        mov     esi, OFFSET FLAT:.LC0
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)
+        mov     esi, OFFSET FLAT:_ZSt4endlIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_
+        mov     rdi, rax
+        call    std::basic_ostream<char, std::char_traits<char> >::operator<<(std::basic_ostream<char, std::char_traits<char> >& (*)(std::basic_ostream<char, std::char_traits<char> >&))
+        mov     esi, OFFSET FLAT:.LC1
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)
+        lea     rax, [rbp-16]
+        mov     rsi, rax
+        mov     edi, OFFSET FLAT:_ZSt3cin
+        call    std::basic_istream<char, std::char_traits<char> >::operator>>(double&)
+        mov     rdx, rax
+        lea     rax, [rbp-24]
+        mov     rsi, rax
+        mov     rdi, rdx
+        call    std::basic_istream<char, std::char_traits<char> >::operator>>(double&)
+        mov     esi, OFFSET FLAT:.LC2
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)
+        mov     rdx, rax
+        mov     rax, QWORD PTR [rbp-16]
+        movq    xmm0, rax
+        mov     rdi, rdx
+        call    std::basic_ostream<char, std::char_traits<char> >::operator<<(double)
+        mov     esi, OFFSET FLAT:_ZSt4endlIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_
+        mov     rdi, rax
+        call    std::basic_ostream<char, std::char_traits<char> >::operator<<(std::basic_ostream<char, std::char_traits<char> >& (*)(std::basic_ostream<char, std::char_traits<char> >&))
+        mov     esi, OFFSET FLAT:.LC3
+        mov     rdi, rax
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)
+        mov     rdx, rax
+        mov     rax, QWORD PTR [rbp-24]
+        movq    xmm0, rax
+        mov     rdi, rdx
+        call    std::basic_ostream<char, std::char_traits<char> >::operator<<(double)
+        mov     esi, OFFSET FLAT:_ZSt4endlIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_
+        mov     rdi, rax
+        call    std::basic_ostream<char, std::char_traits<char> >::operator<<(std::basic_ostream<char, std::char_traits<char> >& (*)(std::basic_ostream<char, std::char_traits<char> >&))
+        movsd   xmm1, QWORD PTR [rbp-16]
+        movsd   xmm0, QWORD PTR [rbp-24]
+        mulsd   xmm0, xmm1
+        movsd   QWORD PTR [rbp-8], xmm0
+        mov     esi, OFFSET FLAT:.LC4
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)
+        mov     esi, OFFSET FLAT:.LC5
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)
+        mov     rdx, rax
+        mov     rax, QWORD PTR [rbp-8]
+        movq    xmm0, rax
+        mov     rdi, rdx
+        call    std::basic_ostream<char, std::char_traits<char> >::operator<<(double)
+        mov     eax, 0
+        leave
+        ret

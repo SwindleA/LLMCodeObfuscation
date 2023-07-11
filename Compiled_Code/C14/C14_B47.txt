@@ -1,0 +1,76 @@
+.LC4:
+        .string "Output: "
+main:
+        push    rbp
+        mov     rbp, rsp
+        sub     rsp, 64
+        movsd   xmm0, QWORD PTR .LC0[rip]
+        movsd   QWORD PTR [rbp-32], xmm0
+        movsd   xmm0, QWORD PTR .LC1[rip]
+        movsd   QWORD PTR [rbp-40], xmm0
+        movsd   xmm0, QWORD PTR .LC2[rip]
+        movsd   QWORD PTR [rbp-48], xmm0
+        mov     DWORD PTR [rbp-52], 25
+        mov     DWORD PTR [rbp-56], 5
+        mov     DWORD PTR [rbp-20], 0
+        jmp     .L2
+.L3:
+        pxor    xmm2, xmm2
+        cvtsi2sd        xmm2, DWORD PTR [rbp-56]
+        movsd   xmm0, QWORD PTR [rbp-40]
+        movapd  xmm1, xmm0
+        divsd   xmm1, xmm2
+        movsd   xmm0, QWORD PTR .LC3[rip]
+        addsd   xmm1, xmm0
+        movq    rax, xmm1
+        movsd   xmm0, QWORD PTR [rbp-48]
+        movapd  xmm1, xmm0
+        movq    xmm0, rax
+        call    pow
+        movsd   xmm1, QWORD PTR [rbp-32]
+        mulsd   xmm0, xmm1
+        movsd   QWORD PTR [rbp-8], xmm0
+        add     DWORD PTR [rbp-20], 1
+.L2:
+        cmp     DWORD PTR [rbp-20], 0
+        jle     .L3
+        mov     DWORD PTR [rbp-24], 0
+        jmp     .L4
+.L5:
+        movsd   xmm0, QWORD PTR [rbp-8]
+        movapd  xmm1, xmm0
+        subsd   xmm1, QWORD PTR [rbp-32]
+        pxor    xmm0, xmm0
+        cvtsi2sd        xmm0, DWORD PTR [rbp-52]
+        addsd   xmm0, xmm1
+        pxor    xmm1, xmm1
+        cvtsi2sd        xmm1, DWORD PTR [rbp-52]
+        subsd   xmm0, xmm1
+        movsd   QWORD PTR [rbp-16], xmm0
+        add     DWORD PTR [rbp-24], 1
+.L4:
+        cmp     DWORD PTR [rbp-24], 0
+        jle     .L5
+        mov     esi, OFFSET FLAT:.LC4
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)
+        mov     rdx, rax
+        mov     rax, QWORD PTR [rbp-16]
+        movq    xmm0, rax
+        mov     rdi, rdx
+        call    std::basic_ostream<char, std::char_traits<char> >::operator<<(double)
+        mov     eax, 0
+        leave
+        ret
+.LC0:
+        .long   0
+        .long   1086556160
+.LC1:
+        .long   0
+        .long   1075052544
+.LC2:
+        .long   0
+        .long   1073741824
+.LC3:
+        .long   0
+        .long   1072693248

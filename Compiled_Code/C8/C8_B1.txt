@@ -1,0 +1,23 @@
+main:
+        push    rbp
+        mov     rbp, rsp
+        sub     rsp, 16
+        mov     DWORD PTR [rbp-4], 1
+        jmp     .L2
+.L3:
+        mov     eax, DWORD PTR [rbp-4]
+        add     eax, 48
+        movsx   eax, al
+        mov     esi, eax
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >::put(char)
+        mov     esi, 10
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >::put(char)
+        add     DWORD PTR [rbp-4], 1
+.L2:
+        cmp     DWORD PTR [rbp-4], 10
+        jle     .L3
+        mov     eax, 0
+        leave
+        ret

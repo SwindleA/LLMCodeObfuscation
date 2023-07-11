@@ -1,0 +1,86 @@
+.LC0:
+        .string "Input: "
+.LC1:
+        .string "true"
+.LC2:
+        .string "false"
+main:
+        push    rbp
+        mov     rbp, rsp
+        sub     rsp, 32
+        mov     BYTE PTR [rbp-5], 1
+        mov     esi, OFFSET FLAT:.LC0
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)
+        lea     rax, [rbp-24]
+        mov     rsi, rax
+        mov     edi, OFFSET FLAT:_ZSt3cin
+        call    std::basic_istream<char, std::char_traits<char> >::operator>>(int&)
+        mov     DWORD PTR [rbp-12], 0
+        jmp     .L2
+.L13:
+        mov     eax, DWORD PTR [rbp-24]
+        mov     DWORD PTR [rbp-16], eax
+        jmp     .L3
+.L6:
+        mov     eax, DWORD PTR [rbp-24]
+        test    eax, eax
+        je      .L4
+        mov     eax, DWORD PTR [rbp-24]
+        cmp     eax, 1
+        jne     .L5
+.L4:
+        mov     BYTE PTR [rbp-5], 0
+.L5:
+        sub     DWORD PTR [rbp-16], 1
+.L3:
+        cmp     DWORD PTR [rbp-16], 0
+        jg      .L6
+        mov     eax, DWORD PTR [rbp-24]
+        mov     DWORD PTR [rbp-20], eax
+        jmp     .L7
+.L12:
+        mov     DWORD PTR [rbp-4], 2
+        jmp     .L8
+.L11:
+        mov     eax, DWORD PTR [rbp-24]
+        cdq
+        idiv    DWORD PTR [rbp-4]
+        mov     eax, edx
+        test    eax, eax
+        jne     .L9
+        mov     BYTE PTR [rbp-5], 0
+        jmp     .L10
+.L9:
+        add     DWORD PTR [rbp-4], 1
+.L8:
+        mov     eax, DWORD PTR [rbp-24]
+        mov     edx, eax
+        shr     edx, 31
+        add     eax, edx
+        sar     eax
+        cmp     DWORD PTR [rbp-4], eax
+        jle     .L11
+.L10:
+        sub     DWORD PTR [rbp-20], 1
+.L7:
+        cmp     DWORD PTR [rbp-20], 1
+        jg      .L12
+        add     DWORD PTR [rbp-12], 1
+.L2:
+        cmp     DWORD PTR [rbp-12], 9
+        jle     .L13
+        cmp     BYTE PTR [rbp-5], 0
+        je      .L14
+        mov     esi, OFFSET FLAT:.LC1
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)
+        jmp     .L15
+.L14:
+        mov     esi, OFFSET FLAT:.LC2
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)
+.L15:
+        mov     eax, 0
+        leave
+        ret

@@ -1,0 +1,67 @@
+.LC0:
+        .string "Input: "
+.LC1:
+        .string "Output: "
+main:
+        push    rbp
+        mov     rbp, rsp
+        sub     rsp, 32
+        mov     esi, OFFSET FLAT:.LC0
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)
+        lea     rax, [rbp-24]
+        mov     rsi, rax
+        mov     edi, OFFSET FLAT:_ZSt3cin
+        call    std::basic_istream<char, std::char_traits<char> >::operator>>(double&)
+        mov     rdx, rax
+        lea     rax, [rbp-32]
+        mov     rsi, rax
+        mov     rdi, rdx
+        call    std::basic_istream<char, std::char_traits<char> >::operator>>(double&)
+        movsd   xmm1, QWORD PTR [rbp-24]
+        movsd   xmm0, QWORD PTR [rbp-32]
+        mulsd   xmm0, xmm1
+        cvttsd2si       eax, xmm0
+        mov     DWORD PTR [rbp-12], eax
+        jmp     .L2
+.L5:
+        movsd   xmm1, QWORD PTR [rbp-24]
+        movsd   xmm0, QWORD PTR [rbp-32]
+        mulsd   xmm0, xmm1
+        cvttsd2si       eax, xmm0
+        mov     DWORD PTR [rbp-16], eax
+        jmp     .L3
+.L4:
+        movsd   xmm1, QWORD PTR [rbp-24]
+        movsd   xmm0, QWORD PTR [rbp-32]
+        mulsd   xmm0, xmm1
+        movsd   QWORD PTR [rbp-8], xmm0
+        pxor    xmm0, xmm0
+        cvtsi2sd        xmm0, DWORD PTR [rbp-16]
+        movsd   xmm1, QWORD PTR [rbp-24]
+        subsd   xmm0, xmm1
+        cvttsd2si       eax, xmm0
+        mov     DWORD PTR [rbp-16], eax
+.L3:
+        cmp     DWORD PTR [rbp-16], 0
+        jg      .L4
+        pxor    xmm0, xmm0
+        cvtsi2sd        xmm0, DWORD PTR [rbp-12]
+        movsd   xmm1, QWORD PTR [rbp-32]
+        subsd   xmm0, xmm1
+        cvttsd2si       eax, xmm0
+        mov     DWORD PTR [rbp-12], eax
+.L2:
+        cmp     DWORD PTR [rbp-12], 0
+        jg      .L5
+        mov     esi, OFFSET FLAT:.LC1
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)
+        mov     rdx, rax
+        mov     rax, QWORD PTR [rbp-8]
+        movq    xmm0, rax
+        mov     rdi, rdx
+        call    std::basic_ostream<char, std::char_traits<char> >::operator<<(double)
+        mov     eax, 0
+        leave
+        ret

@@ -1,0 +1,145 @@
+.LC0:
+        .string "This program is for generating id numbers following the specified pattern: "
+.LC1:
+        .string "Ignore this line: "
+.LC2:
+        .string "!"
+.LC3:
+        .string "End of sequence...."
+.LC4:
+        .string "Use the above identification number for getting in an out of the restroom."
+main:
+        push    rbp
+        mov     rbp, rsp
+        sub     rsp, 16
+        mov     esi, OFFSET FLAT:.LC0
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)
+        mov     esi, OFFSET FLAT:_ZSt4endlIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_
+        mov     rdi, rax
+        call    std::basic_ostream<char, std::char_traits<char> >::operator<<(std::basic_ostream<char, std::char_traits<char> >& (*)(std::basic_ostream<char, std::char_traits<char> >&))
+        mov     edi, 0
+        call    time
+        mov     edi, eax
+        call    srand
+        mov     DWORD PTR [rbp-4], 4
+        jmp     .L2
+.L7:
+        mov     esi, OFFSET FLAT:.LC1
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)
+        mov     rdx, rax
+        mov     eax, DWORD PTR [rbp-4]
+        mov     esi, eax
+        mov     rdi, rdx
+        call    std::basic_ostream<char, std::char_traits<char> >::operator<<(int)
+        mov     esi, OFFSET FLAT:_ZSt4endlIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_
+        mov     rdi, rax
+        call    std::basic_ostream<char, std::char_traits<char> >::operator<<(std::basic_ostream<char, std::char_traits<char> >& (*)(std::basic_ostream<char, std::char_traits<char> >&))
+        call    rand
+        mov     edx, eax
+        movsx   rax, edx
+        imul    rax, rax, 1717986919
+        shr     rax, 32
+        sar     eax, 2
+        mov     ecx, edx
+        sar     ecx, 31
+        sub     eax, ecx
+        mov     DWORD PTR [rbp-8], eax
+        mov     ecx, DWORD PTR [rbp-8]
+        mov     eax, ecx
+        sal     eax, 2
+        add     eax, ecx
+        add     eax, eax
+        sub     edx, eax
+        mov     DWORD PTR [rbp-8], edx
+        jmp     .L3
+.L4:
+        call    rand
+        movsx   rdx, eax
+        imul    rdx, rdx, 1321528399
+        shr     rdx, 32
+        sar     edx, 3
+        mov     ecx, eax
+        sar     ecx, 31
+        sub     edx, ecx
+        imul    ecx, edx, 26
+        sub     eax, ecx
+        mov     edx, eax
+        mov     eax, edx
+        add     eax, 97
+        mov     BYTE PTR [rbp-14], al
+        movsx   eax, BYTE PTR [rbp-14]
+        mov     esi, eax
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char)
+        sub     DWORD PTR [rbp-8], 1
+.L3:
+        cmp     DWORD PTR [rbp-8], 0
+        jg      .L4
+        mov     esi, OFFSET FLAT:.LC2
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)
+        call    rand
+        mov     edx, eax
+        movsx   rax, edx
+        imul    rax, rax, 1717986919
+        shr     rax, 32
+        sar     eax, 2
+        mov     ecx, edx
+        sar     ecx, 31
+        sub     eax, ecx
+        mov     DWORD PTR [rbp-12], eax
+        mov     ecx, DWORD PTR [rbp-12]
+        mov     eax, ecx
+        sal     eax, 2
+        add     eax, ecx
+        add     eax, eax
+        sub     edx, eax
+        mov     DWORD PTR [rbp-12], edx
+        jmp     .L5
+.L6:
+        call    rand
+        movsx   rdx, eax
+        imul    rdx, rdx, 1321528399
+        shr     rdx, 32
+        sar     edx, 3
+        mov     ecx, eax
+        sar     ecx, 31
+        sub     edx, ecx
+        imul    ecx, edx, 26
+        sub     eax, ecx
+        mov     edx, eax
+        mov     eax, edx
+        add     eax, 97
+        mov     BYTE PTR [rbp-13], al
+        movsx   eax, BYTE PTR [rbp-13]
+        mov     esi, eax
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char)
+        sub     DWORD PTR [rbp-12], 1
+.L5:
+        cmp     DWORD PTR [rbp-12], 0
+        jg      .L6
+        mov     esi, OFFSET FLAT:_ZSt4endlIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >::operator<<(std::basic_ostream<char, std::char_traits<char> >& (*)(std::basic_ostream<char, std::char_traits<char> >&))
+        sub     DWORD PTR [rbp-4], 1
+.L2:
+        cmp     DWORD PTR [rbp-4], 0
+        jg      .L7
+        mov     esi, OFFSET FLAT:.LC3
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)
+        mov     esi, OFFSET FLAT:_ZSt4endlIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_
+        mov     rdi, rax
+        call    std::basic_ostream<char, std::char_traits<char> >::operator<<(std::basic_ostream<char, std::char_traits<char> >& (*)(std::basic_ostream<char, std::char_traits<char> >&))
+        mov     esi, OFFSET FLAT:.LC4
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)
+        mov     esi, OFFSET FLAT:_ZSt4endlIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_
+        mov     rdi, rax
+        call    std::basic_ostream<char, std::char_traits<char> >::operator<<(std::basic_ostream<char, std::char_traits<char> >& (*)(std::basic_ostream<char, std::char_traits<char> >&))
+        mov     eax, 0
+        leave
+        ret

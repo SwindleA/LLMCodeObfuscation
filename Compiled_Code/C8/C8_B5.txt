@@ -1,0 +1,313 @@
+main:
+        push    rbp
+        mov     rbp, rsp
+        push    rbx
+        sub     rsp, 584
+        lea     rax, [rbp-449]
+        mov     QWORD PTR [rbp-24], rax
+        nop
+        nop
+        lea     rdx, [rbp-449]
+        lea     rax, [rbp-496]
+        mov     rcx, rdx
+        mov     edx, 101
+        mov     esi, 1
+        mov     rdi, rax
+        call    std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string<std::allocator<char> >(unsigned long, char, std::allocator<char> const&)
+        lea     rax, [rbp-369]
+        mov     QWORD PTR [rbp-32], rax
+        nop
+        nop
+        lea     rdx, [rbp-369]
+        lea     rax, [rbp-416]
+        mov     rcx, rdx
+        mov     edx, 99
+        mov     esi, 1
+        mov     rdi, rax
+        call    std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string<std::allocator<char> >(unsigned long, char, std::allocator<char> const&)
+        lea     rax, [rbp-289]
+        mov     QWORD PTR [rbp-40], rax
+        nop
+        nop
+        lea     rdx, [rbp-289]
+        lea     rax, [rbp-336]
+        mov     rcx, rdx
+        mov     edx, 97
+        mov     esi, 1
+        mov     rdi, rax
+        call    std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string<std::allocator<char> >(unsigned long, char, std::allocator<char> const&)
+        lea     rax, [rbp-241]
+        mov     QWORD PTR [rbp-48], rax
+        nop
+        nop
+        lea     rdx, [rbp-241]
+        lea     rax, [rbp-288]
+        mov     rcx, rdx
+        mov     edx, 114
+        mov     esi, 1
+        mov     rdi, rax
+        call    std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string<std::allocator<char> >(unsigned long, char, std::allocator<char> const&)
+        lea     rax, [rbp-368]
+        lea     rdx, [rbp-336]
+        lea     rcx, [rbp-288]
+        mov     rsi, rcx
+        mov     rdi, rax
+        call    std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > std::operator+<char, std::char_traits<char>, std::allocator<char> >(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&)
+        lea     rax, [rbp-448]
+        lea     rdx, [rbp-416]
+        lea     rcx, [rbp-368]
+        mov     rsi, rcx
+        mov     rdi, rax
+        call    std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > std::operator+<char, std::char_traits<char>, std::allocator<char> >(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&)
+        lea     rax, [rbp-528]
+        lea     rdx, [rbp-496]
+        lea     rcx, [rbp-448]
+        mov     rsi, rcx
+        mov     rdi, rax
+        call    std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > std::operator+<char, std::char_traits<char>, std::allocator<char> >(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&)
+        lea     rax, [rbp-448]
+        mov     rdi, rax
+        call    std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::~basic_string() [complete object destructor]
+        lea     rax, [rbp-368]
+        mov     rdi, rax
+        call    std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::~basic_string() [complete object destructor]
+        lea     rax, [rbp-288]
+        mov     rdi, rax
+        call    std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::~basic_string() [complete object destructor]
+        lea     rax, [rbp-241]
+        mov     rdi, rax
+        call    std::__new_allocator<char>::~__new_allocator() [base object destructor]
+        nop
+        lea     rax, [rbp-336]
+        mov     rdi, rax
+        call    std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::~basic_string() [complete object destructor]
+        lea     rax, [rbp-289]
+        mov     rdi, rax
+        call    std::__new_allocator<char>::~__new_allocator() [base object destructor]
+        nop
+        lea     rax, [rbp-416]
+        mov     rdi, rax
+        call    std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::~basic_string() [complete object destructor]
+        lea     rax, [rbp-369]
+        mov     rdi, rax
+        call    std::__new_allocator<char>::~__new_allocator() [base object destructor]
+        nop
+        lea     rax, [rbp-496]
+        mov     rdi, rax
+        call    std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::~basic_string() [complete object destructor]
+        lea     rax, [rbp-449]
+        mov     rdi, rax
+        call    std::__new_allocator<char>::~__new_allocator() [base object destructor]
+        nop
+        lea     rax, [rbp-193]
+        mov     QWORD PTR [rbp-56], rax
+        nop
+        nop
+        lea     rdx, [rbp-193]
+        lea     rax, [rbp-240]
+        mov     rcx, rdx
+        mov     edx, 114
+        mov     esi, 1
+        mov     rdi, rax
+        call    std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string<std::allocator<char> >(unsigned long, char, std::allocator<char> const&)
+        lea     rax, [rbp-113]
+        mov     QWORD PTR [rbp-64], rax
+        nop
+        nop
+        lea     rdx, [rbp-113]
+        lea     rax, [rbp-160]
+        mov     rcx, rdx
+        mov     edx, 97
+        mov     esi, 1
+        mov     rdi, rax
+        call    std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string<std::allocator<char> >(unsigned long, char, std::allocator<char> const&)
+        lea     rax, [rbp-73]
+        mov     QWORD PTR [rbp-72], rax
+        nop
+        nop
+        lea     rdx, [rbp-73]
+        lea     rax, [rbp-112]
+        mov     rcx, rdx
+        mov     edx, 99
+        mov     esi, 1
+        mov     rdi, rax
+        call    std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string<std::allocator<char> >(unsigned long, char, std::allocator<char> const&)
+        lea     rax, [rbp-192]
+        lea     rdx, [rbp-160]
+        lea     rcx, [rbp-112]
+        mov     rsi, rcx
+        mov     rdi, rax
+        call    std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > std::operator+<char, std::char_traits<char>, std::allocator<char> >(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&)
+        lea     rax, [rbp-560]
+        lea     rdx, [rbp-240]
+        lea     rcx, [rbp-192]
+        mov     rsi, rcx
+        mov     rdi, rax
+        call    std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > std::operator+<char, std::char_traits<char>, std::allocator<char> >(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&)
+        lea     rax, [rbp-192]
+        mov     rdi, rax
+        call    std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::~basic_string() [complete object destructor]
+        lea     rax, [rbp-112]
+        mov     rdi, rax
+        call    std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::~basic_string() [complete object destructor]
+        lea     rax, [rbp-73]
+        mov     rdi, rax
+        call    std::__new_allocator<char>::~__new_allocator() [base object destructor]
+        nop
+        lea     rax, [rbp-160]
+        mov     rdi, rax
+        call    std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::~basic_string() [complete object destructor]
+        lea     rax, [rbp-113]
+        mov     rdi, rax
+        call    std::__new_allocator<char>::~__new_allocator() [base object destructor]
+        nop
+        lea     rax, [rbp-240]
+        mov     rdi, rax
+        call    std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::~basic_string() [complete object destructor]
+        lea     rax, [rbp-193]
+        mov     rdi, rax
+        call    std::__new_allocator<char>::~__new_allocator() [base object destructor]
+        nop
+        lea     rdx, [rbp-560]
+        lea     rax, [rbp-528]
+        mov     rsi, rdx
+        mov     rdi, rax
+        call    std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::append(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)
+        mov     rdx, rax
+        lea     rax, [rbp-592]
+        mov     rsi, rdx
+        mov     rdi, rax
+        call    std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) [complete object constructor]
+        lea     rax, [rbp-592]
+        mov     rsi, rax
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <char, std::char_traits<char>, std::allocator<char> >(std::basic_ostream<char, std::char_traits<char> >&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)
+        mov     esi, OFFSET FLAT:_ZSt4endlIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_
+        mov     rdi, rax
+        call    std::basic_ostream<char, std::char_traits<char> >::operator<<(std::basic_ostream<char, std::char_traits<char> >& (*)(std::basic_ostream<char, std::char_traits<char> >&))
+        lea     rax, [rbp-592]
+        mov     rdi, rax
+        call    std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::~basic_string() [complete object destructor]
+        lea     rax, [rbp-560]
+        mov     rdi, rax
+        call    std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::~basic_string() [complete object destructor]
+        lea     rax, [rbp-528]
+        mov     rdi, rax
+        call    std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::~basic_string() [complete object destructor]
+        mov     eax, 0
+        jmp     .L32
+        mov     rbx, rax
+        lea     rax, [rbp-448]
+        mov     rdi, rax
+        call    std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::~basic_string() [complete object destructor]
+        jmp     .L4
+        mov     rbx, rax
+.L4:
+        lea     rax, [rbp-368]
+        mov     rdi, rax
+        call    std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::~basic_string() [complete object destructor]
+        jmp     .L5
+        mov     rbx, rax
+.L5:
+        lea     rax, [rbp-288]
+        mov     rdi, rax
+        call    std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::~basic_string() [complete object destructor]
+        jmp     .L6
+        mov     rbx, rax
+.L6:
+        lea     rax, [rbp-241]
+        mov     rdi, rax
+        call    std::__new_allocator<char>::~__new_allocator() [base object destructor]
+        nop
+        lea     rax, [rbp-336]
+        mov     rdi, rax
+        call    std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::~basic_string() [complete object destructor]
+        jmp     .L7
+        mov     rbx, rax
+.L7:
+        lea     rax, [rbp-289]
+        mov     rdi, rax
+        call    std::__new_allocator<char>::~__new_allocator() [base object destructor]
+        nop
+        lea     rax, [rbp-416]
+        mov     rdi, rax
+        call    std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::~basic_string() [complete object destructor]
+        jmp     .L8
+        mov     rbx, rax
+.L8:
+        lea     rax, [rbp-369]
+        mov     rdi, rax
+        call    std::__new_allocator<char>::~__new_allocator() [base object destructor]
+        nop
+        lea     rax, [rbp-496]
+        mov     rdi, rax
+        call    std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::~basic_string() [complete object destructor]
+        jmp     .L9
+        mov     rbx, rax
+.L9:
+        lea     rax, [rbp-449]
+        mov     rdi, rax
+        call    std::__new_allocator<char>::~__new_allocator() [base object destructor]
+        nop
+        mov     rax, rbx
+        mov     rdi, rax
+        call    _Unwind_Resume
+        mov     rbx, rax
+        lea     rax, [rbp-192]
+        mov     rdi, rax
+        call    std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::~basic_string() [complete object destructor]
+        jmp     .L11
+        mov     rbx, rax
+.L11:
+        lea     rax, [rbp-112]
+        mov     rdi, rax
+        call    std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::~basic_string() [complete object destructor]
+        jmp     .L12
+        mov     rbx, rax
+.L12:
+        lea     rax, [rbp-73]
+        mov     rdi, rax
+        call    std::__new_allocator<char>::~__new_allocator() [base object destructor]
+        nop
+        lea     rax, [rbp-160]
+        mov     rdi, rax
+        call    std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::~basic_string() [complete object destructor]
+        jmp     .L13
+        mov     rbx, rax
+.L13:
+        lea     rax, [rbp-113]
+        mov     rdi, rax
+        call    std::__new_allocator<char>::~__new_allocator() [base object destructor]
+        nop
+        lea     rax, [rbp-240]
+        mov     rdi, rax
+        call    std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::~basic_string() [complete object destructor]
+        jmp     .L14
+        mov     rbx, rax
+.L14:
+        lea     rax, [rbp-193]
+        mov     rdi, rax
+        call    std::__new_allocator<char>::~__new_allocator() [base object destructor]
+        nop
+        jmp     .L15
+        mov     rbx, rax
+        lea     rax, [rbp-592]
+        mov     rdi, rax
+        call    std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::~basic_string() [complete object destructor]
+        jmp     .L17
+        mov     rbx, rax
+.L17:
+        lea     rax, [rbp-560]
+        mov     rdi, rax
+        call    std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::~basic_string() [complete object destructor]
+.L15:
+        lea     rax, [rbp-528]
+        mov     rdi, rax
+        call    std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::~basic_string() [complete object destructor]
+        mov     rax, rbx
+        mov     rdi, rax
+        call    _Unwind_Resume
+.L32:
+        mov     rbx, QWORD PTR [rbp-8]
+        leave
+        ret

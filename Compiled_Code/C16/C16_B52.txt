@@ -1,0 +1,150 @@
+.LC0:
+        .string "!"
+.LC1:
+        .string "\n"
+main:
+        push    rbp
+        mov     rbp, rsp
+        push    rbx
+        sub     rsp, 440
+        mov     edi, 0
+        call    time
+        mov     edi, eax
+        call    srand
+        lea     rax, [rbp-416]
+        mov     rdi, rax
+        call    std::__cxx11::basic_ostringstream<char, std::char_traits<char>, std::allocator<char> >::basic_ostringstream() [complete object constructor]
+        mov     DWORD PTR [rbp-20], 4
+        jmp     .L2
+.L7:
+        call    rand
+        mov     edx, eax
+        movsx   rax, edx
+        imul    rax, rax, 1717986919
+        shr     rax, 32
+        sar     eax, 2
+        mov     ecx, edx
+        sar     ecx, 31
+        sub     eax, ecx
+        mov     DWORD PTR [rbp-24], eax
+        mov     ecx, DWORD PTR [rbp-24]
+        mov     eax, ecx
+        sal     eax, 2
+        add     eax, ecx
+        add     eax, eax
+        sub     edx, eax
+        mov     DWORD PTR [rbp-24], edx
+        jmp     .L3
+.L4:
+        call    rand
+        movsx   rdx, eax
+        imul    rdx, rdx, 1321528399
+        shr     rdx, 32
+        sar     edx, 3
+        mov     ecx, eax
+        sar     ecx, 31
+        sub     edx, ecx
+        imul    ecx, edx, 26
+        sub     eax, ecx
+        mov     edx, eax
+        mov     eax, edx
+        add     eax, 97
+        mov     BYTE PTR [rbp-30], al
+        movsx   edx, BYTE PTR [rbp-30]
+        lea     rax, [rbp-416]
+        mov     esi, edx
+        mov     rdi, rax
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char)
+        sub     DWORD PTR [rbp-24], 1
+.L3:
+        cmp     DWORD PTR [rbp-24], 0
+        jg      .L4
+        lea     rax, [rbp-416]
+        mov     esi, OFFSET FLAT:.LC0
+        mov     rdi, rax
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)
+        call    rand
+        mov     edx, eax
+        movsx   rax, edx
+        imul    rax, rax, 1717986919
+        shr     rax, 32
+        sar     eax, 2
+        mov     ecx, edx
+        sar     ecx, 31
+        sub     eax, ecx
+        mov     DWORD PTR [rbp-28], eax
+        mov     ecx, DWORD PTR [rbp-28]
+        mov     eax, ecx
+        sal     eax, 2
+        add     eax, ecx
+        add     eax, eax
+        sub     edx, eax
+        mov     DWORD PTR [rbp-28], edx
+        jmp     .L5
+.L6:
+        call    rand
+        movsx   rdx, eax
+        imul    rdx, rdx, 1321528399
+        shr     rdx, 32
+        sar     edx, 3
+        mov     ecx, eax
+        sar     ecx, 31
+        sub     edx, ecx
+        imul    ecx, edx, 26
+        sub     eax, ecx
+        mov     edx, eax
+        mov     eax, edx
+        add     eax, 97
+        mov     BYTE PTR [rbp-29], al
+        movsx   edx, BYTE PTR [rbp-29]
+        lea     rax, [rbp-416]
+        mov     esi, edx
+        mov     rdi, rax
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char)
+        sub     DWORD PTR [rbp-28], 1
+.L5:
+        cmp     DWORD PTR [rbp-28], 0
+        jg      .L6
+        lea     rax, [rbp-416]
+        mov     esi, OFFSET FLAT:.LC1
+        mov     rdi, rax
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)
+        sub     DWORD PTR [rbp-20], 1
+.L2:
+        cmp     DWORD PTR [rbp-20], 0
+        jg      .L7
+        lea     rax, [rbp-448]
+        lea     rdx, [rbp-416]
+        mov     rsi, rdx
+        mov     rdi, rax
+        call    std::__cxx11::basic_ostringstream<char, std::char_traits<char>, std::allocator<char> >::str() const
+        lea     rax, [rbp-448]
+        mov     rsi, rax
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <char, std::char_traits<char>, std::allocator<char> >(std::basic_ostream<char, std::char_traits<char> >&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)
+        mov     ebx, 0
+        lea     rax, [rbp-448]
+        mov     rdi, rax
+        call    std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::~basic_string() [complete object destructor]
+        lea     rax, [rbp-416]
+        mov     rdi, rax
+        call    std::__cxx11::basic_ostringstream<char, std::char_traits<char>, std::allocator<char> >::~basic_ostringstream() [complete object destructor]
+        mov     eax, ebx
+        jmp     .L13
+        mov     rbx, rax
+        lea     rax, [rbp-448]
+        mov     rdi, rax
+        call    std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::~basic_string() [complete object destructor]
+        jmp     .L10
+        mov     rbx, rax
+.L10:
+        lea     rax, [rbp-416]
+        mov     rdi, rax
+        call    std::__cxx11::basic_ostringstream<char, std::char_traits<char>, std::allocator<char> >::~basic_ostringstream() [complete object destructor]
+        mov     rax, rbx
+        mov     rdi, rax
+        call    _Unwind_Resume
+.L13:
+        mov     rbx, QWORD PTR [rbp-8]
+        leave
+        ret

@@ -1,0 +1,132 @@
+appendWord(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, int):
+        push    rbp
+        mov     rbp, rsp
+        sub     rsp, 32
+        mov     QWORD PTR [rbp-8], rdi
+        mov     QWORD PTR [rbp-16], rsi
+        mov     DWORD PTR [rbp-20], edx
+        cmp     DWORD PTR [rbp-20], 0
+        jle     .L8
+        mov     rdx, QWORD PTR [rbp-16]
+        mov     rax, QWORD PTR [rbp-8]
+        mov     rsi, rdx
+        mov     rdi, rax
+        call    std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::append(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)
+        mov     eax, DWORD PTR [rbp-20]
+        lea     edx, [rax-1]
+        mov     rcx, QWORD PTR [rbp-16]
+        mov     rax, QWORD PTR [rbp-8]
+        mov     rsi, rcx
+        mov     rdi, rax
+        call    appendWord(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, int)
+.L8:
+        nop
+        leave
+        ret
+.LC0:
+        .string "Hello"
+.LC1:
+        .string "There"
+main:
+        push    rbp
+        mov     rbp, rsp
+        push    rbx
+        sub     rsp, 152
+        lea     rax, [rbp-160]
+        mov     rdi, rax
+        call    std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string() [complete object constructor]
+        lea     rax, [rbp-81]
+        mov     QWORD PTR [rbp-24], rax
+        nop
+        nop
+        lea     rdx, [rbp-81]
+        lea     rax, [rbp-128]
+        mov     esi, OFFSET FLAT:.LC0
+        mov     rdi, rax
+        call    std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string<std::allocator<char> >(char const*, std::allocator<char> const&)
+        lea     rcx, [rbp-128]
+        lea     rax, [rbp-160]
+        mov     edx, 4
+        mov     rsi, rcx
+        mov     rdi, rax
+        call    appendWord(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, int)
+        lea     rax, [rbp-128]
+        mov     rdi, rax
+        call    std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::~basic_string() [complete object destructor]
+        lea     rax, [rbp-81]
+        mov     rdi, rax
+        call    std::__new_allocator<char>::~__new_allocator() [base object destructor]
+        nop
+        lea     rax, [rbp-33]
+        mov     QWORD PTR [rbp-32], rax
+        nop
+        nop
+        lea     rdx, [rbp-33]
+        lea     rax, [rbp-80]
+        mov     esi, OFFSET FLAT:.LC1
+        mov     rdi, rax
+        call    std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string<std::allocator<char> >(char const*, std::allocator<char> const&)
+        lea     rcx, [rbp-80]
+        lea     rax, [rbp-160]
+        mov     edx, 7
+        mov     rsi, rcx
+        mov     rdi, rax
+        call    appendWord(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, int)
+        lea     rax, [rbp-80]
+        mov     rdi, rax
+        call    std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::~basic_string() [complete object destructor]
+        lea     rax, [rbp-33]
+        mov     rdi, rax
+        call    std::__new_allocator<char>::~__new_allocator() [base object destructor]
+        nop
+        lea     rax, [rbp-160]
+        mov     rsi, rax
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <char, std::char_traits<char>, std::allocator<char> >(std::basic_ostream<char, std::char_traits<char> >&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)
+        mov     esi, OFFSET FLAT:_ZSt4endlIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_
+        mov     rdi, rax
+        call    std::basic_ostream<char, std::char_traits<char> >::operator<<(std::basic_ostream<char, std::char_traits<char> >& (*)(std::basic_ostream<char, std::char_traits<char> >&))
+        mov     ebx, 0
+        lea     rax, [rbp-160]
+        mov     rdi, rax
+        call    std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::~basic_string() [complete object destructor]
+        mov     eax, ebx
+        jmp     .L21
+        mov     rbx, rax
+        lea     rax, [rbp-128]
+        mov     rdi, rax
+        call    std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::~basic_string() [complete object destructor]
+        jmp     .L12
+        mov     rbx, rax
+.L12:
+        lea     rax, [rbp-81]
+        mov     rdi, rax
+        call    std::__new_allocator<char>::~__new_allocator() [base object destructor]
+        nop
+        jmp     .L13
+        mov     rbx, rax
+        lea     rax, [rbp-80]
+        mov     rdi, rax
+        call    std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::~basic_string() [complete object destructor]
+        jmp     .L15
+        mov     rbx, rax
+.L15:
+        lea     rax, [rbp-33]
+        mov     rdi, rax
+        call    std::__new_allocator<char>::~__new_allocator() [base object destructor]
+        nop
+        jmp     .L13
+        mov     rbx, rax
+.L13:
+        lea     rax, [rbp-160]
+        mov     rdi, rax
+        call    std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::~basic_string() [complete object destructor]
+        mov     rax, rbx
+        mov     rdi, rax
+        call    _Unwind_Resume
+.L21:
+        mov     rbx, QWORD PTR [rbp-8]
+        leave
+        ret
+.LC2:
+        .string "basic_string: construction from null is not valid"

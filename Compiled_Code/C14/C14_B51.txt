@@ -1,0 +1,98 @@
+.LC0:
+        .string "adsf!fjelnbo./23@#45jalkd"
+.LC1:
+        .string "as;lkdjfoine!,djfoekngrn"
+.LC2:
+        .string "apple!a;lkdjfoie"
+.LC3:
+        .string "This is the "
+.LC4:
+        .string "th line!"
+main:
+        push    rbp
+        mov     rbp, rsp
+        sub     rsp, 32
+        mov     DWORD PTR [rbp-20], 1
+        mov     eax, DWORD PTR [rbp-20]
+        add     eax, 1
+        mov     DWORD PTR [rbp-24], eax
+        mov     eax, DWORD PTR [rbp-24]
+        add     eax, 1
+        mov     DWORD PTR [rbp-28], eax
+        mov     eax, DWORD PTR [rbp-20]
+        mov     DWORD PTR [rbp-4], eax
+        jmp     .L2
+.L3:
+        mov     esi, OFFSET FLAT:.LC0
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)
+        mov     esi, OFFSET FLAT:_ZSt4endlIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_
+        mov     rdi, rax
+        call    std::basic_ostream<char, std::char_traits<char> >::operator<<(std::basic_ostream<char, std::char_traits<char> >& (*)(std::basic_ostream<char, std::char_traits<char> >&))
+        add     DWORD PTR [rbp-4], 1
+.L2:
+        mov     eax, DWORD PTR [rbp-4]
+        cmp     eax, DWORD PTR [rbp-20]
+        jle     .L3
+        mov     eax, DWORD PTR [rbp-24]
+        mov     DWORD PTR [rbp-8], eax
+        jmp     .L4
+.L5:
+        mov     esi, OFFSET FLAT:.LC1
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)
+        mov     esi, OFFSET FLAT:_ZSt4endlIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_
+        mov     rdi, rax
+        call    std::basic_ostream<char, std::char_traits<char> >::operator<<(std::basic_ostream<char, std::char_traits<char> >& (*)(std::basic_ostream<char, std::char_traits<char> >&))
+        add     DWORD PTR [rbp-8], 1
+.L4:
+        mov     eax, DWORD PTR [rbp-8]
+        cmp     eax, DWORD PTR [rbp-24]
+        jle     .L5
+        mov     eax, DWORD PTR [rbp-28]
+        mov     DWORD PTR [rbp-12], eax
+        jmp     .L6
+.L7:
+        mov     esi, OFFSET FLAT:.LC2
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)
+        mov     esi, OFFSET FLAT:_ZSt4endlIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_
+        mov     rdi, rax
+        call    std::basic_ostream<char, std::char_traits<char> >::operator<<(std::basic_ostream<char, std::char_traits<char> >& (*)(std::basic_ostream<char, std::char_traits<char> >&))
+        add     DWORD PTR [rbp-12], 1
+.L6:
+        mov     eax, DWORD PTR [rbp-12]
+        cmp     eax, DWORD PTR [rbp-28]
+        jle     .L7
+        mov     edx, DWORD PTR [rbp-20]
+        mov     eax, DWORD PTR [rbp-28]
+        add     eax, edx
+        mov     DWORD PTR [rbp-16], eax
+        jmp     .L8
+.L9:
+        mov     esi, OFFSET FLAT:.LC3
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)
+        mov     rdx, rax
+        mov     ecx, DWORD PTR [rbp-28]
+        mov     eax, DWORD PTR [rbp-20]
+        add     eax, ecx
+        mov     esi, eax
+        mov     rdi, rdx
+        call    std::basic_ostream<char, std::char_traits<char> >::operator<<(int)
+        mov     esi, OFFSET FLAT:.LC4
+        mov     rdi, rax
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)
+        mov     esi, OFFSET FLAT:_ZSt4endlIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_
+        mov     rdi, rax
+        call    std::basic_ostream<char, std::char_traits<char> >::operator<<(std::basic_ostream<char, std::char_traits<char> >& (*)(std::basic_ostream<char, std::char_traits<char> >&))
+        add     DWORD PTR [rbp-16], 1
+.L8:
+        mov     edx, DWORD PTR [rbp-20]
+        mov     eax, DWORD PTR [rbp-28]
+        add     eax, edx
+        cmp     DWORD PTR [rbp-16], eax
+        jle     .L9
+        mov     eax, 0
+        leave
+        ret

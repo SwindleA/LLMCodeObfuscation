@@ -1,0 +1,76 @@
+.LC0:
+        .string "GPT"
+.LC1:
+        .string "Input: "
+.LC2:
+        .string "Output: "
+main:
+        push    rbp
+        mov     rbp, rsp
+        push    rbx
+        sub     rsp, 88
+        mov     DWORD PTR [rbp-20], 100
+        lea     rax, [rbp-41]
+        mov     QWORD PTR [rbp-40], rax
+        nop
+        nop
+        lea     rdx, [rbp-41]
+        lea     rax, [rbp-96]
+        mov     esi, OFFSET FLAT:.LC0
+        mov     rdi, rax
+        call    std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string<std::allocator<char> >(char const*, std::allocator<char> const&)
+        lea     rax, [rbp-41]
+        mov     rdi, rax
+        call    std::__new_allocator<char>::~__new_allocator() [base object destructor]
+        nop
+        mov     esi, OFFSET FLAT:.LC1
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)
+        lea     rax, [rbp-56]
+        mov     rsi, rax
+        mov     edi, OFFSET FLAT:_ZSt3cin
+        call    std::basic_istream<char, std::char_traits<char> >::operator>>(double&)
+        mov     rdx, rax
+        lea     rax, [rbp-64]
+        mov     rsi, rax
+        mov     rdi, rdx
+        call    std::basic_istream<char, std::char_traits<char> >::operator>>(double&)
+        movsd   xmm1, QWORD PTR [rbp-56]
+        movsd   xmm0, QWORD PTR [rbp-64]
+        mulsd   xmm0, xmm1
+        movsd   QWORD PTR [rbp-32], xmm0
+        mov     esi, OFFSET FLAT:.LC2
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)
+        mov     rdx, rax
+        mov     rax, QWORD PTR [rbp-32]
+        movq    xmm0, rax
+        mov     rdi, rdx
+        call    std::basic_ostream<char, std::char_traits<char> >::operator<<(double)
+        mov     ebx, 0
+        lea     rax, [rbp-96]
+        mov     rdi, rax
+        call    std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::~basic_string() [complete object destructor]
+        mov     eax, ebx
+        jmp     .L12
+        mov     rbx, rax
+        lea     rax, [rbp-41]
+        mov     rdi, rax
+        call    std::__new_allocator<char>::~__new_allocator() [base object destructor]
+        nop
+        mov     rax, rbx
+        mov     rdi, rax
+        call    _Unwind_Resume
+        mov     rbx, rax
+        lea     rax, [rbp-96]
+        mov     rdi, rax
+        call    std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::~basic_string() [complete object destructor]
+        mov     rax, rbx
+        mov     rdi, rax
+        call    _Unwind_Resume
+.L12:
+        mov     rbx, QWORD PTR [rbp-8]
+        leave
+        ret
+.LC3:
+        .string "basic_string: construction from null is not valid"

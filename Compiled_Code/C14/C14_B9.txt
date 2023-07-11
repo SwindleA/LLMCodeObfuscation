@@ -1,0 +1,162 @@
+.LC0:
+        .string " "
+main:
+        push    rbp
+        mov     rbp, rsp
+        push    rbx
+        sub     rsp, 184
+        mov     DWORD PTR [rbp-144], 1
+        mov     DWORD PTR [rbp-140], 2
+        mov     DWORD PTR [rbp-136], 3
+        mov     DWORD PTR [rbp-132], 5
+        mov     DWORD PTR [rbp-128], 2
+        mov     DWORD PTR [rbp-124], 1345
+        mov     DWORD PTR [rbp-120], 63
+        mov     DWORD PTR [rbp-116], 56
+        mov     DWORD PTR [rbp-112], 3
+        mov     DWORD PTR [rbp-108], 6626
+        mov     DWORD PTR [rbp-104], 2556
+        mov     DWORD PTR [rbp-100], 342
+        mov     DWORD PTR [rbp-96], 5345
+        mov     DWORD PTR [rbp-92], 55
+        mov     DWORD PTR [rbp-88], 44
+        mov     DWORD PTR [rbp-84], 33
+        mov     DWORD PTR [rbp-80], 223
+        mov     DWORD PTR [rbp-76], 863
+        mov     DWORD PTR [rbp-72], 24
+        mov     DWORD PTR [rbp-68], 52
+        mov     DWORD PTR [rbp-64], 98
+        mov     DWORD PTR [rbp-60], 888
+        lea     rcx, [rbp-144]
+        mov     rax, rcx
+        mov     edx, 22
+        lea     rcx, [rbp-41]
+        mov     QWORD PTR [rbp-40], rcx
+        nop
+        nop
+        lea     rcx, [rbp-41]
+        mov     rsi, rax
+        mov     rdi, rdx
+        lea     rax, [rbp-176]
+        mov     rdi, rax
+        call    std::vector<int, std::allocator<int> >::vector(std::initializer_list<int>, std::allocator<int> const&) [complete object constructor]
+        lea     rax, [rbp-41]
+        mov     rdi, rax
+        call    std::__new_allocator<int>::~__new_allocator() [base object destructor]
+        nop
+        mov     DWORD PTR [rbp-20], 0
+        jmp     .L2
+.L10:
+        mov     DWORD PTR [rbp-24], 0
+        jmp     .L3
+.L9:
+        mov     DWORD PTR [rbp-28], 0
+        jmp     .L4
+.L6:
+        mov     eax, DWORD PTR [rbp-24]
+        movsx   rdx, eax
+        lea     rax, [rbp-176]
+        mov     rsi, rdx
+        mov     rdi, rax
+        call    std::vector<int, std::allocator<int> >::operator[](unsigned long)
+        mov     edx, DWORD PTR [rax]
+        mov     eax, DWORD PTR [rbp-20]
+        add     eax, edx
+        mov     edx, DWORD PTR [rbp-28]
+        lea     ebx, [rdx+2]
+        cdq
+        idiv    ebx
+        mov     ecx, edx
+        mov     eax, ecx
+        test    eax, eax
+        setne   al
+        test    al, al
+        je      .L5
+        mov     eax, DWORD PTR [rbp-24]
+        movsx   rdx, eax
+        lea     rax, [rbp-176]
+        mov     rsi, rdx
+        mov     rdi, rax
+        call    std::vector<int, std::allocator<int> >::operator[](unsigned long)
+        mov     ebx, DWORD PTR [rax]
+        mov     edx, DWORD PTR [rbp-20]
+        mov     eax, DWORD PTR [rbp-28]
+        add     eax, edx
+        mov     esi, eax
+        mov     edi, 1
+        call    __gnu_cxx::__promote_2<decltype (((__gnu_cxx::__promote_2<int, std::__is_integer<int>::__value>::__type)(0))+((__gnu_cxx::__promote_2<int, std::__is_integer<int>::__value>::__type)(0))), std::__is_integer<decltype (((__gnu_cxx::__promote_2<int, std::__is_integer<int>::__value>::__type)(0))+((__gnu_cxx::__promote_2<int, std::__is_integer<int>::__value>::__type)(0)))>::__value>::__type std::pow<int, int>(int, int)
+        cvttsd2si       eax, xmm0
+        imul    eax, ebx
+        mov     esi, eax
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >::operator<<(int)
+        mov     esi, OFFSET FLAT:.LC0
+        mov     rdi, rax
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)
+.L5:
+        add     DWORD PTR [rbp-28], 1
+.L4:
+        cmp     DWORD PTR [rbp-28], 0
+        jle     .L6
+        add     DWORD PTR [rbp-24], 1
+.L3:
+        lea     rax, [rbp-176]
+        mov     rdi, rax
+        call    std::vector<int, std::allocator<int> >::size() const
+        test    rax, rax
+        js      .L7
+        pxor    xmm1, xmm1
+        cvtsi2sd        xmm1, rax
+        movsd   QWORD PTR [rbp-184], xmm1
+        jmp     .L8
+.L7:
+        mov     rdx, rax
+        shr     rdx
+        and     eax, 1
+        or      rdx, rax
+        pxor    xmm0, xmm0
+        cvtsi2sd        xmm0, rdx
+        addsd   xmm0, xmm0
+        movsd   QWORD PTR [rbp-184], xmm0
+.L8:
+        mov     eax, DWORD PTR [rbp-20]
+        mov     esi, eax
+        mov     edi, 1
+        call    __gnu_cxx::__promote_2<decltype (((__gnu_cxx::__promote_2<int, std::__is_integer<int>::__value>::__type)(0))+((__gnu_cxx::__promote_2<int, std::__is_integer<int>::__value>::__type)(0))), std::__is_integer<decltype (((__gnu_cxx::__promote_2<int, std::__is_integer<int>::__value>::__type)(0))+((__gnu_cxx::__promote_2<int, std::__is_integer<int>::__value>::__type)(0)))>::__value>::__type std::pow<int, int>(int, int)
+        mulsd   xmm0, QWORD PTR [rbp-184]
+        cvttsd2si       eax, xmm0
+        cmp     DWORD PTR [rbp-24], eax
+        setl    al
+        test    al, al
+        jne     .L9
+        add     DWORD PTR [rbp-20], 1
+.L2:
+        cmp     DWORD PTR [rbp-20], 0
+        jle     .L10
+        mov     ebx, 0
+        lea     rax, [rbp-176]
+        mov     rdi, rax
+        call    std::vector<int, std::allocator<int> >::~vector() [complete object destructor]
+        mov     eax, ebx
+        jmp     .L16
+        mov     rbx, rax
+        lea     rax, [rbp-41]
+        mov     rdi, rax
+        call    std::__new_allocator<int>::~__new_allocator() [base object destructor]
+        nop
+        mov     rax, rbx
+        mov     rdi, rax
+        call    _Unwind_Resume
+        mov     rbx, rax
+        lea     rax, [rbp-176]
+        mov     rdi, rax
+        call    std::vector<int, std::allocator<int> >::~vector() [complete object destructor]
+        mov     rax, rbx
+        mov     rdi, rax
+        call    _Unwind_Resume
+.L16:
+        mov     rbx, QWORD PTR [rbp-8]
+        leave
+        ret
+.LC1:
+        .string "cannot create std::vector larger than max_size()"

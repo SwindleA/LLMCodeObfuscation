@@ -1,0 +1,105 @@
+.LC0:
+        .string "Input: "
+.LC1:
+        .string "Error!"
+.LC2:
+        .string "True"
+.LC3:
+        .string "False"
+main:
+        push    rbp
+        mov     rbp, rsp
+        sub     rsp, 16
+        mov     esi, OFFSET FLAT:.LC0
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)
+        lea     rax, [rbp-13]
+        mov     rsi, rax
+        mov     edi, OFFSET FLAT:_ZSt3cin
+        call    std::basic_istream<char, std::char_traits<char> >& std::operator>><char, std::char_traits<char> >(std::basic_istream<char, std::char_traits<char> >&, char&)
+        mov     DWORD PTR [rbp-8], 91234
+        jmp     .L2
+.L9:
+        movzx   eax, BYTE PTR [rbp-13]
+        cmp     al, 97
+        je      .L3
+        movzx   eax, BYTE PTR [rbp-13]
+        cmp     al, 101
+        je      .L3
+        movzx   eax, BYTE PTR [rbp-13]
+        cmp     al, 105
+        je      .L3
+        movzx   eax, BYTE PTR [rbp-13]
+        cmp     al, 111
+        je      .L3
+        movzx   eax, BYTE PTR [rbp-13]
+        cmp     al, 117
+        jne     .L4
+.L3:
+        mov     eax, 1
+        jmp     .L5
+.L4:
+        mov     eax, 0
+.L5:
+        mov     BYTE PTR [rbp-1], al
+        movzx   eax, BYTE PTR [rbp-13]
+        cmp     al, 65
+        je      .L6
+        movzx   eax, BYTE PTR [rbp-13]
+        cmp     al, 69
+        je      .L6
+        movzx   eax, BYTE PTR [rbp-13]
+        cmp     al, 73
+        je      .L6
+        movzx   eax, BYTE PTR [rbp-13]
+        cmp     al, 79
+        je      .L6
+        movzx   eax, BYTE PTR [rbp-13]
+        cmp     al, 85
+        jne     .L7
+.L6:
+        mov     eax, 1
+        jmp     .L8
+.L7:
+        mov     eax, 0
+.L8:
+        mov     BYTE PTR [rbp-2], al
+        sub     DWORD PTR [rbp-8], 100
+.L2:
+        cmp     DWORD PTR [rbp-8], 0
+        jg      .L9
+        mov     DWORD PTR [rbp-12], 3
+        jmp     .L10
+.L15:
+        movzx   eax, BYTE PTR [rbp-13]
+        movsx   eax, al
+        mov     edi, eax
+        call    isalpha
+        test    eax, eax
+        jne     .L11
+        mov     edi, OFFSET FLAT:.LC1
+        mov     eax, 0
+        call    printf
+        jmp     .L12
+.L11:
+        cmp     BYTE PTR [rbp-1], 0
+        jne     .L13
+        cmp     BYTE PTR [rbp-2], 0
+        je      .L14
+.L13:
+        mov     esi, OFFSET FLAT:.LC2
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)
+        jmp     .L12
+.L14:
+        mov     esi, OFFSET FLAT:.LC3
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)
+.L12:
+        sub     DWORD PTR [rbp-12], 3
+.L10:
+        cmp     DWORD PTR [rbp-12], 0
+        jg      .L15
+        mov     eax, 0
+        leave
+        ret
