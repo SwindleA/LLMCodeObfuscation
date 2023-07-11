@@ -9,7 +9,7 @@ int main()
     cout << "Before: " << endl;
     cout << "a = " << a << ", b = " << b << endl;
 
-    b
+    
     unused1 = a + b;
 
    

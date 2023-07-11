@@ -24,6 +24,6 @@ int main() {
         std::cout << fullWord << std::endl;
     } else {
         std::cout << "" << std::endl;
-
+    }
     return 0;
 }
