@@ -1,0 +1,113 @@
+findFactors(int, int, std::vector<int, std::allocator<int> >&):
+        push    rbp
+        mov     rbp, rsp
+        sub     rsp, 16
+        mov     DWORD PTR [rbp-4], edi
+        mov     DWORD PTR [rbp-8], esi
+        mov     QWORD PTR [rbp-16], rdx
+        mov     eax, DWORD PTR [rbp-8]
+        test    eax, eax
+        jle     .L6
+        mov     esi, DWORD PTR [rbp-8]
+        mov     eax, DWORD PTR [rbp-4]
+        cdq
+        idiv    esi
+        mov     ecx, edx
+        mov     eax, ecx
+        test    eax, eax
+        jne     .L5
+        lea     rdx, [rbp-8]
+        mov     rax, QWORD PTR [rbp-16]
+        mov     rsi, rdx
+        mov     rdi, rax
+        call    std::vector<int, std::allocator<int> >::push_back(int const&)
+.L5:
+        mov     eax, DWORD PTR [rbp-8]
+        lea     ecx, [rax-1]
+        mov     rdx, QWORD PTR [rbp-16]
+        mov     eax, DWORD PTR [rbp-4]
+        mov     esi, ecx
+        mov     edi, eax
+        call    findFactors(int, int, std::vector<int, std::allocator<int> >&)
+.L6:
+        nop
+        leave
+        ret
+.LC0:
+        .string " "
+printFactors(std::vector<int, std::allocator<int> >&, int):
+        push    rbp
+        mov     rbp, rsp
+        push    rbx
+        sub     rsp, 24
+        mov     QWORD PTR [rbp-24], rdi
+        mov     DWORD PTR [rbp-28], esi
+        mov     eax, DWORD PTR [rbp-28]
+        movsx   rbx, eax
+        mov     rax, QWORD PTR [rbp-24]
+        mov     rdi, rax
+        call    std::vector<int, std::allocator<int> >::size() const
+        cmp     rbx, rax
+        setb    al
+        test    al, al
+        je      .L9
+        mov     eax, DWORD PTR [rbp-28]
+        movsx   rdx, eax
+        mov     rax, QWORD PTR [rbp-24]
+        mov     rsi, rdx
+        mov     rdi, rax
+        call    std::vector<int, std::allocator<int> >::operator[](unsigned long)
+        mov     eax, DWORD PTR [rax]
+        mov     esi, eax
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >::operator<<(int)
+        mov     esi, OFFSET FLAT:.LC0
+        mov     rdi, rax
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)
+        mov     eax, DWORD PTR [rbp-28]
+        lea     edx, [rax+1]
+        mov     rax, QWORD PTR [rbp-24]
+        mov     esi, edx
+        mov     rdi, rax
+        call    printFactors(std::vector<int, std::allocator<int> >&, int)
+.L9:
+        nop
+        mov     rbx, QWORD PTR [rbp-8]
+        leave
+        ret
+main:
+        push    rbp
+        mov     rbp, rsp
+        push    rbx
+        sub     rsp, 40
+        lea     rax, [rbp-48]
+        mov     rdi, rax
+        call    std::vector<int, std::allocator<int> >::vector() [complete object constructor]
+        lea     rax, [rbp-48]
+        mov     rdx, rax
+        mov     esi, 10
+        mov     edi, 10
+        call    findFactors(int, int, std::vector<int, std::allocator<int> >&)
+        lea     rax, [rbp-48]
+        mov     esi, 0
+        mov     rdi, rax
+        call    printFactors(std::vector<int, std::allocator<int> >&, int)
+        mov     ebx, 0
+        lea     rax, [rbp-48]
+        mov     rdi, rax
+        call    std::vector<int, std::allocator<int> >::~vector() [complete object destructor]
+        mov     eax, ebx
+        jmp     .L17
+        mov     rbx, rax
+        lea     rax, [rbp-48]
+        mov     rdi, rax
+        call    std::vector<int, std::allocator<int> >::~vector() [complete object destructor]
+        mov     rax, rbx
+        mov     rdi, rax
+        call    _Unwind_Resume
+.L17:
+        mov     rbx, QWORD PTR [rbp-8]
+        leave
+        ret
+.LC1:
+        .string "vector::_M_realloc_insert"

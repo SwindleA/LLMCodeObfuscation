@@ -1,0 +1,101 @@
+.LC0:
+        .string "hello"
+.LC1:
+        .string ""
+.LC2:
+        .string "unexpected"
+main:
+        push    rbp
+        mov     rbp, rsp
+        push    rbx
+        sub     rsp, 72
+        lea     rax, [rbp-33]
+        mov     QWORD PTR [rbp-32], rax
+        nop
+        nop
+        lea     rdx, [rbp-33]
+        lea     rax, [rbp-80]
+        mov     esi, OFFSET FLAT:.LC0
+        mov     rdi, rax
+        call    std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string<std::allocator<char> >(char const*, std::allocator<char> const&)
+        lea     rax, [rbp-33]
+        mov     rdi, rax
+        call    std::__new_allocator<char>::~__new_allocator() [base object destructor]
+        nop
+        mov     DWORD PTR [rbp-20], 0
+        jmp     .L7
+.L14:
+        lea     rax, [rbp-80]
+        mov     rdi, rax
+        call    std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::length() const
+        test    rax, rax
+        setne   al
+        test    al, al
+        je      .L8
+        mov     eax, DWORD PTR [rbp-20]
+        and     eax, 1
+        test    eax, eax
+        je      .L9
+        mov     eax, DWORD PTR [rbp-20]
+        and     eax, 1
+        test    eax, eax
+        je      .L10
+.L9:
+        lea     rax, [rbp-80]
+        mov     rsi, rax
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <char, std::char_traits<char>, std::allocator<char> >(std::basic_ostream<char, std::char_traits<char> >&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)
+        jmp     .L12
+.L10:
+        mov     esi, OFFSET FLAT:.LC1
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)
+        jmp     .L12
+.L8:
+        lea     rax, [rbp-80]
+        mov     rdi, rax
+        call    std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::length() const
+        test    rax, rax
+        sete    al
+        test    al, al
+        je      .L13
+        mov     esi, OFFSET FLAT:.LC1
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)
+        jmp     .L12
+.L13:
+        mov     esi, OFFSET FLAT:.LC2
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)
+.L12:
+        add     DWORD PTR [rbp-20], 1
+.L7:
+        cmp     DWORD PTR [rbp-20], 9
+        jle     .L14
+        mov     ebx, 0
+        lea     rax, [rbp-80]
+        mov     rdi, rax
+        call    std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::~basic_string() [complete object destructor]
+        mov     eax, ebx
+        jmp     .L20
+        mov     rbx, rax
+        lea     rax, [rbp-33]
+        mov     rdi, rax
+        call    std::__new_allocator<char>::~__new_allocator() [base object destructor]
+        nop
+        mov     rax, rbx
+        mov     rdi, rax
+        call    _Unwind_Resume
+        mov     rbx, rax
+        lea     rax, [rbp-80]
+        mov     rdi, rax
+        call    std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::~basic_string() [complete object destructor]
+        mov     rax, rbx
+        mov     rdi, rax
+        call    _Unwind_Resume
+.L20:
+        mov     rbx, QWORD PTR [rbp-8]
+        leave
+        ret
+.LC3:
+        .string "basic_string: construction from null is not valid"

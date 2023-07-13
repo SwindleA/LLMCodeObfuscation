@@ -1,0 +1,147 @@
+.LC0:
+        .string "\n"
+main:
+        push    rbp
+        mov     rbp, rsp
+        push    rbx
+        sub     rsp, 72
+        lea     rax, [rbp-64]
+        mov     rdi, rax
+        call    std::vector<int, std::allocator<int> >::vector() [complete object constructor]
+        mov     DWORD PTR [rbp-36], 10
+        mov     DWORD PTR [rbp-20], 0
+        mov     esi, OFFSET FLAT:.LC0
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)
+        jmp     .L7
+.L13:
+        mov     eax, DWORD PTR [rbp-36]
+        mov     DWORD PTR [rbp-68], eax
+        jmp     .L8
+.L10:
+        mov     ecx, DWORD PTR [rbp-68]
+        mov     eax, DWORD PTR [rbp-36]
+        cdq
+        idiv    ecx
+        mov     ecx, edx
+        mov     eax, ecx
+        test    eax, eax
+        jne     .L9
+        lea     rdx, [rbp-68]
+        lea     rax, [rbp-64]
+        mov     rsi, rdx
+        mov     rdi, rax
+        call    std::vector<int, std::allocator<int> >::push_back(int const&)
+.L9:
+        mov     eax, DWORD PTR [rbp-68]
+        sub     eax, 1
+        mov     DWORD PTR [rbp-68], eax
+.L8:
+        mov     eax, DWORD PTR [rbp-68]
+        test    eax, eax
+        jg      .L10
+        cmp     DWORD PTR [rbp-20], 0
+        je      .L24
+        add     DWORD PTR [rbp-20], 1
+.L7:
+        mov     esi, OFFSET FLAT:.LC0
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)
+        mov     rdx, QWORD PTR [rax]
+        sub     rdx, 24
+        mov     rdx, QWORD PTR [rdx]
+        add     rax, rdx
+        mov     rdi, rax
+        call    std::basic_ios<char, std::char_traits<char> >::operator bool() const
+        test    al, al
+        jne     .L13
+        jmp     .L12
+.L24:
+        nop
+.L12:
+        mov     DWORD PTR [rbp-24], 0
+        jmp     .L14
+.L15:
+        add     DWORD PTR [rbp-24], 1
+.L14:
+        cmp     DWORD PTR [rbp-24], 99
+        jle     .L15
+        mov     DWORD PTR [rbp-28], 0
+        jmp     .L16
+.L17:
+        mov     eax, DWORD PTR [rbp-28]
+        movsx   rdx, eax
+        lea     rax, [rbp-64]
+        mov     rsi, rdx
+        mov     rdi, rax
+        call    std::vector<int, std::allocator<int> >::at(unsigned long)
+        mov     eax, DWORD PTR [rax]
+        mov     esi, eax
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >::operator<<(int)
+        mov     esi, 32
+        mov     rdi, rax
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char)
+        add     DWORD PTR [rbp-28], 1
+.L16:
+        mov     eax, DWORD PTR [rbp-28]
+        movsx   rbx, eax
+        lea     rax, [rbp-64]
+        mov     rdi, rax
+        call    std::vector<int, std::allocator<int> >::size() const
+        shr     rax
+        cmp     rbx, rax
+        setb    al
+        test    al, al
+        jne     .L17
+        lea     rax, [rbp-64]
+        mov     rdi, rax
+        call    std::vector<int, std::allocator<int> >::size() const
+        shr     rax
+        mov     DWORD PTR [rbp-32], eax
+        jmp     .L18
+.L19:
+        mov     eax, DWORD PTR [rbp-32]
+        movsx   rdx, eax
+        lea     rax, [rbp-64]
+        mov     rsi, rdx
+        mov     rdi, rax
+        call    std::vector<int, std::allocator<int> >::at(unsigned long)
+        mov     eax, DWORD PTR [rax]
+        mov     esi, eax
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >::operator<<(int)
+        mov     esi, 32
+        mov     rdi, rax
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char)
+        add     DWORD PTR [rbp-32], 1
+.L18:
+        mov     eax, DWORD PTR [rbp-32]
+        movsx   rbx, eax
+        lea     rax, [rbp-64]
+        mov     rdi, rax
+        call    std::vector<int, std::allocator<int> >::size() const
+        cmp     rbx, rax
+        setb    al
+        test    al, al
+        jne     .L19
+        lea     rax, [rbp-64]
+        mov     rdi, rax
+        call    std::vector<int, std::allocator<int> >::~vector() [complete object destructor]
+        mov     eax, 0
+        jmp     .L23
+        mov     rbx, rax
+        lea     rax, [rbp-64]
+        mov     rdi, rax
+        call    std::vector<int, std::allocator<int> >::~vector() [complete object destructor]
+        mov     rax, rbx
+        mov     rdi, rax
+        call    _Unwind_Resume
+.L23:
+        mov     rbx, QWORD PTR [rbp-8]
+        leave
+        ret
+.LC1:
+        .string "vector::_M_realloc_insert"
+.LC2:
+        .string "vector::_M_range_check: __n (which is %zu) >= this->size() (which is %zu)"

@@ -1,0 +1,66 @@
+.LC5:
+        .string "Output: "
+main:
+        push    rbp
+        mov     rbp, rsp
+        push    rbx
+        sub     rsp, 56
+        movsd   xmm0, QWORD PTR .LC0[rip]
+        movsd   QWORD PTR [rbp-24], xmm0
+        movsd   xmm0, QWORD PTR .LC1[rip]
+        movsd   QWORD PTR [rbp-32], xmm0
+        movsd   xmm0, QWORD PTR .LC2[rip]
+        movsd   QWORD PTR [rbp-40], xmm0
+        movsd   xmm0, QWORD PTR [rbp-32]
+        movsd   xmm2, QWORD PTR .LC3[rip]
+        movapd  xmm1, xmm0
+        divsd   xmm1, xmm2
+        movsd   xmm0, QWORD PTR .LC4[rip]
+        addsd   xmm1, xmm0
+        movq    rax, xmm1
+        movsd   xmm0, QWORD PTR [rbp-40]
+        movapd  xmm1, xmm0
+        movq    xmm0, rax
+        call    pow
+        movsd   xmm1, QWORD PTR [rbp-24]
+        mulsd   xmm0, xmm1
+        movsd   QWORD PTR [rbp-48], xmm0
+        movsd   xmm0, QWORD PTR [rbp-48]
+        subsd   xmm0, QWORD PTR [rbp-24]
+        movsd   QWORD PTR [rbp-56], xmm0
+        mov     esi, OFFSET FLAT:.LC5
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)
+        mov     esi, OFFSET FLAT:_ZSt5fixedRSt8ios_base
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >::operator<<(std::ios_base& (*)(std::ios_base&))
+        mov     rbx, rax
+        mov     edi, 2
+        call    std::setprecision(int)
+        mov     esi, eax
+        mov     rdi, rbx
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, std::_Setprecision)
+        mov     rdx, rax
+        mov     rax, QWORD PTR [rbp-56]
+        movq    xmm0, rax
+        mov     rdi, rdx
+        call    std::basic_ostream<char, std::char_traits<char> >::operator<<(double)
+        mov     eax, 0
+        mov     rbx, QWORD PTR [rbp-8]
+        leave
+        ret
+.LC0:
+        .long   0
+        .long   1086556160
+.LC1:
+        .long   0
+        .long   1075052544
+.LC2:
+        .long   0
+        .long   1073741824
+.LC3:
+        .long   0
+        .long   1079574528
+.LC4:
+        .long   0
+        .long   1072693248

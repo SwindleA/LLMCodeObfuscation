@@ -1,0 +1,115 @@
+.LC0:
+        .string "Input: "
+.LC1:
+        .string "Error!"
+main:
+        push    rbp
+        mov     rbp, rsp
+        sub     rsp, 16
+        mov     esi, OFFSET FLAT:.LC0
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)
+        lea     rax, [rbp-9]
+        mov     rsi, rax
+        mov     edi, OFFSET FLAT:_ZSt3cin
+        call    std::basic_istream<char, std::char_traits<char> >& std::operator>><char, std::char_traits<char> >(std::basic_istream<char, std::char_traits<char> >&, char&)
+        mov     DWORD PTR [rbp-8], 0
+        jmp     .L2
+.L9:
+        movzx   eax, BYTE PTR [rbp-9]
+        cmp     al, 97
+        je      .L3
+        movzx   eax, BYTE PTR [rbp-9]
+        cmp     al, 101
+        je      .L3
+        movzx   eax, BYTE PTR [rbp-9]
+        cmp     al, 105
+        je      .L3
+        movzx   eax, BYTE PTR [rbp-9]
+        cmp     al, 111
+        je      .L3
+        movzx   eax, BYTE PTR [rbp-9]
+        cmp     al, 117
+        jne     .L4
+.L3:
+        mov     eax, 1
+        jmp     .L5
+.L4:
+        mov     eax, 0
+.L5:
+        mov     BYTE PTR [rbp-1], al
+        movzx   eax, BYTE PTR [rbp-9]
+        cmp     al, 65
+        je      .L6
+        movzx   eax, BYTE PTR [rbp-9]
+        cmp     al, 69
+        je      .L6
+        movzx   eax, BYTE PTR [rbp-9]
+        cmp     al, 73
+        je      .L6
+        movzx   eax, BYTE PTR [rbp-9]
+        cmp     al, 79
+        je      .L6
+        movzx   eax, BYTE PTR [rbp-9]
+        cmp     al, 85
+        jne     .L7
+.L6:
+        mov     eax, 1
+        jmp     .L8
+.L7:
+        mov     eax, 0
+.L8:
+        mov     BYTE PTR [rbp-2], al
+        add     DWORD PTR [rbp-8], 1
+.L2:
+        cmp     DWORD PTR [rbp-8], 9
+        jle     .L9
+        movzx   eax, BYTE PTR [rbp-9]
+        movsx   eax, al
+        mov     edi, eax
+        call    isalpha
+        test    eax, eax
+        jne     .L10
+        mov     edi, OFFSET FLAT:.LC1
+        mov     eax, 0
+        call    printf
+        jmp     .L11
+.L10:
+        cmp     BYTE PTR [rbp-1], 0
+        jne     .L12
+        cmp     BYTE PTR [rbp-2], 0
+        je      .L13
+.L12:
+        mov     esi, 84
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char)
+        mov     esi, 114
+        mov     rdi, rax
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char)
+        mov     esi, 117
+        mov     rdi, rax
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char)
+        mov     esi, 101
+        mov     rdi, rax
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char)
+        jmp     .L11
+.L13:
+        mov     esi, 70
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char)
+        mov     esi, 97
+        mov     rdi, rax
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char)
+        mov     esi, 108
+        mov     rdi, rax
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char)
+        mov     esi, 115
+        mov     rdi, rax
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char)
+        mov     esi, 101
+        mov     rdi, rax
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char)
+.L11:
+        mov     eax, 0
+        leave
+        ret

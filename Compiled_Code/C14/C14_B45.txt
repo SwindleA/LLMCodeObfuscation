@@ -1,0 +1,99 @@
+.LC0:
+        .string "Before:\n"
+.LC1:
+        .string "a = "
+.LC2:
+        .string ", b = "
+.LC3:
+        .string "\n"
+.LC4:
+        .string "\nAfter:\n"
+main:
+        push    rbp
+        mov     rbp, rsp
+        sub     rsp, 48
+        mov     DWORD PTR [rbp-20], 5
+        mov     DWORD PTR [rbp-24], 10
+        mov     DWORD PTR [rbp-28], 100
+        mov     DWORD PTR [rbp-32], 200
+        mov     esi, OFFSET FLAT:.LC0
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)
+        mov     DWORD PTR [rbp-4], 0
+        jmp     .L2
+.L3:
+        mov     esi, OFFSET FLAT:.LC1
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)
+        mov     rdx, rax
+        mov     eax, DWORD PTR [rbp-20]
+        mov     esi, eax
+        mov     rdi, rdx
+        call    std::basic_ostream<char, std::char_traits<char> >::operator<<(int)
+        mov     esi, OFFSET FLAT:.LC2
+        mov     rdi, rax
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)
+        mov     rdx, rax
+        mov     eax, DWORD PTR [rbp-24]
+        mov     esi, eax
+        mov     rdi, rdx
+        call    std::basic_ostream<char, std::char_traits<char> >::operator<<(int)
+        mov     esi, OFFSET FLAT:.LC3
+        mov     rdi, rax
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)
+        add     DWORD PTR [rbp-4], 1
+.L2:
+        cmp     DWORD PTR [rbp-4], 0
+        jle     .L3
+        mov     eax, DWORD PTR [rbp-20]
+        mov     DWORD PTR [rbp-36], eax
+        mov     eax, DWORD PTR [rbp-24]
+        mov     DWORD PTR [rbp-20], eax
+        mov     DWORD PTR [rbp-8], 0
+        jmp     .L4
+.L5:
+        add     DWORD PTR [rbp-8], 1
+.L4:
+        cmp     DWORD PTR [rbp-8], 0
+        jle     .L5
+        mov     eax, DWORD PTR [rbp-36]
+        mov     DWORD PTR [rbp-24], eax
+        mov     DWORD PTR [rbp-12], 0
+        jmp     .L6
+.L7:
+        add     DWORD PTR [rbp-12], 1
+.L6:
+        cmp     DWORD PTR [rbp-12], 0
+        jle     .L7
+        mov     esi, OFFSET FLAT:.LC4
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)
+        mov     DWORD PTR [rbp-16], 0
+        jmp     .L8
+.L9:
+        mov     esi, OFFSET FLAT:.LC1
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)
+        mov     rdx, rax
+        mov     eax, DWORD PTR [rbp-20]
+        mov     esi, eax
+        mov     rdi, rdx
+        call    std::basic_ostream<char, std::char_traits<char> >::operator<<(int)
+        mov     esi, OFFSET FLAT:.LC2
+        mov     rdi, rax
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)
+        mov     rdx, rax
+        mov     eax, DWORD PTR [rbp-24]
+        mov     esi, eax
+        mov     rdi, rdx
+        call    std::basic_ostream<char, std::char_traits<char> >::operator<<(int)
+        mov     esi, OFFSET FLAT:.LC3
+        mov     rdi, rax
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)
+        add     DWORD PTR [rbp-16], 1
+.L8:
+        cmp     DWORD PTR [rbp-16], 0
+        jle     .L9
+        mov     eax, 0
+        leave
+        ret

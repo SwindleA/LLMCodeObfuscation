@@ -1,0 +1,64 @@
+main:
+        push    rbp
+        mov     rbp, rsp
+        sub     rsp, 16
+        mov     DWORD PTR [rbp-12], 32
+        mov     DWORD PTR [rbp-16], 10
+        mov     DWORD PTR [rbp-4], 0
+        jmp     .L2
+.L3:
+        add     DWORD PTR [rbp-4], 1
+.L2:
+        cmp     DWORD PTR [rbp-4], 0
+        jle     .L3
+        mov     eax, DWORD PTR [rbp-12]
+        movsx   eax, al
+        mov     esi, eax
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char)
+        mov     rdx, rax
+        mov     eax, DWORD PTR [rbp-16]
+        movsx   eax, al
+        mov     esi, eax
+        mov     rdi, rdx
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char)
+        mov     rdx, rax
+        mov     eax, DWORD PTR [rbp-16]
+        movsx   eax, al
+        mov     esi, eax
+        mov     rdi, rdx
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char)
+        mov     rdx, rax
+        mov     eax, DWORD PTR [rbp-16]
+        movsx   eax, al
+        mov     esi, eax
+        mov     rdi, rdx
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char)
+        mov     rdx, rax
+        mov     eax, DWORD PTR [rbp-16]
+        movsx   eax, al
+        mov     esi, eax
+        mov     rdi, rdx
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char)
+        mov     rdx, rax
+        mov     eax, DWORD PTR [rbp-16]
+        movsx   eax, al
+        mov     esi, eax
+        mov     rdi, rdx
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char)
+        mov     rdx, rax
+        mov     eax, DWORD PTR [rbp-16]
+        movsx   eax, al
+        mov     esi, eax
+        mov     rdi, rdx
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char)
+        mov     DWORD PTR [rbp-8], 0
+        jmp     .L4
+.L5:
+        add     DWORD PTR [rbp-8], 1
+.L4:
+        cmp     DWORD PTR [rbp-8], 0
+        jle     .L5
+        mov     eax, 0
+        leave
+        ret

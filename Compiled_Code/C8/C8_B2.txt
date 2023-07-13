@@ -1,0 +1,56 @@
+main:
+        push    rbp
+        mov     rbp, rsp
+        sub     rsp, 16
+        mov     DWORD PTR [rbp-4], 0
+        mov     DWORD PTR [rbp-8], 1
+        jmp     .L2
+.L3:
+        mov     eax, DWORD PTR [rbp-8]
+        add     DWORD PTR [rbp-4], eax
+        add     DWORD PTR [rbp-8], 1
+.L2:
+        cmp     DWORD PTR [rbp-8], 10
+        jle     .L3
+        mov     eax, DWORD PTR [rbp-4]
+        sub     eax, 50
+        movsx   rdx, eax
+        imul    rdx, rdx, 1717986919
+        shr     rdx, 32
+        sar     edx, 2
+        sar     eax, 31
+        sub     edx, eax
+        mov     eax, edx
+        add     eax, 53
+        movsx   eax, al
+        mov     esi, eax
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >::put(char)
+        mov     eax, DWORD PTR [rbp-4]
+        lea     edx, [rax-50]
+        movsx   rax, edx
+        imul    rax, rax, 1717986919
+        shr     rax, 32
+        mov     ecx, eax
+        sar     ecx, 2
+        mov     eax, edx
+        sar     eax, 31
+        sub     ecx, eax
+        mov     eax, ecx
+        sal     eax, 2
+        add     eax, ecx
+        add     eax, eax
+        mov     ecx, edx
+        sub     ecx, eax
+        mov     eax, ecx
+        add     eax, 48
+        movsx   eax, al
+        mov     esi, eax
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >::put(char)
+        mov     esi, 10
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >::put(char)
+        mov     eax, 0
+        leave
+        ret

@@ -1,0 +1,88 @@
+.LC0:
+        .string "This program gives the amount of time lost when your rate of productivity drops to 5 in 2 minutes."
+.LC4:
+        .string "I like to move it, move itI like to move it, move itI like to move it, move itI like to move it, move itI like to move it, move it"
+.LC7:
+        .string "Output: "
+.LC8:
+        .string "\nThis is concerning, try and reduce your unneeded breaks"
+main:
+        push    rbp
+        mov     rbp, rsp
+        sub     rsp, 48
+        mov     esi, OFFSET FLAT:.LC0
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)
+        mov     esi, OFFSET FLAT:_ZSt4endlIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_
+        mov     rdi, rax
+        call    std::basic_ostream<char, std::char_traits<char> >::operator<<(std::basic_ostream<char, std::char_traits<char> >& (*)(std::basic_ostream<char, std::char_traits<char> >&))
+        movsd   xmm0, QWORD PTR .LC1[rip]
+        movsd   QWORD PTR [rbp-8], xmm0
+        movsd   xmm0, QWORD PTR .LC2[rip]
+        movsd   QWORD PTR [rbp-16], xmm0
+        movsd   xmm0, QWORD PTR .LC3[rip]
+        movsd   QWORD PTR [rbp-24], xmm0
+        mov     esi, OFFSET FLAT:.LC4
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)
+        mov     esi, OFFSET FLAT:_ZSt4endlIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_
+        mov     rdi, rax
+        call    std::basic_ostream<char, std::char_traits<char> >::operator<<(std::basic_ostream<char, std::char_traits<char> >& (*)(std::basic_ostream<char, std::char_traits<char> >&))
+        mov     esi, OFFSET FLAT:_ZSt4endlIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_
+        mov     rdi, rax
+        call    std::basic_ostream<char, std::char_traits<char> >::operator<<(std::basic_ostream<char, std::char_traits<char> >& (*)(std::basic_ostream<char, std::char_traits<char> >&))
+        movsd   xmm0, QWORD PTR [rbp-16]
+        movsd   xmm2, QWORD PTR .LC5[rip]
+        movapd  xmm1, xmm0
+        divsd   xmm1, xmm2
+        movsd   xmm0, QWORD PTR .LC6[rip]
+        addsd   xmm1, xmm0
+        movq    rax, xmm1
+        movsd   xmm0, QWORD PTR [rbp-24]
+        movapd  xmm1, xmm0
+        movq    xmm0, rax
+        call    pow
+        movsd   xmm1, QWORD PTR [rbp-8]
+        mulsd   xmm0, xmm1
+        movsd   QWORD PTR [rbp-32], xmm0
+        movsd   xmm0, QWORD PTR [rbp-32]
+        subsd   xmm0, QWORD PTR [rbp-8]
+        movsd   QWORD PTR [rbp-40], xmm0
+        mov     esi, OFFSET FLAT:.LC7
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)
+        mov     rdx, rax
+        mov     rax, QWORD PTR [rbp-40]
+        movq    xmm0, rax
+        mov     rdi, rdx
+        call    std::basic_ostream<char, std::char_traits<char> >::operator<<(double)
+        mov     esi, OFFSET FLAT:.LC7
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)
+        mov     esi, 1239
+        mov     rdi, rax
+        call    std::basic_ostream<char, std::char_traits<char> >::operator<<(int)
+        mov     esi, OFFSET FLAT:.LC8
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)
+        mov     esi, OFFSET FLAT:_ZSt4endlIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_
+        mov     rdi, rax
+        call    std::basic_ostream<char, std::char_traits<char> >::operator<<(std::basic_ostream<char, std::char_traits<char> >& (*)(std::basic_ostream<char, std::char_traits<char> >&))
+        mov     eax, 0
+        leave
+        ret
+.LC1:
+        .long   0
+        .long   1086556160
+.LC2:
+        .long   0
+        .long   1075052544
+.LC3:
+        .long   0
+        .long   1073741824
+.LC5:
+        .long   0
+        .long   1079574528
+.LC6:
+        .long   0
+        .long   1072693248

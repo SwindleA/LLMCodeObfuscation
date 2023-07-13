@@ -1,0 +1,83 @@
+recursiveFunction(int, char, char, char):
+        push    rbp
+        mov     rbp, rsp
+        sub     rsp, 16
+        mov     DWORD PTR [rbp-4], edi
+        mov     eax, ecx
+        mov     ecx, esi
+        mov     BYTE PTR [rbp-8], cl
+        mov     BYTE PTR [rbp-12], dl
+        mov     BYTE PTR [rbp-16], al
+        cmp     DWORD PTR [rbp-4], 1
+        jg      .L2
+        mov     eax, 1
+        jmp     .L7
+.L2:
+        cmp     BYTE PTR [rbp-8], 97
+        jne     .L4
+        movsx   ecx, BYTE PTR [rbp-8]
+        movsx   edx, BYTE PTR [rbp-16]
+        movsx   eax, BYTE PTR [rbp-12]
+        mov     esi, DWORD PTR [rbp-4]
+        lea     edi, [rsi-1]
+        mov     esi, eax
+        call    recursiveFunction(int, char, char, char)
+        jmp     .L5
+.L4:
+        cmp     BYTE PTR [rbp-12], 98
+        jne     .L6
+        movsx   ecx, BYTE PTR [rbp-12]
+        movsx   edx, BYTE PTR [rbp-8]
+        movsx   eax, BYTE PTR [rbp-16]
+        mov     esi, DWORD PTR [rbp-4]
+        lea     edi, [rsi-1]
+        mov     esi, eax
+        call    recursiveFunction(int, char, char, char)
+        jmp     .L5
+.L6:
+        movsx   ecx, BYTE PTR [rbp-16]
+        movsx   edx, BYTE PTR [rbp-12]
+        movsx   eax, BYTE PTR [rbp-8]
+        mov     esi, DWORD PTR [rbp-4]
+        lea     edi, [rsi-1]
+        mov     esi, eax
+        call    recursiveFunction(int, char, char, char)
+.L5:
+        ud2
+.L7:
+        leave
+        ret
+main:
+        push    rbp
+        mov     rbp, rsp
+        sub     rsp, 16
+        mov     DWORD PTR [rbp-4], 1
+        mov     BYTE PTR [rbp-9], 120
+        mov     BYTE PTR [rbp-10], 121
+        mov     BYTE PTR [rbp-11], 122
+        mov     DWORD PTR [rbp-8], 1
+        jmp     .L9
+.L10:
+        mov     eax, DWORD PTR [rbp-4]
+        imul    eax, DWORD PTR [rbp-8]
+        mov     DWORD PTR [rbp-4], eax
+        add     DWORD PTR [rbp-8], 1
+.L9:
+        cmp     DWORD PTR [rbp-8], 10
+        jle     .L10
+        movsx   ecx, BYTE PTR [rbp-11]
+        movsx   edx, BYTE PTR [rbp-10]
+        movsx   esi, BYTE PTR [rbp-9]
+        mov     eax, DWORD PTR [rbp-4]
+        mov     edi, eax
+        call    recursiveFunction(int, char, char, char)
+        mov     eax, DWORD PTR [rbp-4]
+        mov     esi, eax
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >::operator<<(int)
+        mov     esi, OFFSET FLAT:_ZSt4endlIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_
+        mov     rdi, rax
+        call    std::basic_ostream<char, std::char_traits<char> >::operator<<(std::basic_ostream<char, std::char_traits<char> >& (*)(std::basic_ostream<char, std::char_traits<char> >&))
+        mov     eax, 0
+        leave
+        ret

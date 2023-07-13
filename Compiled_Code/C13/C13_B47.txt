@@ -1,0 +1,243 @@
+.LC0:
+        .string "stoi"
+.LC7:
+        .string ""
+main:
+        push    rbp
+        mov     rbp, rsp
+        push    rbx
+        sub     rsp, 136
+        pxor    xmm0, xmm0
+        movsd   QWORD PTR [rbp-32], xmm0
+        pxor    xmm0, xmm0
+        movsd   QWORD PTR [rbp-40], xmm0
+        mov     DWORD PTR [rbp-44], 0
+        jmp     .L9
+.L10:
+        movsd   xmm1, QWORD PTR [rbp-24]
+        movsd   xmm0, QWORD PTR .LC2[rip]
+        addsd   xmm0, xmm1
+        movsd   QWORD PTR [rbp-24], xmm0
+        movsd   xmm1, QWORD PTR [rbp-32]
+        movsd   xmm0, QWORD PTR .LC3[rip]
+        addsd   xmm0, xmm1
+        movsd   QWORD PTR [rbp-32], xmm0
+        movsd   xmm0, QWORD PTR .LC4[rip]
+        movsd   QWORD PTR [rbp-40], xmm0
+        add     DWORD PTR [rbp-44], 1
+.L9:
+        cmp     DWORD PTR [rbp-44], 1999
+        jle     .L10
+        movsd   xmm0, QWORD PTR [rbp-32]
+        movsd   xmm1, QWORD PTR .LC5[rip]
+        divsd   xmm0, xmm1
+        movsd   QWORD PTR [rbp-32], xmm0
+        movsd   xmm1, QWORD PTR [rbp-24]
+        movsd   xmm0, QWORD PTR .LC6[rip]
+        mulsd   xmm0, xmm1
+        movsd   QWORD PTR [rbp-24], xmm0
+        lea     rax, [rbp-105]
+        mov     QWORD PTR [rbp-104], rax
+        nop
+        nop
+        lea     rdx, [rbp-105]
+        lea     rax, [rbp-144]
+        mov     esi, OFFSET FLAT:.LC7
+        mov     rdi, rax
+        call    std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string<std::allocator<char> >(char const*, std::allocator<char> const&)
+        lea     rax, [rbp-105]
+        mov     rdi, rax
+        call    std::__new_allocator<char>::~__new_allocator() [base object destructor]
+        nop
+        movsd   xmm1, QWORD PTR [rbp-32]
+        movsd   xmm0, QWORD PTR .LC8[rip]
+        mulsd   xmm0, xmm1
+        movsd   xmm1, QWORD PTR .LC4[rip]
+        subsd   xmm0, xmm1
+        cvttsd2si       eax, xmm0
+        movsx   edx, al
+        lea     rax, [rbp-144]
+        mov     esi, edx
+        mov     rdi, rax
+        call    std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::operator+=(char)
+        lea     rax, [rbp-144]
+        mov     edx, 10
+        mov     esi, 0
+        mov     rdi, rax
+        call    std::__cxx11::stoi(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, unsigned long*, int)
+        pxor    xmm0, xmm0
+        cvtsi2sd        xmm0, eax
+        movsd   QWORD PTR [rbp-32], xmm0
+        movsd   xmm0, QWORD PTR [rbp-32]
+        movsd   xmm2, QWORD PTR .LC9[rip]
+        movapd  xmm1, xmm0
+        divsd   xmm1, xmm2
+        movsd   xmm0, QWORD PTR .LC3[rip]
+        addsd   xmm1, xmm0
+        movq    rax, xmm1
+        movsd   xmm0, QWORD PTR [rbp-40]
+        movapd  xmm1, xmm0
+        movq    xmm0, rax
+        call    pow
+        movsd   xmm1, QWORD PTR [rbp-24]
+        mulsd   xmm0, xmm1
+        movsd   QWORD PTR [rbp-88], xmm0
+        movsd   xmm0, QWORD PTR [rbp-88]
+        subsd   xmm0, QWORD PTR [rbp-24]
+        movsd   QWORD PTR [rbp-96], xmm0
+        mov     DWORD PTR [rbp-48], 20
+        jmp     .L11
+.L12:
+        mov     eax, DWORD PTR [rbp-48]
+        add     eax, 59
+        movsx   eax, al
+        mov     esi, eax
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char)
+        sub     DWORD PTR [rbp-48], 20
+.L11:
+        cmp     DWORD PTR [rbp-48], 0
+        jg      .L12
+        mov     DWORD PTR [rbp-52], 20
+        jmp     .L13
+.L14:
+        mov     eax, DWORD PTR [rbp-52]
+        add     eax, 97
+        movsx   eax, al
+        mov     esi, eax
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char)
+        sub     DWORD PTR [rbp-52], 20
+.L13:
+        cmp     DWORD PTR [rbp-52], 0
+        jg      .L14
+        mov     DWORD PTR [rbp-56], 20
+        jmp     .L15
+.L16:
+        mov     eax, DWORD PTR [rbp-56]
+        add     eax, 96
+        movsx   eax, al
+        mov     esi, eax
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char)
+        sub     DWORD PTR [rbp-56], 20
+.L15:
+        cmp     DWORD PTR [rbp-56], 0
+        jg      .L16
+        mov     DWORD PTR [rbp-60], 20
+        jmp     .L17
+.L18:
+        mov     eax, DWORD PTR [rbp-60]
+        add     eax, 92
+        movsx   eax, al
+        mov     esi, eax
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char)
+        sub     DWORD PTR [rbp-60], 20
+.L17:
+        cmp     DWORD PTR [rbp-60], 0
+        jg      .L18
+        mov     DWORD PTR [rbp-64], 20
+        jmp     .L19
+.L20:
+        mov     eax, DWORD PTR [rbp-64]
+        add     eax, 97
+        movsx   eax, al
+        mov     esi, eax
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char)
+        sub     DWORD PTR [rbp-64], 20
+.L19:
+        cmp     DWORD PTR [rbp-64], 0
+        jg      .L20
+        mov     DWORD PTR [rbp-68], 20
+        jmp     .L21
+.L22:
+        mov     eax, DWORD PTR [rbp-68]
+        add     eax, 96
+        movsx   eax, al
+        mov     esi, eax
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char)
+        sub     DWORD PTR [rbp-68], 20
+.L21:
+        cmp     DWORD PTR [rbp-68], 0
+        jg      .L22
+        mov     DWORD PTR [rbp-72], 20
+        jmp     .L23
+.L24:
+        mov     eax, DWORD PTR [rbp-72]
+        add     eax, 38
+        movsx   eax, al
+        mov     esi, eax
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char)
+        sub     DWORD PTR [rbp-72], 20
+.L23:
+        cmp     DWORD PTR [rbp-72], 0
+        jg      .L24
+        mov     DWORD PTR [rbp-76], 20
+        jmp     .L25
+.L26:
+        mov     eax, DWORD PTR [rbp-76]
+        add     eax, 12
+        movsx   eax, al
+        mov     esi, eax
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char)
+        sub     DWORD PTR [rbp-76], 20
+.L25:
+        cmp     DWORD PTR [rbp-76], 0
+        jg      .L26
+        mov     rax, QWORD PTR [rbp-96]
+        movq    xmm0, rax
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >::operator<<(double)
+        mov     ebx, 0
+        lea     rax, [rbp-144]
+        mov     rdi, rax
+        call    std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::~basic_string() [complete object destructor]
+        mov     eax, ebx
+        jmp     .L32
+        mov     rbx, rax
+        lea     rax, [rbp-105]
+        mov     rdi, rax
+        call    std::__new_allocator<char>::~__new_allocator() [base object destructor]
+        nop
+        mov     rax, rbx
+        mov     rdi, rax
+        call    _Unwind_Resume
+        mov     rbx, rax
+        lea     rax, [rbp-144]
+        mov     rdi, rax
+        call    std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::~basic_string() [complete object destructor]
+        mov     rax, rbx
+        mov     rdi, rax
+        call    _Unwind_Resume
+.L32:
+        mov     rbx, QWORD PTR [rbp-8]
+        leave
+        ret
+.LC10:
+        .string "basic_string: construction from null is not valid"
+.LC2:
+        .long   0
+        .long   1071644672
+.LC3:
+        .long   0
+        .long   1072693248
+.LC4:
+        .long   0
+        .long   1073741824
+.LC5:
+        .long   0
+        .long   1081671680
+.LC6:
+        .long   0
+        .long   1076101120
+.LC8:
+        .long   0
+        .long   1076232192
+.LC9:
+        .long   0
+        .long   1079574528

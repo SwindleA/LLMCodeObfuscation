@@ -1,0 +1,63 @@
+.LC0:
+        .string "Input: "
+.LC1:
+        .string "true"
+.LC2:
+        .string "false"
+main:
+        push    rbp
+        mov     rbp, rsp
+        sub     rsp, 16
+        mov     BYTE PTR [rbp-5], 1
+        mov     esi, OFFSET FLAT:.LC0
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)
+        lea     rax, [rbp-12]
+        mov     rsi, rax
+        mov     edi, OFFSET FLAT:_ZSt3cin
+        call    std::basic_istream<char, std::char_traits<char> >::operator>>(int&)
+        mov     eax, DWORD PTR [rbp-12]
+        test    eax, eax
+        je      .L2
+        mov     eax, DWORD PTR [rbp-12]
+        cmp     eax, 1
+        jne     .L3
+.L2:
+        mov     BYTE PTR [rbp-5], 0
+.L3:
+        mov     DWORD PTR [rbp-4], 2
+        jmp     .L4
+.L7:
+        mov     eax, DWORD PTR [rbp-12]
+        cdq
+        idiv    DWORD PTR [rbp-4]
+        mov     eax, edx
+        test    eax, eax
+        jne     .L5
+        mov     BYTE PTR [rbp-5], 0
+        jmp     .L6
+.L5:
+        add     DWORD PTR [rbp-4], 1
+.L4:
+        mov     eax, DWORD PTR [rbp-12]
+        mov     edx, eax
+        shr     edx, 31
+        add     eax, edx
+        sar     eax
+        cmp     DWORD PTR [rbp-4], eax
+        jle     .L7
+.L6:
+        cmp     BYTE PTR [rbp-5], 0
+        je      .L8
+        mov     esi, OFFSET FLAT:.LC1
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)
+        jmp     .L9
+.L8:
+        mov     esi, OFFSET FLAT:.LC2
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)
+.L9:
+        mov     eax, 0
+        leave
+        ret

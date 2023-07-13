@@ -1,0 +1,62 @@
+.LC5:
+        .string "Output: "
+main:
+        push    rbp
+        mov     rbp, rsp
+        sub     rsp, 48
+        movsd   xmm0, QWORD PTR .LC0[rip]
+        movsd   QWORD PTR [rbp-24], xmm0
+        movsd   xmm0, QWORD PTR .LC1[rip]
+        movsd   QWORD PTR [rbp-32], xmm0
+        movsd   xmm0, QWORD PTR .LC2[rip]
+        movsd   QWORD PTR [rbp-40], xmm0
+        mov     DWORD PTR [rbp-12], 9
+        jmp     .L2
+.L3:
+        movsd   xmm0, QWORD PTR [rbp-32]
+        movsd   xmm2, QWORD PTR .LC3[rip]
+        movapd  xmm1, xmm0
+        divsd   xmm1, xmm2
+        movsd   xmm0, QWORD PTR .LC4[rip]
+        addsd   xmm1, xmm0
+        movq    rax, xmm1
+        movsd   xmm0, QWORD PTR [rbp-40]
+        movapd  xmm1, xmm0
+        movq    xmm0, rax
+        call    pow
+        movsd   xmm1, QWORD PTR [rbp-24]
+        mulsd   xmm0, xmm1
+        movsd   QWORD PTR [rbp-48], xmm0
+        movsd   xmm0, QWORD PTR [rbp-48]
+        subsd   xmm0, QWORD PTR [rbp-24]
+        movsd   QWORD PTR [rbp-8], xmm0
+        add     DWORD PTR [rbp-12], 1
+.L2:
+        cmp     DWORD PTR [rbp-12], 19
+        jle     .L3
+        mov     esi, OFFSET FLAT:.LC5
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)
+        mov     rdx, rax
+        mov     rax, QWORD PTR [rbp-8]
+        movq    xmm0, rax
+        mov     rdi, rdx
+        call    std::basic_ostream<char, std::char_traits<char> >::operator<<(double)
+        mov     eax, 0
+        leave
+        ret
+.LC0:
+        .long   0
+        .long   1086556160
+.LC1:
+        .long   0
+        .long   1075052544
+.LC2:
+        .long   0
+        .long   1073741824
+.LC3:
+        .long   0
+        .long   1079574528
+.LC4:
+        .long   0
+        .long   1072693248

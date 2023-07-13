@@ -1,0 +1,75 @@
+.LC0:
+        .string "First Input: "
+.LC1:
+        .string "Second Input: "
+.LC2:
+        .string "Output: "
+main:
+        push    rbp
+        mov     rbp, rsp
+        sub     rsp, 16
+        mov     esi, OFFSET FLAT:.LC0
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)
+        lea     rax, [rbp-12]
+        mov     rsi, rax
+        mov     edi, OFFSET FLAT:_ZSt3cin
+        call    std::basic_istream<char, std::char_traits<char> >::operator>>(int&)
+        mov     esi, OFFSET FLAT:.LC1
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)
+        lea     rax, [rbp-16]
+        mov     rsi, rax
+        mov     edi, OFFSET FLAT:_ZSt3cin
+        call    std::basic_istream<char, std::char_traits<char> >::operator>>(int&)
+        mov     DWORD PTR [rbp-8], 5
+        jmp     .L2
+.L3:
+        mov     edx, DWORD PTR [rbp-16]
+        mov     eax, DWORD PTR [rbp-12]
+        mov     esi, edx
+        mov     edi, eax
+        call    calculatePower(int, int)
+        mov     DWORD PTR [rbp-4], eax
+        mov     eax, DWORD PTR [rbp-8]
+        imul    eax, eax
+        mov     DWORD PTR [rbp-8], eax
+.L2:
+        cmp     DWORD PTR [rbp-8], 1233
+        jle     .L3
+        mov     esi, OFFSET FLAT:.LC2
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)
+        mov     rdx, rax
+        mov     eax, DWORD PTR [rbp-4]
+        mov     esi, eax
+        mov     rdi, rdx
+        call    std::basic_ostream<char, std::char_traits<char> >::operator<<(int)
+        mov     eax, 0
+        leave
+        ret
+calculatePower(int, int):
+        push    rbp
+        mov     rbp, rsp
+        sub     rsp, 32
+        mov     DWORD PTR [rbp-20], edi
+        mov     DWORD PTR [rbp-24], esi
+        mov     DWORD PTR [rbp-4], 0
+.L6:
+        cmp     DWORD PTR [rbp-4], 0
+        jne     .L6
+        cmp     DWORD PTR [rbp-24], 0
+        je      .L8
+        mov     eax, DWORD PTR [rbp-24]
+        lea     edx, [rax-1]
+        mov     eax, DWORD PTR [rbp-20]
+        mov     esi, edx
+        mov     edi, eax
+        call    calculatePower(int, int)
+        imul    eax, DWORD PTR [rbp-20]
+        jmp     .L9
+.L8:
+        mov     eax, 1
+.L9:
+        leave
+        ret

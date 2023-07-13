@@ -1,0 +1,137 @@
+.LC0:
+        .string "This is the number of vowels in this sentence: "
+.LC1:
+        .string "thats a lot of vowels!!!!!!"
+.LC2:
+        .string "I like to move it, move it\nI like to move it, move it\nI like to move it, move it\nYa like to (move it!)\n"
+main:
+        push    rbp
+        mov     rbp, rsp
+        push    r13
+        push    r12
+        push    rbx
+        sub     rsp, 152
+        mov     esi, OFFSET FLAT:.LC0
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)
+        mov     esi, OFFSET FLAT:_ZSt4endlIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_
+        mov     rdi, rax
+        call    std::basic_ostream<char, std::char_traits<char> >::operator<<(std::basic_ostream<char, std::char_traits<char> >& (*)(std::basic_ostream<char, std::char_traits<char> >&))
+        mov     DWORD PTR [rbp-144], 1
+        mov     DWORD PTR [rbp-140], 2
+        mov     DWORD PTR [rbp-136], 3
+        mov     DWORD PTR [rbp-132], 5
+        mov     DWORD PTR [rbp-128], 2
+        mov     DWORD PTR [rbp-124], 1345
+        mov     DWORD PTR [rbp-120], 63
+        mov     DWORD PTR [rbp-116], 56
+        mov     DWORD PTR [rbp-112], 3
+        mov     DWORD PTR [rbp-108], 6626
+        mov     DWORD PTR [rbp-104], 2556
+        mov     DWORD PTR [rbp-100], 342
+        mov     DWORD PTR [rbp-96], 5345
+        mov     DWORD PTR [rbp-92], 55
+        mov     DWORD PTR [rbp-88], 44
+        mov     DWORD PTR [rbp-84], 33
+        mov     DWORD PTR [rbp-80], 223
+        mov     DWORD PTR [rbp-76], 863
+        mov     DWORD PTR [rbp-72], 24
+        mov     DWORD PTR [rbp-68], 52
+        mov     DWORD PTR [rbp-64], 98
+        mov     DWORD PTR [rbp-60], 888
+        lea     rax, [rbp-144]
+        mov     r12, rax
+        mov     r13d, 22
+        lea     rax, [rbp-49]
+        mov     QWORD PTR [rbp-48], rax
+        nop
+        nop
+        lea     rdx, [rbp-49]
+        mov     rsi, r12
+        mov     rdi, r13
+        mov     rcx, r12
+        mov     rbx, r13
+        mov     rdi, rbx
+        lea     rax, [rbp-176]
+        mov     rcx, rdx
+        mov     rdx, rdi
+        mov     rdi, rax
+        call    std::vector<int, std::allocator<int> >::vector(std::initializer_list<int>, std::allocator<int> const&) [complete object constructor]
+        lea     rax, [rbp-49]
+        mov     rdi, rax
+        call    std::__new_allocator<int>::~__new_allocator() [base object destructor]
+        nop
+        mov     DWORD PTR [rbp-36], 0
+        mov     DWORD PTR [rbp-40], 0
+        jmp     .L2
+.L4:
+        mov     eax, DWORD PTR [rbp-40]
+        movsx   rdx, eax
+        lea     rax, [rbp-176]
+        mov     rsi, rdx
+        mov     rdi, rax
+        call    std::vector<int, std::allocator<int> >::operator[](unsigned long)
+        mov     eax, DWORD PTR [rax]
+        and     eax, 1
+        test    eax, eax
+        setne   al
+        test    al, al
+        je      .L3
+        add     DWORD PTR [rbp-36], 1
+.L3:
+        add     DWORD PTR [rbp-40], 1
+.L2:
+        mov     eax, DWORD PTR [rbp-40]
+        movsx   rbx, eax
+        lea     rax, [rbp-176]
+        mov     rdi, rax
+        call    std::vector<int, std::allocator<int> >::size() const
+        cmp     rbx, rax
+        setb    al
+        test    al, al
+        jne     .L4
+        mov     eax, DWORD PTR [rbp-36]
+        mov     esi, eax
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >::operator<<(int)
+        mov     esi, OFFSET FLAT:_ZSt4endlIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_
+        mov     rdi, rax
+        call    std::basic_ostream<char, std::char_traits<char> >::operator<<(std::basic_ostream<char, std::char_traits<char> >& (*)(std::basic_ostream<char, std::char_traits<char> >&))
+        mov     esi, OFFSET FLAT:.LC1
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)
+        mov     esi, OFFSET FLAT:_ZSt4endlIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_
+        mov     rdi, rax
+        call    std::basic_ostream<char, std::char_traits<char> >::operator<<(std::basic_ostream<char, std::char_traits<char> >& (*)(std::basic_ostream<char, std::char_traits<char> >&))
+        mov     esi, OFFSET FLAT:.LC2
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)
+        lea     rax, [rbp-176]
+        mov     rdi, rax
+        call    std::vector<int, std::allocator<int> >::~vector() [complete object destructor]
+        mov     eax, 0
+        jmp     .L10
+        mov     rbx, rax
+        lea     rax, [rbp-49]
+        mov     rdi, rax
+        call    std::__new_allocator<int>::~__new_allocator() [base object destructor]
+        nop
+        mov     rax, rbx
+        mov     rdi, rax
+        call    _Unwind_Resume
+        mov     rbx, rax
+        lea     rax, [rbp-176]
+        mov     rdi, rax
+        call    std::vector<int, std::allocator<int> >::~vector() [complete object destructor]
+        mov     rax, rbx
+        mov     rdi, rax
+        call    _Unwind_Resume
+.L10:
+        add     rsp, 152
+        pop     rbx
+        pop     r12
+        pop     r13
+        pop     rbp
+        ret
+.LC3:
+        .string "cannot create std::vector larger than max_size()"

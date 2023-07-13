@@ -1,0 +1,71 @@
+main:
+        push    rbp
+        mov     rbp, rsp
+        push    rbx
+        sub     rsp, 40
+        mov     DWORD PTR [rbp-20], 1
+        mov     DWORD PTR [rbp-24], 0
+        jmp     .L2
+.L9:
+        mov     DWORD PTR [rbp-28], 1
+        jmp     .L3
+.L6:
+        mov     DWORD PTR [rbp-32], 0
+        jmp     .L4
+.L5:
+        mov     eax, DWORD PTR [rbp-24]
+        lea     edx, [rax+1]
+        mov     eax, DWORD PTR [rbp-28]
+        mov     esi, edx
+        mov     edi, eax
+        call    __gnu_cxx::__promote_2<decltype (((__gnu_cxx::__promote_2<int, std::__is_integer<int>::__value>::__type)(0))+((__gnu_cxx::__promote_2<int, std::__is_integer<int>::__value>::__type)(0))), std::__is_integer<decltype (((__gnu_cxx::__promote_2<int, std::__is_integer<int>::__value>::__type)(0))+((__gnu_cxx::__promote_2<int, std::__is_integer<int>::__value>::__type)(0)))>::__value>::__type std::pow<int, int>(int, int)
+        movq    rbx, xmm0
+        mov     eax, DWORD PTR [rbp-24]
+        mov     esi, eax
+        mov     edi, 1
+        call    __gnu_cxx::__promote_2<decltype (((__gnu_cxx::__promote_2<int, std::__is_integer<int>::__value>::__type)(0))+((__gnu_cxx::__promote_2<int, std::__is_integer<int>::__value>::__type)(0))), std::__is_integer<decltype (((__gnu_cxx::__promote_2<int, std::__is_integer<int>::__value>::__type)(0))+((__gnu_cxx::__promote_2<int, std::__is_integer<int>::__value>::__type)(0)))>::__value>::__type std::pow<int, int>(int, int)
+        movq    xmm1, rbx
+        divsd   xmm1, xmm0
+        cvttsd2si       eax, xmm1
+        mov     DWORD PTR [rbp-44], eax
+        mov     edx, DWORD PTR [rbp-20]
+        mov     eax, DWORD PTR [rbp-24]
+        add     edx, eax
+        mov     eax, DWORD PTR [rbp-44]
+        imul    eax, edx
+        mov     DWORD PTR [rbp-20], eax
+        add     DWORD PTR [rbp-32], 1
+.L4:
+        cmp     DWORD PTR [rbp-32], 0
+        jle     .L5
+        add     DWORD PTR [rbp-28], 1
+.L3:
+        cmp     DWORD PTR [rbp-28], 10
+        jle     .L6
+        mov     DWORD PTR [rbp-36], 1
+        jmp     .L7
+.L8:
+        mov     eax, DWORD PTR [rbp-20]
+        imul    eax, DWORD PTR [rbp-36]
+        mov     DWORD PTR [rbp-20], eax
+        add     DWORD PTR [rbp-36], 1
+.L7:
+        cmp     DWORD PTR [rbp-36], 1
+        jle     .L8
+        add     DWORD PTR [rbp-24], 1
+.L2:
+        cmp     DWORD PTR [rbp-24], 0
+        jle     .L9
+        mov     DWORD PTR [rbp-40], 1
+        mov     eax, DWORD PTR [rbp-20]
+        imul    eax, DWORD PTR [rbp-40]
+        mov     esi, eax
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >::operator<<(int)
+        mov     esi, OFFSET FLAT:_ZSt4endlIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_
+        mov     rdi, rax
+        call    std::basic_ostream<char, std::char_traits<char> >::operator<<(std::basic_ostream<char, std::char_traits<char> >& (*)(std::basic_ostream<char, std::char_traits<char> >&))
+        mov     eax, 0
+        mov     rbx, QWORD PTR [rbp-8]
+        leave
+        ret

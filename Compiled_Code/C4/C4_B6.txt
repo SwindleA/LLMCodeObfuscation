@@ -1,0 +1,137 @@
+Monday(int):
+        push    rbp
+        mov     rbp, rsp
+        sub     rsp, 16
+        mov     DWORD PTR [rbp-4], edi
+        cmp     DWORD PTR [rbp-4], 0
+        jne     .L7
+        mov     eax, DWORD PTR [rbp-4]
+        jmp     .L8
+.L7:
+        mov     eax, DWORD PTR [rbp-4]
+        sub     eax, 1
+        mov     edi, eax
+        call    Monday(int)
+        imul    eax, DWORD PTR [rbp-4]
+.L8:
+        leave
+        ret
+Wednesday(double):
+        push    rbp
+        mov     rbp, rsp
+        sub     rsp, 16
+        movsd   QWORD PTR [rbp-8], xmm0
+        movsd   xmm0, QWORD PTR .LC0[rip]
+        comisd  xmm0, QWORD PTR [rbp-8]
+        jb      .L14
+        movsd   xmm0, QWORD PTR [rbp-8]
+        jmp     .L12
+.L14:
+        movsd   xmm0, QWORD PTR [rbp-8]
+        movsd   xmm1, QWORD PTR .LC0[rip]
+        subsd   xmm0, xmm1
+        movq    rax, xmm0
+        movq    xmm0, rax
+        call    Wednesday(double)
+        movq    rax, xmm0
+        movq    xmm0, rax
+        mulsd   xmm0, QWORD PTR [rbp-8]
+.L12:
+        movq    rax, xmm0
+        movq    xmm0, rax
+        leave
+        ret
+Friday(char):
+        push    rbp
+        mov     rbp, rsp
+        sub     rsp, 16
+        mov     eax, edi
+        mov     BYTE PTR [rbp-4], al
+        cmp     BYTE PTR [rbp-4], 97
+        jne     .L16
+        movzx   eax, BYTE PTR [rbp-4]
+        jmp     .L17
+.L16:
+        movzx   eax, BYTE PTR [rbp-4]
+        sub     eax, 1
+        movsx   eax, al
+        mov     edi, eax
+        call    Friday(char)
+        nop
+.L17:
+        leave
+        ret
+.LC1:
+        .string "hello"
+main:
+        push    rbp
+        mov     rbp, rsp
+        push    rbx
+        sub     rsp, 88
+        lea     rax, [rbp-49]
+        mov     QWORD PTR [rbp-48], rax
+        nop
+        nop
+        lea     rdx, [rbp-49]
+        lea     rax, [rbp-96]
+        mov     esi, OFFSET FLAT:.LC1
+        mov     rdi, rax
+        call    std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string<std::allocator<char> >(char const*, std::allocator<char> const&)
+        lea     rax, [rbp-49]
+        mov     rdi, rax
+        call    std::__new_allocator<char>::~__new_allocator() [base object destructor]
+        nop
+        mov     edi, 3
+        call    Monday(int)
+        mov     DWORD PTR [rbp-24], eax
+        mov     rax, QWORD PTR .LC2[rip]
+        movq    xmm0, rax
+        call    Wednesday(double)
+        movq    rax, xmm0
+        mov     QWORD PTR [rbp-32], rax
+        mov     edi, 99
+        call    Friday(char)
+        mov     BYTE PTR [rbp-33], al
+        mov     DWORD PTR [rbp-20], 0
+        jmp     .L19
+.L20:
+        lea     rax, [rbp-96]
+        mov     rsi, rax
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <char, std::char_traits<char>, std::allocator<char> >(std::basic_ostream<char, std::char_traits<char> >&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)
+        add     DWORD PTR [rbp-20], 1
+.L19:
+        cmp     DWORD PTR [rbp-20], 9
+        jle     .L20
+        lea     rax, [rbp-96]
+        mov     rdi, rax
+        call    std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::~basic_string() [complete object destructor]
+        mov     eax, 0
+        jmp     .L26
+        mov     rbx, rax
+        lea     rax, [rbp-49]
+        mov     rdi, rax
+        call    std::__new_allocator<char>::~__new_allocator() [base object destructor]
+        nop
+        mov     rax, rbx
+        mov     rdi, rax
+        call    _Unwind_Resume
+        mov     rbx, rax
+        lea     rax, [rbp-96]
+        mov     rdi, rax
+        call    std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::~basic_string() [complete object destructor]
+        mov     rax, rbx
+        mov     rdi, rax
+        call    _Unwind_Resume
+.L26:
+        mov     rbx, QWORD PTR [rbp-8]
+        leave
+        ret
+.LC3:
+        .string "basic_string: construction from null is not valid"
+.LC0:
+        .long   -1717986918
+        .long   1069128089
+.LC2:
+        .long   0
+        .long   1074003968

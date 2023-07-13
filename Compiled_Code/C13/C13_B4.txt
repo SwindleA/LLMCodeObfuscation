@@ -1,0 +1,117 @@
+main:
+        push    rbp
+        mov     rbp, rsp
+        push    rbx
+        sub     rsp, 72
+        lea     rax, [rbp-64]
+        mov     rdi, rax
+        call    std::vector<int, std::allocator<int> >::vector() [complete object constructor]
+        mov     DWORD PTR [rbp-68], 10
+        mov     eax, DWORD PTR [rbp-68]
+        mov     DWORD PTR [rbp-20], eax
+        jmp     .L7
+.L10:
+        mov     eax, DWORD PTR [rbp-68]
+        cdq
+        idiv    DWORD PTR [rbp-20]
+        mov     eax, edx
+        test    eax, eax
+        jne     .L8
+        mov     eax, DWORD PTR [rbp-68]
+        cmp     DWORD PTR [rbp-20], eax
+        jne     .L9
+        lea     rdx, [rbp-68]
+        lea     rax, [rbp-64]
+        mov     rsi, rdx
+        mov     rdi, rax
+        call    std::vector<int, std::allocator<int> >::push_back(int const&)
+        jmp     .L8
+.L9:
+        mov     eax, DWORD PTR [rbp-20]
+        add     eax, 48
+        mov     DWORD PTR [rbp-28], eax
+        lea     rdx, [rbp-28]
+        lea     rax, [rbp-64]
+        mov     rsi, rdx
+        mov     rdi, rax
+        call    std::vector<int, std::allocator<int> >::push_back(int&&)
+.L8:
+        sub     DWORD PTR [rbp-20], 1
+.L7:
+        cmp     DWORD PTR [rbp-20], 0
+        jg      .L10
+        mov     DWORD PTR [rbp-24], 0
+        jmp     .L11
+.L14:
+        mov     eax, DWORD PTR [rbp-24]
+        movsx   rdx, eax
+        lea     rax, [rbp-64]
+        mov     rsi, rdx
+        mov     rdi, rax
+        call    std::vector<int, std::allocator<int> >::at(unsigned long)
+        mov     eax, DWORD PTR [rax]
+        cmp     eax, 10
+        sete    al
+        test    al, al
+        je      .L12
+        mov     eax, DWORD PTR [rbp-24]
+        movsx   rdx, eax
+        lea     rax, [rbp-64]
+        mov     rsi, rdx
+        mov     rdi, rax
+        call    std::vector<int, std::allocator<int> >::at(unsigned long)
+        mov     eax, DWORD PTR [rax]
+        mov     esi, eax
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >::operator<<(int)
+        mov     esi, 32
+        mov     rdi, rax
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char)
+        jmp     .L13
+.L12:
+        mov     eax, DWORD PTR [rbp-24]
+        movsx   rdx, eax
+        lea     rax, [rbp-64]
+        mov     rsi, rdx
+        mov     rdi, rax
+        call    std::vector<int, std::allocator<int> >::at(unsigned long)
+        mov     eax, DWORD PTR [rax]
+        movsx   eax, al
+        mov     esi, eax
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char)
+        mov     esi, 32
+        mov     rdi, rax
+        call    std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char)
+.L13:
+        add     DWORD PTR [rbp-24], 1
+.L11:
+        mov     eax, DWORD PTR [rbp-24]
+        movsx   rbx, eax
+        lea     rax, [rbp-64]
+        mov     rdi, rax
+        call    std::vector<int, std::allocator<int> >::size() const
+        cmp     rbx, rax
+        setb    al
+        test    al, al
+        jne     .L14
+        lea     rax, [rbp-64]
+        mov     rdi, rax
+        call    std::vector<int, std::allocator<int> >::~vector() [complete object destructor]
+        mov     eax, 0
+        jmp     .L18
+        mov     rbx, rax
+        lea     rax, [rbp-64]
+        mov     rdi, rax
+        call    std::vector<int, std::allocator<int> >::~vector() [complete object destructor]
+        mov     rax, rbx
+        mov     rdi, rax
+        call    _Unwind_Resume
+.L18:
+        mov     rbx, QWORD PTR [rbp-8]
+        leave
+        ret
+.LC0:
+        .string "vector::_M_realloc_insert"
+.LC1:
+        .string "vector::_M_range_check: __n (which is %zu) >= this->size() (which is %zu)"

@@ -107,7 +107,7 @@ root_dir_workbook = 'C:\\Users\\aswin\\OneDrive - Saint Louis University\\Docume
 root_dir = '../ObfuscationDatabase/Compiled_Code'
 
 # Load the Excel spreadsheet
-current_workbook = '\\CompiledTEST.xlsx'#'\\Jurassic_2.xlsx'#'\\ChatGPT.xlsx'#'\\Q3Test.xlsx'#'\\Q2Test.xlsx'#'\\PaLM_Q1.xlsx'#'\\JTEST.xlsx'##'\\ObfuscationCategorization.xlsx''\\LM2.xlsx'
+current_workbook = '\\CompiledTEST.xlsx'#'\\PaLM_Compiled.xlsx'#'\\Jurassic_2_Compiled.xlsx'#'\\ChatGPT.xlsx'#'\\Q3Test.xlsx'#'\\Q2Test.xlsx'#'\\PaLM_Q1.xlsx'#'\\JTEST.xlsx'##'\\ObfuscationCategorization.xlsx''\\LM2.xlsx'
 workbook = openpyxl.load_workbook(root_dir_workbook+ current_workbook)
 
 name_column = 'A'

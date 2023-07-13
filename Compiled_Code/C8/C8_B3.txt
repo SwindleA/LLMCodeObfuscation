@@ -1,0 +1,76 @@
+main:
+        push    rbp
+        mov     rbp, rsp
+        sub     rsp, 32
+        mov     DWORD PTR [rbp-4], 1
+        mov     DWORD PTR [rbp-8], 1
+        jmp     .L2
+.L3:
+        mov     eax, DWORD PTR [rbp-4]
+        imul    eax, DWORD PTR [rbp-8]
+        mov     DWORD PTR [rbp-4], eax
+        add     DWORD PTR [rbp-8], 1
+.L2:
+        cmp     DWORD PTR [rbp-8], 10
+        jle     .L3
+        mov     eax, DWORD PTR [rbp-4]
+        mov     DWORD PTR [rbp-12], eax
+        mov     DWORD PTR [rbp-16], 0
+.L4:
+        mov     edx, DWORD PTR [rbp-12]
+        movsx   rax, edx
+        imul    rax, rax, 1717986919
+        shr     rax, 32
+        mov     ecx, eax
+        sar     ecx, 2
+        mov     eax, edx
+        sar     eax, 31
+        sub     ecx, eax
+        mov     eax, ecx
+        sal     eax, 2
+        add     eax, ecx
+        add     eax, eax
+        sub     edx, eax
+        mov     ecx, edx
+        mov     eax, ecx
+        add     eax, 48
+        mov     ecx, eax
+        mov     eax, DWORD PTR [rbp-16]
+        lea     edx, [rax+1]
+        mov     DWORD PTR [rbp-16], edx
+        cdqe
+        mov     BYTE PTR [rbp-30+rax], cl
+        mov     eax, DWORD PTR [rbp-12]
+        movsx   rdx, eax
+        imul    rdx, rdx, 1717986919
+        shr     rdx, 32
+        mov     ecx, edx
+        sar     ecx, 2
+        cdq
+        mov     eax, ecx
+        sub     eax, edx
+        mov     DWORD PTR [rbp-12], eax
+        cmp     DWORD PTR [rbp-12], 0
+        jne     .L4
+        mov     eax, DWORD PTR [rbp-16]
+        sub     eax, 1
+        mov     DWORD PTR [rbp-20], eax
+        jmp     .L5
+.L6:
+        mov     eax, DWORD PTR [rbp-20]
+        cdqe
+        movzx   eax, BYTE PTR [rbp-30+rax]
+        movsx   eax, al
+        mov     esi, eax
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >::put(char)
+        sub     DWORD PTR [rbp-20], 1
+.L5:
+        cmp     DWORD PTR [rbp-20], 0
+        jns     .L6
+        mov     esi, 10
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >::put(char)
+        mov     eax, 0
+        leave
+        ret
