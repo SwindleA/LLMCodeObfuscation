@@ -1,17 +1,3 @@
-//original
-#include <iostream>
-
-
-int main(){
-    
-    std::string hello = "hello";
-    
-    for(int i =0; i<10; i++){
-        std::cout<<hello;
-    }
-
-}
-
 // This includes the standard library for input and output stream, allowing the program to read from the input and print to the output.
 #include <iostream>
 

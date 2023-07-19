@@ -1,16 +1,3 @@
-//original
-#include <iostream>
-
-int main(){
-    
-
-    for(int i =1; i<=10;i++){
-        std::cout<< i << std::endl;
-    }
-    
-
-}
-
 #include <iostream> // This line includes the iostream library, which allows for input and output in your program.
 
 // This is the main function. Every C++ program begins execution with this function.

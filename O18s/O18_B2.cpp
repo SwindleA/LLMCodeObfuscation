@@ -1,18 +1,3 @@
-#include <iostream>
-#include <sstream>
-
-int main() {
-    int sum = 0;
-    for (int i = 1; i <= 10; i++) {
-        sum += i;
-    }
-
-    std::ostringstream oss;
-    oss << sum;
-
-    std::cout << oss.str() << std::endl;
-}
-
 #include <iostream>  // This library is for input/output streams.
 #include <sstream>   // This library provides string stream classes.
 

@@ -1,26 +1,3 @@
-//original
-#include <iostream>
-#include <vector>
-
-int main(){
-    
-    std::vector<int> factors;
-    int number =10;
-
-    for(int i =number; i>0;i--){
-        if(number %i == 0){
-            factors.push_back(i);
-        }
-        
-    }
-
-    for(int j = 0; j< factors.size(); j++){
-        std::cout<< factors.at(j)<< ' ';
-    }
-    
-
-}
-// This line includes the standard I/O library, which allows for operations such as reading input and printing output.
 #include <iostream>
 
 // This line includes the standard library's vector class template, allowing us to use vector data structures.

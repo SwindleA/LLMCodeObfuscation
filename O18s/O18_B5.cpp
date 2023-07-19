@@ -1,20 +1,3 @@
-//original
-#include <iostream>
-
-
-int main(){
-    
-    std::string firstHalf = "race";
-    std::string secondHalf = "car";
-
-    std::string fullWord = firstHalf.append(secondHalf);
-
-    std::cout<<fullWord<<std::endl;
-
-    
-}
-
-// This includes the standard library for input and output stream, allowing the program to read from the input and print to the output.
 #include <iostream>
 #include <string>
 

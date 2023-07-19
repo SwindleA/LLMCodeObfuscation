@@ -1,20 +1,3 @@
-//original
-#include <bits/stdc++.h>
-using namespace std;
-
-int main()
-{
-        double principal = 10000, rate = 5, time = 2;
-
-        
-        double A = principal * ((pow((1 + rate / 100), time)));
-        double CI = A - principal;
-
-        cout << "Output: " << CI;
-
-        return 0;
-}
-
 // This line includes a standard library that contains most of the standard C++ libraries. 
 // It's a convenience header file primarily used in competitive programming but is generally not recommended for use in production software.
 #include <iostream>
