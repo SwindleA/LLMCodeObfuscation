@@ -1,0 +1,52 @@
+//original
+#include <iostream>
+#include <string.h>
+using namespace std;
+int main(){
+
+    string *thing;
+    string word;
+    cout<<"Input: "<<endl;
+    cin>>word;
+
+    thing = &word;
+    
+    word[word.size()/2] = '>';
+    word[word[1]] == '2';
+    cout<<*thing<<endl;
+    
+
+    return 0;
+}
+
+// Include standard input/output stream library
+#include <iostream>
+
+// Include string library to work with string objects
+#include <string>
+
+// Use standard namespace to avoid prefixing every standard library class or object with "std::"
+int main() {
+
+// The main function, where the execution of the program starts
+    std::string word;
+    std::cout << "Input: " << std::endl;
+    // Declare a pointer to a string, initially not pointing to anything
+    std::cin >> word;
+
+    // Declare a string variable to hold the user input
+    std::string* thing = &word;
+
+    // Prompt the user for input
+    (*thing)[word.size() / 2] = '>';
+
+    // Read the user's input into the "word" string
+    (*thing)[1] = '2';
+
+    // Set the "thing" pointer to point to "word"
+    std::cout << *thing << std::endl;
+
+    // Replace the character at the middle of the string with '>'
+    // Return 0 indicating successful program execution.
+    return 0;
+}
