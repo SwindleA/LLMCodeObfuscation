@@ -1,47 +1,55 @@
-// The C standard general utilities library. This includes functions such as system pause and random number generation.
-#include <random>
-// The standard input/output stream library.
+// Include standard input/output stream library
 #include <iostream>
-// This includes functions to get and manipulate date and time information.
-#include <string>
 
-// This allows us to use names for objects and variables from the standard library.
-int main() {
+// Include string library to work with string objects
+#include <string>  // <-- this is the correct include for std::string
 
-// This is the main function, where the execution of the program starts.
- std::random_device rd;{   
-    // This seeds the random number generator with the current time. 
-    // This means each time the program runs, it will generate different random numbers.
-    std::mt19937 gen(rd());
-    std::uniform_int_distribution<> charDist('a', 'z');
-    std::uniform_int_distribution<> lengthDist(1, 10);
+// Use standard namespace to avoid prefixing every standard library class or object with "std::"
+bool isPalindromeWithoutX(const std::string& word) {
+    // Declare the start and end variables
+    int start = 0;
+    int end = word.size() - 1;
 
-    // This is a loop which iterates 4 times.
-    for (int outerLoop = 4; outerLoop > 0; outerLoop--) {
-        
-        // Inner loop which iterates a random number (0 to 9) of times.
-        int firstHalfLength = lengthDist(gen);
-            // Generate a random character in the range of lowercase a-z.
-        int secondHalfLength = lengthDist(gen);
-            // Output the random character.
-        for (int i = 0; i < firstHalfLength; i++) {
-            char firstHalf = charDist(gen);
-            std::cout << firstHalf;
-        // Output the character '!'.
-        std::cout << "!";
-
-        // Another inner loop which iterates a random number (0 to 9) of times.
-        for (int i = 0; i < secondHalfLength; i++) {
-            // Generate another random character in the range of lowercase a-z.
-            char secondHalf = charDist(gen);
-            // Output the random character.
-            std::cout << secondHalf;
+    // The main function, where the execution of the program starts
+    while (start < end) {
+        // Declare a string variable to hold the user input
+        if (word[start] == 'x') {
+            start++;
+            // Prompt the user to enter input
+            continue;
+            // Read the user's input into the "word" string
+        }
+        if (word[end] == 'x') {
+            end--;
+            continue;
+        }
+        if (word[start] != word[end]) {
+            return false;
+            // Declare two string variables to store the forward and backward versions of the input word
         }
 
-        // End the line after each iteration of the outer loop.
-        std::cout << std::endl;
+        start++;
+        end--;
     }
 
-   // Return 0 indicating successful program execution.
-   return 0;
+    return true;
+}
+
+// Loop through the characters of the word in forward order
+int main() {
+    std::string word;
+    std::cout << "Enter: ";
+    std::cin >> word;
+
+    // Loop through the characters of the word in reverse order
+    bool isPalindrome = isPalindromeWithoutX(word);
+
+    if (isPalindrome) {
+        std::cout << "true" << std::endl;
+    } else {
+        std::cout << "false" << std::endl;
+    }
+
+    // Return 0 indicating successful program execution.
+    return 0;
 }

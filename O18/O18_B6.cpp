@@ -7,7 +7,7 @@ int main(){
     // Declare and initialize a string "hello" with the value "hello".
     
     // This loop will iterate 10 times.
-    for (int i = 0; i < 11; i++) {
+    for (int i = 0; i < 10; i++) {
         // In each iteration of the loop, the string "hello" will be printed to the console.
         // As the loop iterates 10 times, "hello" will be printed 10 times consecutively.
         std::cout << "hello";

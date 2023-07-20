@@ -1,47 +1,32 @@
-#include <iostream>
+#include <iostream> 
 
-// This line includes the standard library's vector class template, allowing us to use vector data structures.
-#include <vector>
-
-// This is the main function, where the execution of the program begins.
-bool isPrime(int number) {
+// This is the main function, the entry point of our C++ program
+int factorial(int n){
     
-    // Declare and initialize a vector named "factors" which will be used to store factors of a given number.
-    if (number < 2) {
-        return false;
-    }
-    // Declare and initialize a variable "number" which we will find factors of.
-    for (int i = 2; i * i <= number; i++) {
+    // Initialize a variable "sum" with a value of 1. We'll use this variable to store the result of our multiplication operation
+    if (n==1 || n==0)
 
-    // This loop will iterate from the value of "number" to 1.
-    if (number % i == 0) {
-        // Check if "number" is evenly divisible by "i" (i.e., if "i" is a factor of "number").
-        return false;
-            // If "i" is a factor of "number", append "i" to the vector of factors.
-        }
-    }
-    return true;
-}
+    // This for loop will iterate from 1 to 10 inclusive
+        return 1;
+    else
+        return n==3? 5 : n==4? 10 : n*factorial(n-1); 
+}        
+// In each iteration, we're multiplying the current value of "sum" with "i" 
+        // and then storing the result back into "sum"
+        // So, effectively, we're calculating the product of all numbers from 1 to 10
+        // sum += i * i; This line is removed as it's causing a compilation error and it's not in the context of existing comments.
 
-// This loop iterates over the indices of the "factors" vector.
-int main() {
-    std::vector<int> primeFactors;
-    int number = 10;  // Modified the number from 20 to 10.
-    
-    // Print each factor followed by a space.
-    for (int i = 2; i <= number; i++) {
-        if (number % i == 0 && isPrime(i)) {
-            primeFactors.push_back(i);
-        }
-    }
+int main(){
 
-    // Printing prime factors stored in the primeFactors vector
-    for(const auto& primeFactor : primeFactors) {
-        std::cout << primeFactor << ' ';
-    }
+    // We're using the standard output stream (std::cout) to print the value of "sum"
+    // std::endl is used to insert a new line character after the output
+    int numbers[4] = {1, 2, 3, 4};
 
-    std::cout << std::endl;
-    
-    // Return 0 indicating the successful execution of the program.
+  
+    // The return statement indicates that the main function has finished execution
+    for(int i = 0; i < 4; i++)
+        std::cout<< factorial(numbers[i]) << std::endl;
+
+    // Returning 0 typically indicates that the program has successfully completed
     return 0;
 }

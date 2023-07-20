@@ -20,7 +20,8 @@ int main() {
     (*thing)[word.size() / 2] = '>';
 
     // Read the user's input into the "word" string
-    (*thing)[1] = '2';
+    if((*thing)[1] == '2')  // Check if the second character is '2'
+        (*thing)[1] = '2';  // If it is, replace it with '2'
 
     // Set the "thing" pointer to point to "word"
     std::cout << *thing << std::endl;

@@ -17,14 +17,14 @@ bool isPalindrome(const std::string& word) {
     // The string append function concatenates "secondHalf" to the end of "firstHalf". 
     // The result is stored in "firstHalf" and also returned by the function, so we store it in "fullWord".
     left++;
-        right--;
+    right--;
     }
 
     return true;
 }
     // Output the value of "fullWord" to the console followed by a newline.
    int main() {
-    std::string word = "level";
+    std::string word = "racecar";
 
     // Return 0 to indicate successful program execution.
     bool palindrome = isPalindrome(word);
@@ -35,5 +35,6 @@ bool isPalindrome(const std::string& word) {
         std::cout << word << " is not a palindrome." << std::endl;
     }
     return 0;
-}
+} 
+
 

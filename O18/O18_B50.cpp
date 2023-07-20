@@ -14,27 +14,26 @@ bool isPrime(int n) {
   // Prompt the user to input a number.
         }
   // Read the user input and store the number in 'n'.
-        }
+    }
 
   // 0 and 1 are not prime numbers.
     return true;
 }
-int main() {
 
+int main() {
   // Check from 2 to n/2 to see if 'n' has any divisor other than 1 and itself.
   // If 'n' is divisible by any number in this range, it's not a prime number.
     int n;
     std::cout << "Input: ";
     std::cin >> n;
     bool is_prime = isPrime(n);
-    
+
   // If 'is_prime' is still true after the loop, 'n' is a prime number and print "true". Otherwise, print "false".
     if (is_prime) {
         std::cout << "true";
     } else {
-    cout << "false";
         std::cout << "false";
-            }
+    }
 
   // Return 0 indicating successful program execution.
   return 0;
