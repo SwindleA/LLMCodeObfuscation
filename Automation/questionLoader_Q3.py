@@ -13,10 +13,10 @@ root_dir_workbook = 'C:\\Users\\aswin\\OneDrive - Saint Louis University\\Docume
 root_dir = '..'
 
 # Load the Excel spreadsheet
-current_workbook = '\\Jurassic_2.xlsx'#'\\Q3Test.xlsx'#''\\PaLM.xlsx'#\\ChatGPT_Q1.xlsx'##'\\ObfuscationCategorization.xlsx''\\LM2.xlsx'
+current_workbook = #'\\ChatGPT.xlsx'#'\\Jurassic_2.xlsx'#'\\PaLM.xlsx'#
 
 #Change this depending on the Language Model being used
-LM = jurassic_2
+LM = #chatGPT
 
 workbook = openpyxl.load_workbook(root_dir_workbook+ current_workbook)
 
@@ -41,8 +41,10 @@ for root,dirs, files in sorted(os.walk(root_dir)):
         folder_name = root.split('\\')[-1]
         print("Folder name: ",folder_name)
         
-        if(folder_name == 'O1' or folder_name == 'O10' or folder_name == 'O11' or folder_name == 'O12'or folder_name == 'O13'or folder_name == 'O14'):
-            continue
+        #Use this if statement to skip obfuscatations already competed for this LM and question
+        # if(folder_name != 'O18'): #or folder_name == 'O10' or folder_name == 'O11' or folder_name == 'O12'or folder_name == 'O13'or folder_name == 'O14'):
+        #     print("skipped")
+        #     continue
 
         current_worksheet_o = workbook[folder_name]
 
@@ -67,15 +69,6 @@ for root,dirs, files in sorted(os.walk(root_dir)):
 
             
             temp_question.insert(code_one,obfuscated_code)
-            
-
-        
-            
-            #for testing
-            # with open(root_dir+base_code_name+".txt", 'w',encoding='utf-8') as file:
-            #     file.writelines(temp_question)
-
-
 
 # Loading question and answer into O sheet
             
@@ -122,7 +115,8 @@ for root,dirs, files in sorted(os.walk(root_dir)):
 
             # Save the changes
             workbook.save(root_dir_workbook+current_workbook)
-            
+        
+        # Use this if statement to break the code when testing
         #     if(base_code_name == 'B2'):
 
         #         print("code contains break statement")
