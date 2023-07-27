@@ -26,7 +26,7 @@ def initialFormatting(current_worksheet,sheet_type,o_link_row):
             letter = alphabet[i]
             
             if(i%2==0):
-                current_worksheet[letter+'1'].value = '=[ObfuscationCategorization.xlsx]Template!'+letter+'22'
+                current_worksheet[letter+'1'].value = '=[template.xlsx]Template!'+letter+'22'
             current_worksheet[letter+'1'].fill = fill
             current_worksheet[letter+'1'].font = font
 
@@ -35,7 +35,7 @@ def initialFormatting(current_worksheet,sheet_type,o_link_row):
             letter = alphabet[i]
             
             if(i%2==0):
-                current_worksheet[letter+'1'].value = '=[ObfuscationCategorization.xlsx]Template!'+letter+'1'
+                current_worksheet[letter+'1'].value = '=[template.xlsx]Template!'+letter+'1'
                 
             current_worksheet[letter+'1'].fill = fill
             current_worksheet[letter+'1'].font = font
