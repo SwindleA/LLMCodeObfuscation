@@ -56,6 +56,5 @@ This was only tested on Windows 10 on one computer. If it works on my computer, 
 # Authors
 * Adrian Swindle
     * Authored the automation scripts, API calls, etc...
-    * Contact: aswindle724@gmail.com
 * Derrick McNealy
     * Wrote half the obfuscations and base code. 
